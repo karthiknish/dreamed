@@ -113,7 +113,7 @@ function sign() {
                       onClick={() => setSignin(false)}
                       className="text-sm text-blue-500 hover:underline "
                     >
-                      Don't have an account?
+                      Don t have an account?
                     </button>
                   </div>
                   <div className="flex items-center justify-between mt-4">
