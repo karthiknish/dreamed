@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-function sign() {
+function Sign() {
   const [signin, setSignin] = useState(true);
   const buttvariant = {
     signin: { opacity: 1, x: -10 },
@@ -300,4 +300,4 @@ function sign() {
   );
 }
 
-export default sign;
+export default Sign;
