@@ -7,7 +7,6 @@ export default async function handler(req, res) {
   switch (method) {
     case "POST":
       try {
-      
         const { name, email, password, role } = req.body;
         let u = new User({
           name,
