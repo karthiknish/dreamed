@@ -16,7 +16,13 @@ function Id() {
       getData();
     };
   }, []);
-  return <div>{console.log(data)}</div>;
+  return (
+    <>
+      <div className="p-4">
+        <h1 className="">{data.name}</h1>
+      </div>
+    </>
+  );
 }
 
 export default Id;
