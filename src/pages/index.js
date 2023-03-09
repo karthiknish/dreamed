@@ -1,8 +1,7 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from "next/font/google";
+import header from "../assets/header.png";
+import Router from "next/router";
 import { useState } from "react";
-const inter = Inter({ subsets: ["latin"] });
 import { motion } from "framer-motion";
 export default function Home() {
   const [faqno, setFaqno] = useState(0);
@@ -20,18 +19,21 @@ export default function Home() {
             <div className="w-full lg:w-1/2">
               <div className="lg:max-w-lg">
                 <h1 className="text-3xl font-semibold text-gray-800  lg:text-4xl">
-                  Best place to choose <br /> your{" "}
-                  <span className="text-blue-500 ">clothes</span>
+                  Empowering Your Future <br /> with{" "}
+                  <span className="text-blue-500 ">Education</span>
                 </h1>
 
                 <p className="mt-3 text-gray-600 ">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Porro beatae error laborum ab amet sunt recusandae? Reiciendis
-                  natus perspiciatis optio.
+                  Empowering students to achieve their full potential through
+                  personalized guidance and expert support in navigating the
+                  complex world of education.
                 </p>
 
-                <button className="w-full px-5 py-2 mt-6 text-sm tracking-wider text-white uppercase transition-colors duration-300 transform bg-blue-600 rounded-lg lg:w-auto hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
-                  Shop Now
+                <button
+                  onClick={() => Router.push("/contact")}
+                  className="w-full px-5 py-2 mt-6 text-sm tracking-wider text-white uppercase transition-colors duration-300 transform bg-blue-600 rounded-lg lg:w-auto hover:bg-blue-500 focus:outline-none focus:bg-blue-500"
+                >
+                  Contact NOW!
                 </button>
               </div>
             </div>
@@ -39,7 +41,7 @@ export default function Home() {
             <div className="flex items-center justify-center w-full mt-6 lg:mt-0 lg:w-1/2">
               <img
                 className="w-full h-full lg:max-w-3xl"
-                src="https://merakiui.com/images/components/Catalogue-pana.svg"
+                src={header.src}
                 alt="Catalogue-pana.svg"
               />
             </div>
@@ -84,11 +86,11 @@ export default function Home() {
           <div className="w-full lg:w-1/2">
             <div className="lg:max-w-lg">
               <h1 className="text-3xl font-semibold tracking-wide text-gray-800  lg:text-4xl">
-                Find your premium new glasses exported from US
+                Dedicated to helping you achieve your educational goals
               </h1>
               <p className="mt-4 text-gray-600 ">
-                We work with the best remunated glasses dealers in US to find
-                your new glasses.
+                Our education consultancy has a team of experts who have
+                extensive knowledge and experience in international education.
               </p>
               <div className="grid gap-6 mt-8 sm:grid-cols-2">
                 <div className="flex items-center text-gray-800 -px-3 ">
@@ -107,7 +109,7 @@ export default function Home() {
                     />
                   </svg>
 
-                  <span className="mx-3">Premium selection</span>
+                  <span className="mx-3">Expertise and Experience</span>
                 </div>
 
                 <div className="flex items-center text-gray-800 -px-3 ">
@@ -126,7 +128,7 @@ export default function Home() {
                     />
                   </svg>
 
-                  <span className="mx-3">Insurance</span>
+                  <span className="mx-3">Comprehensive Services</span>
                 </div>
 
                 <div className="flex items-center text-gray-800 -px-3 ">
@@ -145,7 +147,7 @@ export default function Home() {
                     />
                   </svg>
 
-                  <span className="mx-3">All legal documents</span>
+                  <span className="mx-3">Increased Chances of Success</span>
                 </div>
 
                 <div className="flex items-center text-gray-800 -px-3 ">
@@ -164,7 +166,7 @@ export default function Home() {
                     />
                   </svg>
 
-                  <span className="mx-3">From US glasses dealers</span>
+                  <span className="mx-3">Personalized Guidance</span>
                 </div>
 
                 <div className="flex items-center text-gray-800 -px-3">
@@ -183,7 +185,7 @@ export default function Home() {
                     />
                   </svg>
 
-                  <span className="mx-3">Payment Security</span>
+                  <span className="mx-3">Cost-Effective</span>
                 </div>
 
                 <div className="flex items-center text-gray-800 -px-3 ">
@@ -202,7 +204,7 @@ export default function Home() {
                     />
                   </svg>
 
-                  <span className="mx-3">Fast shipping (+ Express)</span>
+                  <span className="mx-3">Networking Opportunities</span>
                 </div>
               </div>
             </div>
@@ -211,7 +213,7 @@ export default function Home() {
           <div className="flex items-center justify-center w-full h-96 lg:w-1/2">
             <img
               className="object-cover w-full h-full max-w-2xl rounded-md"
-              src="https://images.unsplash.com/photo-1555181126-cf46a03827c0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+              src="https://images.unsplash.com/photo-1570616969692-54d6ba3d0397?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2622&q=80"
               alt="glasses photo"
             />
           </div>
@@ -533,7 +535,7 @@ export default function Home() {
               <div className="border-2 border-gray-100 rounded-lg ">
                 <button className="flex items-center justify-between w-full p-8">
                   <h1 className="font-semibold text-gray-700 ">
-                    How i can play for my appoinment ?
+                    What services does we provide?
                   </h1>
                   {faqno === 0 ? (
                     <span
@@ -586,10 +588,9 @@ export default function Home() {
                     animate={{ y: 0, opacity: 1 }}
                     className="p-8 text-sm text-gray-500 "
                   >
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    Voluptas eaque nobis, fugit odit omnis fugiat deleniti animi
-                    ab maxime cum laboriosam recusandae facere dolorum veniam
-                    quia pariatur obcaecati illo ducimus?
+                    We provide a wide range of services, including college
+                    admissions counseling, test preparation, academic tutoring,
+                    career counseling, and study abroad guidance.
                   </motion.p>
                 )}
               </div>
@@ -601,7 +602,10 @@ export default function Home() {
                     insurance?
                   </h1>
 
-                  <span className="text-white bg-blue-500 rounded-full">
+                  <span
+                    onClick={() => (faqno === 2 ? setFaqno(3) : setFaqno(2))}
+                    className="text-white bg-blue-500 rounded-full"
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="w-6 h-6"

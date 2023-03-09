@@ -12,7 +12,6 @@ const Navbar = () => {
       setIsOpen(true);
     }
     if (token !== null) {
-      console.log("hi");
       setSigned(true);
     }
     return () => {};
@@ -20,6 +19,7 @@ const Navbar = () => {
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("email");
+    localStorage.removeItem("role");
     Router.push("/");
     Router.reload();
   };

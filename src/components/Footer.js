@@ -1,12 +1,13 @@
 import logo from "../assets/logo.png";
+import Link from "next/link";
 function Footer() {
   return (
     <footer className="bg-white ">
       <div className="container px-6 py-8 mx-auto">
         <div className="flex flex-col items-center text-center">
-          <a href="#">
+          <Link href="/">
             <img className="w-auto h-7" src={logo.src} alt="" />
-          </a>
+          </Link>
 
           <div className="flex flex-wrap justify-center mt-6 -mx-4">
             <a
