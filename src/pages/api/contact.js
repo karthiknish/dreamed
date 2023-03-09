@@ -42,7 +42,7 @@ export default async function handler(req, res) {
         res.status(201).json({ success: true, data: contact });
       } catch (error) {
         res.status(400).json({ success: false });
-        console.error(error);
+        console.table(error);
       }
       break;
     default:

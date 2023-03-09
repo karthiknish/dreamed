@@ -16,44 +16,37 @@ const ContactSchema = new mongoose.Schema(
         "Please fill a valid email address",
       ],
     },
-    phonecode: {
-      type: String,
-      required: [true, "Please provide the country code."],
-      default: "+91",
-    },
     phone: {
-      type: Number,
-      validate: {
-        validator: function (v) {
-          return /d{11}/.test(v);
-        },
-        message: "{VALUE} is not a valid 11 digit number!",
-      },
+      type: String,
+      required: [true, "Phone number is required"],
     },
     qualify: {
       type: String,
       required: [true, "Please provide your qualification."],
     },
-    degreeType: {
+    degreetype: {
       type: String,
       required: [true, "Please provide your degree."],
     },
     dob: { type: Date, required: true, trim: true },
     cgpa: {
-      type: String,
+      type: Number,
       required: [true, "Please provide your cgpa."],
     },
-    backlogs: {
+    backlog: {
       type: Number,
       required: [true, "Please provide your backlogs."],
     },
-    country: {
-      type: String,
-      required: [true, "Please provide your preferred country."],
+    countries: {
+      type: Array,
+      required: [true, "Please provide your preferred countries."],
     },
     visa: {
       type: String,
-      required: [true, "Please provide your visa status."],
+    },
+    visabool: {
+      type: Boolean,
+      required: [true, "Please provide your Visa status."],
     },
     course1: {
       type: String,
@@ -63,13 +56,16 @@ const ContactSchema = new mongoose.Schema(
       type: String,
       required: [true, "Please provide your course 2."],
     },
-    ielts: {
-      type: String,
+    ieltsbool: {
+      type: Boolean,
       required: [true, "Please provide your ielts status."],
     },
-    ieltsscore: { type: Number },
-    gre: { type: String, required: [true, "Please provide your gre status."] },
-    grescore: { type: Number },
+    ielts: { type: Number },
+    grebool: {
+      type: Boolean,
+      required: [true, "Please provide your gre status."],
+    },
+    gre: { type: Number },
     english: {
       type: String,
       required: [true, "Please provide your English score."],

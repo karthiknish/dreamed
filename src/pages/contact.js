@@ -24,19 +24,19 @@ const DEGREE = [
 const ContactForm = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
+  const [pno, setPno] = useState("");
   const [countryCode, setCountryCode] = useState(COUNTRY_CODES[0].code);
   const [countries, setCountries] = useState([]);
-  const [study1, setStudy1] = useState("");
-  const [study2, setStudy2] = useState("");
+  const [course1, setCourse1] = useState("");
+  const [course2, setCourse2] = useState("");
   const [time, setTime] = useState("");
   const [dob, setDob] = useState("");
-  const [degree, setDegree] = useState("");
-  const [cgpa, setCgpa] = useState("");
+  const [degreetype, setDegreetype] = useState("");
+  const [cgpa, setCgpa] = useState(0);
   const [ielts, setIelts] = useState("");
   const [ieltsbool, setIeltsbool] = useState("");
-  const [gmat, setGmat] = useState("");
-  const [gmatbool, setGmatbool] = useState("");
+  const [gre, setGre] = useState("");
+  const [grebool, setGrebool] = useState("");
   const [visa, setVisa] = useState("");
   const [visabool, setVisabool] = useState("");
   const [english, setEnglish] = useState("");
@@ -52,29 +52,42 @@ const ContactForm = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(`Name: ${name}`);
-    console.log(`Email: ${email}`);
-    console.log(`Code:${countryCode}`);
-    console.log(`Phone: ${phone}`);
-    console.log(`degree:${degree}`);
-    console.log(`backlog:${backlog}`);
-    console.log(`Countries: ${countries}`);
-    console.log(`Study1: ${study1}`);
-    console.log(`Study2: ${study2}`);
-    console.log(`Time: ${time}`);
-    console.log(`Dob: ${dob}`);
-    console.log(`CGPA: ${cgpa}`);
-    console.log(`ielts: ${ielts}`);
-    console.log(`ieltsbool: ${ieltsbool}`);
-    console.log(`gmat: ${gmat}`);
-    console.log(`gmatbool: ${gmatbool}`);
-    console.log(`Visa: ${visa}`);
-    console.log(`Visa status: ${visabool}`);
-    console.log(`English ${english}`);
-    console.log(`qualify: ${qualify}`);
-    console.log(`backlog: ${backlog}`);
+    const phone = countryCode + pno;
+    const data = {
+      name,
+      email,
+      phone,
+      degreetype,
+      countries,
+      qualify,
+      dob,
+      cgpa,
+      gre,
+      grebool,
+      ielts,
+      ieltsbool,
+      visa,
+      visabool,
+      course1,
+      course2,
+      english,
+      backlog,
+      time,
+    };
+    console.log(data);
+    let res = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((e) => console.table(e));
   };
 
   return (
@@ -129,8 +142,8 @@ const ContactForm = () => {
               className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
               type="tel"
               id="phone"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              value={pno}
+              onChange={(e) => setPno(e.target.value)}
             />
           </div>
           <label className="text-gray-700 pt-2" htmlFor="qualify">
@@ -143,7 +156,7 @@ const ContactForm = () => {
             value={qualify}
             onChange={(e) => setQualify(e.target.value)}
           />
-          <legend className="text-gray-700 py-2" htmlFor="degree">
+          <legend className="text-gray-700 py-2" htmlFor="degreetype">
             Degree type:
           </legend>
           {DEGREE.map((d) => (
@@ -153,8 +166,8 @@ const ContactForm = () => {
                 id={`d-${d.value}`}
                 type="radio"
                 value={d.name}
-                name="degree"
-                onChange={(e) => setDegree(e.target.value)}
+                name="degreetype"
+                onChange={(e) => setDegreetype(e.target.value)}
               />
               <label htmlFor={`degree-${d.value}`} className="text-black">
                 {d.name}
@@ -208,9 +221,9 @@ const ContactForm = () => {
           <div className="flex-col py-1 space-x-2">
             <>
               <input
-                name="gmat"
-                value={gmatbool}
-                onChange={() => setGmatbool(true)}
+                name="gre"
+                value={grebool}
+                onChange={() => setGrebool(true)}
                 type="radio"
               />
               <label>Yes</label>
@@ -218,18 +231,18 @@ const ContactForm = () => {
 
             <>
               <input
-                name="gmat"
-                value={gmatbool}
-                onChange={() => setGmatbool(false)}
+                name="gre"
+                value={grebool}
+                onChange={() => setGrebool(false)}
                 type="radio"
               />
               <label className="">No</label>
             </>
-            {gmatbool && (
+            {grebool && (
               <input
                 placeholder="Enter the score"
-                value={gmat}
-                onChange={(e) => setGmat(e.target.value)}
+                value={gre}
+                onChange={(e) => setGre(e.target.value)}
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
               />
             )}
@@ -308,9 +321,9 @@ const ContactForm = () => {
           <input
             className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
             type="text"
-            id="study"
-            value={study1}
-            onChange={(e) => setStudy1(e.target.value)}
+            id="course1"
+            value={course1}
+            onChange={(e) => setCourse1(e.target.value)}
           />
           <label className="text-gray-700" htmlFor="study">
             Choice of Study (Priority 2):
@@ -318,9 +331,9 @@ const ContactForm = () => {
           <input
             className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
             type="text"
-            id="study"
-            value={study2}
-            onChange={(e) => setStudy2(e.target.value)}
+            id="course2"
+            value={course2}
+            onChange={(e) => setCourse2(e.target.value)}
           />
           <label htmlFor="time">Good Time to Reach You:</label>
           <input
