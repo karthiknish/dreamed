@@ -16,9 +16,16 @@ export default async function handler(req, res) {
   switch (method) {
     case "GET":
       try {
-        console.log(req);
-        const contacts = await Contact.find({});
-        res.status(200).json({ success: true, data: contacts });
+        const q = Object.keys(req.query).length;
+        const { id } = req.query;
+        if (q === 1 && id !== "contact") {
+          const { id } = req.query;
+          const contact = await Contact.findOne({ _id: id });
+          res.status(200).json({ success: true, data: contact });
+        } else {
+          const contacts = await Contact.find({});
+          res.status(200).json({ success: true, data: contacts });
+        }
       } catch (error) {
         res.status(400).json({ success: false });
       }
