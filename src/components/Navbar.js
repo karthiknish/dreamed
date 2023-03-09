@@ -77,13 +77,14 @@ const Navbar = () => {
               >
                 Contact
               </Link>
+              <Link
+                href="/sign"
+                className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100 "
+              >
+                Signin/Register
+              </Link>
             </div>
-            <Link
-              href="/sign"
-              className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100 "
-            >
-              Signin/Register
-            </Link>
+
             <div className="flex items-center mt-4 lg:mt-0">
               <button
                 className="hidden mx-4 text-gray-600 transition-colors duration-300 transform lg:block  hover:text-gray-700  focus:text-gray-700 focus:outline-none"
@@ -118,7 +119,7 @@ const Navbar = () => {
                   />
                 </div>
 
-                <h3 className="mx-2 text-gray-700 lg:hidden">Khatab wedaa</h3>
+                <h3 className="mx-2 text-gray-700 lg:hidden">User</h3>
               </button>
             </div>
           </div>
