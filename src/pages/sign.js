@@ -1,14 +1,64 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import Head from "next/head";
+import Router from "next/router";
 function Sign() {
   const [signin, setSignin] = useState(true);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [conpassword, setConpassword] = useState("");
+  const [message, setMessage] = useState("");
   const buttvariant = {
     signin: { opacity: 1, x: -10 },
     signup: { opacity: 0.5, x: 10 },
   };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (signin) {
+      const data = { email, password };
+      let res = await fetch("/api/signin", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      let response = await res.json();
+      console.log(response);
+      if (response.success === false) {
+        setMessage(response.error);
+      }
+      if (response.token) {
+        localStorage.setItem("token", response.token);
+        localStorage.setItem("email", email);
+        localStorage.setItem("role", response.role);
+        if (response.role == 0) {
+          Router.push("/admin").then(() => window.location.reload());
+        } else {
+          Router.push("/").then(() => window.location.reload());
+        }
+      }
+    } else {
+      console.log(email, name, password, conpassword);
+      if (password === conpassword) {
+        const role = 1;
+        const data = { name, email, password, role };
+        let res = await fetch("/api/signup", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        })
+          .then((res) => res.json())
+          .then((data) => console.log(data));
+        Router.push("/").then(() => window.location.reload());
+      }
+    }
+  };
+
   return (
     <>
-      <title>Sign In | Sign Up</title>
+      <Head>
+        <title>Sign In | Sign Up</title>
+      </Head>
       <section className="bg-white ">
         <div className="container flex items-center justify-center min-h-screen px-6 mx-auto">
           <form className="w-full max-w-md">
@@ -71,9 +121,11 @@ function Sign() {
                   </span>
 
                   <input
-                    type="text"
+                    value={email}
+                    type="email"
+                    onChange={(e) => setEmail(e.target.value)}
                     className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11  focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                    placeholder="Username/Email"
+                    placeholder="Email"
                   />
                 </div>
 
@@ -96,17 +148,27 @@ function Sign() {
                   </span>
 
                   <input
+                    value={password}
                     type="password"
+                    onChange={(e) => setPassword(e.target.value)}
                     className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg   focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                     placeholder="Password"
                   />
                 </div>
 
                 <div className="mt-6">
-                  <button className="w-full px-6 py-2.5 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50">
+                  <button
+                    type="button"
+                    onClick={handleSubmit}
+                    className="w-full px-6 py-2.5 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50"
+                  >
                     Sign In
                   </button>
-
+                  {message && (
+                    <div className="flex text-red-600 bg-red-100 border-2 border-red-200 rounded p-1 my-2  justify-center">
+                      {message}
+                    </div>
+                  )}
                   <div className="mt-6 text-center ">
                     <button
                       type="button"
@@ -168,9 +230,11 @@ function Sign() {
                   </span>
 
                   <input
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                     type="text"
                     className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11  focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                    placeholder="Username"
+                    placeholder="Name"
                   />
                 </div>
 
@@ -193,6 +257,8 @@ function Sign() {
                   </span>
 
                   <input
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     type="email"
                     className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11  focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                     placeholder="Email address"
@@ -219,6 +285,8 @@ function Sign() {
 
                   <input
                     type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                     className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg   focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                     placeholder="Password"
                   />
@@ -244,13 +312,19 @@ function Sign() {
 
                   <input
                     type="password"
+                    value={conpassword}
+                    onChange={(e) => setConpassword(e.target.value)}
                     className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg   focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                     placeholder="Confirm Password"
                   />
                 </div>
 
                 <div className="mt-6">
-                  <button className="w-full px-6 py-2.5 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50">
+                  <button
+                    type="button"
+                    onClick={handleSubmit}
+                    className="w-full px-6 py-2.5 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50"
+                  >
                     Sign Up
                   </button>
                   <div className="mt-6 text-center ">
@@ -260,7 +334,7 @@ function Sign() {
                     >
                       Already have an account?
                     </button>
-                  </div>{" "}
+                  </div>
                   <div className="flex items-center justify-between mt-4">
                     <span className="w-1/5 border-b dark:border-gray-600 lg:w-1/5"></span>
 
