@@ -32,7 +32,7 @@ const ContactForm = () => {
   const [time, setTime] = useState("");
   const [dob, setDob] = useState("");
   const [degreetype, setDegreetype] = useState("");
-  const [cgpa, setCgpa] = useState(0);
+  const [cgpa, setCgpa] = useState("");
   const [ielts, setIelts] = useState("");
   const [ieltsbool, setIeltsbool] = useState("");
   const [gre, setGre] = useState("");
@@ -42,7 +42,7 @@ const ContactForm = () => {
   const [english, setEnglish] = useState("");
   const [qualify, setQualify] = useState("");
   const [backlog, setBacklog] = useState("");
-
+  const [message, setMessage] = useState("");
   const handleCountryChange = (e) => {
     const { value, checked } = e.target;
     if (checked) {
@@ -54,40 +54,44 @@ const ContactForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const phone = countryCode + pno;
-    const data = {
-      name,
-      email,
-      phone,
-      degreetype,
-      countries,
-      qualify,
-      dob,
-      cgpa,
-      gre,
-      grebool,
-      ielts,
-      ieltsbool,
-      visa,
-      visabool,
-      course1,
-      course2,
-      english,
-      backlog,
-      time,
-    };
-    console.log(data);
-    let res = await fetch("/api/contact", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data))
-      .catch((e) => console.table(e));
+    if (!pno <= 10) {
+      setMessage("enter valid number");
+    } else {
+      const phone = countryCode + pno;
+      const data = {
+        name,
+        email,
+        phone,
+        degreetype,
+        countries,
+        qualify,
+        dob,
+        cgpa,
+        gre,
+        grebool,
+        ielts,
+        ieltsbool,
+        visa,
+        visabool,
+        course1,
+        course2,
+        english,
+        backlog,
+        time,
+      };
+
+      let res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+        .then((res) => res.json())
+        .then((data) => console.log(data))
+        .catch((e) => console.table(e));
+    }
   };
 
   return (
@@ -140,7 +144,7 @@ const ContactForm = () => {
             </select>
             <input
               className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
-              type="tel"
+              type="number"
               id="phone"
               value={pno}
               onChange={(e) => setPno(e.target.value)}
@@ -177,12 +181,14 @@ const ContactForm = () => {
           <label className="text-gray-700 pt-2">Date of Birth:</label>
           <input
             value={dob}
+            max={new Date().toISOString().slice(0, -8).split("T")[0]}
             onChange={(e) => setDob(e.target.value)}
             className="block mt-2 w-full placeholder-gray-400/70 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40   "
             type="date"
           />
           <label className="text-gray-700 pt-2">CGPA or % scored:</label>
           <input
+            type="number"
             value={cgpa}
             onChange={(e) => setCgpa(e.target.value)}
             className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
@@ -210,6 +216,7 @@ const ContactForm = () => {
             </>
             {ieltsbool && (
               <input
+                type="number"
                 placeholder="Enter the score"
                 value={ielts}
                 onChange={(e) => setIelts(e.target.value)}
@@ -240,6 +247,7 @@ const ContactForm = () => {
             </>
             {grebool && (
               <input
+                type="number"
                 placeholder="Enter the score"
                 value={gre}
                 onChange={(e) => setGre(e.target.value)}
@@ -251,6 +259,7 @@ const ContactForm = () => {
             English Score(12th Grade):
           </label>
           <input
+            type="number"
             value={english}
             onChange={(e) => setEnglish(e.target.value)}
             className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
@@ -259,6 +268,7 @@ const ContactForm = () => {
             Number of Backlogs(0 if none):
           </label>
           <input
+            type="number"
             value={backlog}
             onChange={(e) => setBacklog(e.target.value)}
             className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
@@ -336,13 +346,21 @@ const ContactForm = () => {
             onChange={(e) => setCourse2(e.target.value)}
           />
           <label htmlFor="time">Good Time to Reach You:</label>
+          {console.log()}
           <input
+            min={new Date().toISOString().slice(0, -8)}
             className="block mt-2 w-full placeholder-gray-400/70 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40   "
             type="datetime-local"
             id="time"
             value={time}
             onChange={(e) => setTime(e.target.value)}
           />
+          {console.log(time)}
+          {message && (
+            <div className="flex text-red-600 bg-red-100 border-2 border-red-200 rounded p-1 my-2  justify-center">
+              {message}
+            </div>
+          )}
           <div className="flex justify-center mt-6">
             <button
               type="submit"
