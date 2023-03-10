@@ -1,6 +1,7 @@
 import Link from "next/link";
 import logo from "../assets/logo.png";
 import Router from "next/router";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 const Navbar = () => {
@@ -31,7 +32,13 @@ const Navbar = () => {
         <div className="lg:flex lg:items-center lg:justify-between">
           <div className="flex items-center justify-between">
             <Link href="/">
-              <img className="w-auto sm:h-20 xs:w-1/2" src={logo.src} alt="" />
+              <Image
+                alt="logo"
+                className="w-auto sm:h-20 xs:w-1/2"
+                src={logo.src}
+                width="100"
+                height="100"
+              />
             </Link>
             <div className="flex lg:hidden">
               <button
@@ -152,10 +159,12 @@ const Navbar = () => {
                     aria-label="toggle profile dropdown"
                   >
                     <div className="w-8 h-8 overflow-hidden border-2 border-gray-400 rounded-full">
-                      <img
+                      <Image
                         src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
                         className="object-cover w-full h-full"
                         alt="avatar"
+                        width="100"
+                        height="100"
                       />
                     </div>
 
