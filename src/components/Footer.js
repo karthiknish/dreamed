@@ -10,7 +10,6 @@ function Footer() {
             <Image
               width="100"
               height="100"
-              w
               className="w-auto h-7"
               src={logo.src}
               alt=""
