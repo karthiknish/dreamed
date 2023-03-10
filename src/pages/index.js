@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import header from "../assets/header.png";
+import Image from "next/image";
 import Router from "next/router";
 import { useState } from "react";
 import { motion } from "framer-motion";
@@ -39,7 +40,9 @@ export default function Home() {
             </div>
 
             <div className="flex items-center justify-center w-full mt-6 lg:mt-0 lg:w-1/2">
-              <img
+              <Image
+                width="200"
+                height="200"
                 className="w-full h-full lg:max-w-3xl"
                 src={header.src}
                 alt="Catalogue-pana.svg"
