@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { initGA, logPageView } from "../lib/ga";
 import Footer from "@/components/Footer";
 import { SessionProvider } from "next-auth/react";
-export default function App({ session, Component, pageProps }) {
+export default function App({ Component, pageProps }) {
   useEffect(() => {
     if (!window.GA_INITIALIZED) {
       initGA();
@@ -13,7 +13,7 @@ export default function App({ session, Component, pageProps }) {
     logPageView();
   }, []);
   return (
-    <SessionProvider session={session}>
+    <SessionProvider>
       <Navbar />
       <Component {...pageProps} />
       <Footer />
