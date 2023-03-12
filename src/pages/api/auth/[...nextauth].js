@@ -6,10 +6,11 @@ import User from "../../../models/User";
 import dbConnect from "../../../lib/dbConnect";
 export default NextAuth({
   session: { strategy: "jwt" },
+  site: process.env.NEXTAUTH_URL,
   providers: [
     CredentialsProvider({
       async authorize(credentials, req) {
-       await dbConnect();
+        await dbConnect();
         const { email, password } = credentials;
         const user = await User.findOne({ email });
         if (!user) {
