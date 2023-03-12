@@ -6,7 +6,7 @@ import User from "../../../models/User";
 import dbConnect from "../../../lib/dbConnect";
 export default NextAuth({
   session: { strategy: "jwt" },
-  site: process.env.NEXTAUTH_URL,
+  site: process.env.SITE === "production" && process.env.NEXTAUTH_URL,
   providers: [
     CredentialsProvider({
       async authorize(credentials, req) {
