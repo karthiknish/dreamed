@@ -1,23 +1,22 @@
 import Link from "next/link";
 import logo from "../assets/logo.png";
-import Router from "next/router";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { signOut, useSession } from "next-auth/react";
 const Navbar = () => {
   const { data } = useSession();
-
   useEffect(() => {
     const w = window.innerWidth;
     if (w >= 1024) {
       setIsOpen(true);
+      console.log(data.user);
     }
     return () => {};
   }, []);
 
   const [isOpen, setIsOpen] = useState(false);
-  const [signed, setSigned] = useState(false);
+
   return (
     <nav className="relative bg-white shadow">
       <div className="container px-6 py-4 mx-auto">
@@ -73,6 +72,7 @@ const Navbar = () => {
               </button>
             </div>
           </div>
+          {console.log(data)}
           {isOpen && (
             <motion.div
               transition={{ delay: -0.5 }}
@@ -105,7 +105,7 @@ const Navbar = () => {
                 >
                   Contact
                 </Link>
-                {!signed ? (
+                {!data?.user ? (
                   <Link
                     href="/sign"
                     className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100 "
@@ -122,7 +122,7 @@ const Navbar = () => {
                 )}
               </div>
 
-              {signed && (
+              {data?.user && (
                 <div className="flex items-center mt-4 lg:mt-0">
                   <button
                     className="hidden mx-4 text-gray-600 transition-colors duration-300 transform lg:block  hover:text-gray-700  focus:text-gray-700 focus:outline-none"

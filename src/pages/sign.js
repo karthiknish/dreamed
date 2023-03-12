@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Head from "next/head";
 import Router from "next/router";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
+
 function Sign() {
+  const { data } = useSession();
   const [signin, setSignin] = useState(true);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -14,6 +16,11 @@ function Sign() {
     signin: { opacity: 1, x: -10 },
     signup: { opacity: 0.5, x: 10 },
   };
+  useEffect(() => {
+    if (data?.user) {
+      Router.push("/");
+    }
+  }, []);
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (signin) {
@@ -55,7 +62,7 @@ function Sign() {
                 alt=""
               /> */}
             </div>
-            {console.log(signin)}
+
             <div className="flex items-center justify-center mt-6">
               <motion.button
                 animate={signin ? "signin" : "signup"}
