@@ -12,10 +12,7 @@ export default async function handler(req, res) {
           name,
           email,
           role,
-          password: CryptoJS.AES.encrypt(
-            password,
-            process.env.CRYPTO_SECRET
-          ).toString(),
+          password,
         });
         await u.save();
         res.status(200).json({ success: "success" });

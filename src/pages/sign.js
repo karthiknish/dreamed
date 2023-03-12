@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Head from "next/head";
 import Router from "next/router";
+import { signIn } from "next-auth/react";
 function Sign() {
   const [signin, setSignin] = useState(true);
   const [name, setName] = useState("");
@@ -16,27 +17,12 @@ function Sign() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (signin) {
-      const data = { email, password };
-      let res = await fetch("/api/signin", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+      const data = await signIn("credentials", {
+        redirect: "/",
+        email,
+        password,
       });
-      let response = await res.json();
-      console.log(response);
-      if (response.success === false) {
-        setMessage(response.error);
-      }
-      if (response.token) {
-        localStorage.setItem("token", response.token);
-        localStorage.setItem("email", email);
-        localStorage.setItem("role", response.role);
-        if (response.role == 0) {
-          Router.push("/admin").then(() => window.location.reload());
-        } else {
-          Router.push("/").then(() => window.location.reload());
-        }
-      }
+      console.log(data);
     } else {
       console.log(email, name, password, conpassword);
       if (password === conpassword) {

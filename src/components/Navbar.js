@@ -4,26 +4,18 @@ import Router from "next/router";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { signOut, useSession } from "next-auth/react";
 const Navbar = () => {
+  const { data } = useSession();
+
   useEffect(() => {
     const w = window.innerWidth;
-    let token = localStorage.getItem("token");
-    console.log(token);
     if (w >= 1024) {
       setIsOpen(true);
     }
-    if (token !== null) {
-      setSigned(true);
-    }
     return () => {};
   }, []);
-  const logout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("email");
-    localStorage.removeItem("role");
-    Router.push("/");
-    Router.reload();
-  };
+
   const [isOpen, setIsOpen] = useState(false);
   const [signed, setSigned] = useState(false);
   return (
@@ -81,7 +73,6 @@ const Navbar = () => {
               </button>
             </div>
           </div>
-          {console.log(isOpen)}
           {isOpen && (
             <motion.div
               transition={{ delay: -0.5 }}
@@ -123,7 +114,7 @@ const Navbar = () => {
                   </Link>
                 ) : (
                   <button
-                    onClick={logout}
+                    onClick={() => signOut()}
                     className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100 "
                   >
                     Signout
