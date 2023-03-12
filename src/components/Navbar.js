@@ -10,7 +10,6 @@ const Navbar = () => {
     const w = window.innerWidth;
     if (w >= 1024) {
       setIsOpen(true);
-      console.log(data.user);
     }
     return () => {};
   }, []);
@@ -72,7 +71,7 @@ const Navbar = () => {
               </button>
             </div>
           </div>
-          {console.log(data)}
+
           {isOpen && (
             <motion.div
               transition={{ delay: -0.5 }}
@@ -87,12 +86,21 @@ const Navbar = () => {
                 >
                   Blog
                 </Link>
-                <a
-                  href="#"
-                  className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100 "
-                >
-                  Browse Topics
-                </a>
+                {data?.user?.name === "admin" ? (
+                  <Link
+                    href="/admin"
+                    className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100 "
+                  >
+                    Admin
+                  </Link>
+                ) : (
+                  <Link
+                    href='href="/dashboard"
+                  className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100 "'
+                  >
+                    Dashboard
+                  </Link>
+                )}
                 <a
                   href="#"
                   className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100 "
@@ -115,7 +123,7 @@ const Navbar = () => {
                 ) : (
                   <button
                     onClick={() => signOut()}
-                    className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100 "
+                    className="text-left px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100 "
                   >
                     Signout
                   </button>
@@ -159,7 +167,9 @@ const Navbar = () => {
                       />
                     </div>
 
-                    <h3 className="mx-2 text-gray-700 lg:hidden">User</h3>
+                    <h3 className="mx-2 text-gray-700 lg:hidden">
+                      {data?.user.name}
+                    </h3>
                   </button>
                 </div>
               )}
