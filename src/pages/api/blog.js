@@ -31,6 +31,22 @@ export default async function handler(req, res) {
         console.error(error);
       }
       break;
+    case "PUT":
+      try {
+        const blog = await Blog.findByIdAndUpdate(req.body.id, req.body);
+        res.status(201).json({ success: true, data: blog });
+      } catch (error) {
+        res.status(400).json({ success: false });
+      }
+      break;
+    case "DELETE":
+      try {
+        const blog = await Blog.findOneAndDelete({ _id: req.body.id });
+        res.status(200).json({ success: true, data: {} });
+      } catch (error) {
+        res.status(400).json({ success: false });
+      }
+      break;
     default:
       res.status(400).json({ success: false });
       break;
