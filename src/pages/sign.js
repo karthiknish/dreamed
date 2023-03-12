@@ -17,18 +17,20 @@ function Sign() {
     signup: { opacity: 0.5, x: 10 },
   };
   useEffect(() => {
+    console.log(data);
     if (data?.user) {
       Router.push("/");
     }
-  }, []);
+  }, [data]);
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (signin) {
       const data = await signIn("credentials", {
-        redirect: "/",
+        // redirect: "/",
         email,
         password,
       });
+
       console.log(data);
     } else {
       console.log(email, name, password, conpassword);
