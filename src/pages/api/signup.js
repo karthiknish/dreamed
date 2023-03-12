@@ -1,6 +1,5 @@
 import dbConnect from "../../lib/dbConnect";
 import User from "../../models/User";
-import CryptoJS from "crypto-js";
 export default async function handler(req, res) {
   const { method } = req;
   await dbConnect();
