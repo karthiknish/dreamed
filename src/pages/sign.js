@@ -33,7 +33,6 @@ function Sign() {
 
       console.log(data);
     } else {
-      console.log(email, name, password, conpassword);
       if (password === conpassword) {
         const role = 1;
         const data = { name, email, password, role };

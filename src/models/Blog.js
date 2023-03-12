@@ -11,7 +11,7 @@ const BlogSchema = new mongoose.Schema(
       required: [true, "Please provide your category"],
       maxlength: [60, "Category cannot be more than 60 characters"],
     },
-    author: { UserId: { type: String }, Name: { type: String } },
+    author: { type: String },
     content: {
       type: String,
       required: [true, "Content is required"],
