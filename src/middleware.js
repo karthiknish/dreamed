@@ -4,7 +4,7 @@ const mainMiddleware = (request) => {
   const res = NextResponse.next();
   return res;
 };
-export default withAuthorization(mainMiddleware, ["/admin"]);
+export default withAuthorization(mainMiddleware, ["/adminfefe"]);
 // import { withAuth } from "next-auth/middleware";
 
 // export const config = { matcher: ["/admin/:path*"] };
