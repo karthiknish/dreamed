@@ -1,4 +1,16 @@
+import { useEffect } from "react";
+
 function Blog() {
+  useEffect(() => {
+    getData();
+  }, []);
+  const getData = async () => {
+    await fetch("/api/blog", {
+      method: "GET",
+    })
+      .then((res) => res.json())
+      .then((d) => console.log(d.data));
+  };
   return (
     <section className="bg-gray-100">
       <div className="container px-6 py-10 mx-auto">
