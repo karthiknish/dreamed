@@ -82,7 +82,7 @@ function Sign() {
             .then((res) => res.json())
             .then((d) => {
               if (d.success) {
-                Router.push("/").then(() => window.location.reload());
+                // Router.push("/").then(() => window.location.reload());
               } else {
                 setMessage(d.data);
               }
