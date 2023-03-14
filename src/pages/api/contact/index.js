@@ -33,7 +33,29 @@ export default async function handler(req, res) {
 
     case "POST":
       try {
-        const contact = await Contact.create(req.body);
+        if (!req.body.name) {
+          res.status(400).json({ success: false, data: "Please enter name" });
+        } else if (!req.body.email) {
+          res.status(400).json({ success: false, data: "Please enter email" });
+        } else if (!req.body.query) {
+          res
+            .status(400)
+            .json({ success: false, data: "Please enter message" });
+        } else if (req.body.email) {
+          let r = String(req.body.email)
+            .toLowerCase()
+            .match(
+              /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            );
+          if (r === null) {
+            res
+              .status(400)
+              .json({ success: false, data: "Please enter valid email" });
+          } else {
+            const contact = await Contact.create(req.body);
+            res.status(201).json({ success: true, data: contact });
+          }
+        }
 
         // let info = await transporter.sendMail({
         //   from: "initiosol@gmail.com",
@@ -48,10 +70,8 @@ export default async function handler(req, res) {
         //   `,
         // });
         // console.log("Message sent: %s", info);
-        res.status(201).json({ success: true, data: contact });
       } catch (error) {
-        res.status(400).json({ success: false });
-        console.table(error);
+        res.status(400).json({ success: false, data: "Server Error" });
       }
       break;
     default:
