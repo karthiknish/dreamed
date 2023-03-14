@@ -11,10 +11,13 @@ export default NextAuth({
     CredentialsProvider({
       async authorize(credentials, req) {
         await dbConnect();
+
         const { email, password } = credentials;
+
         const user = await User.findOne({ email });
-        if (!user) {
-          console.error("Invalid Email address");
+        // console.log(user.status);
+        if (user === undefined) {
+          // console.log(user.error);
         }
         const isPasswordMatched = await bcrypt.compare(password, user.password);
         if (!isPasswordMatched) {
@@ -25,6 +28,6 @@ export default NextAuth({
     }),
     // GoogleProvider({ clientId: "", clientSecret: "" }),
   ],
-  pages: { signIn: "/sign" },
+  pages: { signIn: "/sign", error: "/sign" },
   secret: process.env.NEXTAUTH_SECRET,
 });
