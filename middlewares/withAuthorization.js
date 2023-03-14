@@ -11,11 +11,11 @@ export default function withAuthorization(middleware, requireAuth) {
         secret: process.env.NEXTAUTH_SECRET,
       });
       console.log(token);
-      if (!token) {
-        const url = new URL(`/api/auth/signin`, request.url);
-        url.searchParams.set("callbackUrl ", encodeURI(request.url));
-        return NextResponse.redirect(url);
-      }
+      // if (!token) {
+      //   const url = new URL(`/api/auth/signin`, request.url);
+      //   url.searchParams.set("callbackUrl ", encodeURI(request.url));
+      //   return NextResponse.redirect(url);
+      // }
 
       if (token.name !== "admin" && pathname === "/admin") {
         const url = new URL(`/403`, request.url);
