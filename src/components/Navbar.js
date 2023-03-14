@@ -125,7 +125,7 @@ const Navbar = () => {
                 ) : (
                   <button
                     onClick={() =>
-                      signOut({ callbackUrl: "/", redirect: true })
+                      signOut({ callbackUrl: "/", redirect: false })
                     }
                     className="text-left px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100 "
                   >
