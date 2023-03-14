@@ -12,6 +12,7 @@ function Sign() {
   const [password, setPassword] = useState("");
   const [conpassword, setConpassword] = useState("");
   const [message, setMessage] = useState("");
+
   const buttvariant = {
     signin: { opacity: 1, x: -10 },
     signup: { opacity: 0.5, x: 10 },
@@ -82,7 +83,11 @@ function Sign() {
             .then((res) => res.json())
             .then((d) => {
               if (d.success) {
-                // Router.push("/").then(() => window.location.reload());
+                setEmail("");
+                setName("");
+                setConpassword("");
+                setPassword("");
+                setMessage(d.data);
               } else {
                 setMessage(d.data);
               }

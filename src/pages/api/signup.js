@@ -29,8 +29,10 @@ export default async function handler(req, res) {
           const mailOptions = {
             from: process.env.NOREPLY_EMAIL,
             to: email,
-            subject: "Some subject",
-            html: `<section class="max-w-2xl px-6 py-8 mx-auto bg-white dark:bg-gray-900">
+            subject: "Welcome to Dream Education Consultancy",
+            html: `
+            <html><head> <script src="https://cdn.tailwindcss.com"></script></head>
+            <body><section class="max-w-2xl px-6 py-8 mx-auto bg-white dark:bg-gray-900">
             <header>
                 <a href="#">
                     <img class="w-auto h-7 sm:h-8" src="https://merakiui.com/images/full-logo.svg" alt="">
@@ -56,14 +58,10 @@ export default async function handler(req, res) {
             
         
             <footer class="mt-8">
-                <p class="text-gray-500 dark:text-gray-400">
-                    This email was sent to <a href="#" class="text-blue-600 hover:underline dark:text-blue-400" target="_blank">contact@merakiui.com</a>. 
-                    If you'd rather not receive this kind of email, you can <a href="#" class="text-blue-600 hover:underline dark:text-blue-400">unsubscribe</a> or <a href="#" class="text-blue-600 hover:underline dark:text-blue-400">manage your email preferences</a>.
-                </p>
         
-                <p class="mt-3 text-gray-500 dark:text-gray-400">© {{ new Date().getFullYear() }} Dream Ed. All Rights Reserved.</p>
+                <p class="mt-3 text-gray-500 dark:text-gray-400">© ${new Date().getFullYear()} Dream Ed. All Rights Reserved.</p>
             </footer>
-        </section>`,
+        </section></body></html>`,
           };
           await transporter.sendMail(mailOptions, function (err, info) {
             console.log(info);
