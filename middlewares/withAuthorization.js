@@ -4,8 +4,7 @@ import { NextResponse } from "next/server";
 export default function withAuthorization(middleware, requireAuth) {
   return async (request, next) => {
     const pathname = request.nextUrl.pathname;
-    console.log(requireAuth);
-   console.log(requireAuth.some((path) => pathname.startsWith(path)));
+   console.log(requireAuth?.some((path) => pathname.startsWith(path)));
     if (requireAuth?.some((path) => pathname.startsWith(path))) {
       const token = await getToken({
         req: request,
