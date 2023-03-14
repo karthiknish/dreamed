@@ -18,9 +18,9 @@ function Sign() {
   };
   useEffect(() => {
     console.log(data);
-    if (data?.user) {
-      Router.push("/");
-    }
+    // if (data?.user) {
+    //   Router.push("/");
+    // }
   }, [data]);
   const handleSubmit = async (e) => {
     e.preventDefault();
