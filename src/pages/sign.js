@@ -29,7 +29,7 @@ function Sign() {
         setMessage("Enter a Email");
       } else if (!password) {
         setMessage("Enter a Password");
-      } else if (password.length > 5) {
+      } else if (password.length < 5) {
         setMessage("Enter valid Password");
       } else if (email) {
         const r = String(email)
@@ -58,7 +58,7 @@ function Sign() {
         setMessage("Enter a Password");
       } else if (!name) {
         setMessage("Enter a Name");
-      } else if (!password.length > 5) {
+      } else if (password.length < 5) {
         console.log(password.length);
         setMessage("Password should be atleast 6 characters");
       } else if (email) {
