@@ -10,7 +10,7 @@ export default function withAuthorization(middleware, requireAuth) {
         req: request,
         secret: process.env.NEXTAUTH_SECRET,
       });
-
+console.log(token);
       if (!token) {
         const url = new URL(`/api/auth/signin`, request.url);
         url.searchParams.set("callbackUrl ", encodeURI(request.url));

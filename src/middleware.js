@@ -5,7 +5,3 @@ const mainMiddleware = (request) => {
   return res;
 };
 export default withAuthorization(mainMiddleware, ["/admin", "/dashboard"]);
-// import { withAuth } from "next-auth/middleware";
-
-// export const config = { matcher: ["/admin/:path*"] };
-// export default withAuth({});
