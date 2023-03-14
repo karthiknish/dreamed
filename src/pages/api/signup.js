@@ -14,9 +14,17 @@ export default async function handler(req, res) {
           password,
         });
         await u.save();
-        res.status(200).json({ success: "success" });
+      
+        res.status(200).json({
+          success: true,
+          data: "Registration success.Check your mail for validation",
+        });
       } catch (e) {
-        console.error(e);
+        if (e.keyValue.email) {
+          res
+            .status(400)
+            .json({ success: false, data: "Email already registered" });
+        }
         res.status(400).json({ error: "This method is not allowed" });
       }
   }
