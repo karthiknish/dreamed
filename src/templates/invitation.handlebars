@@ -1,0 +1,99 @@
+<html lang="en" xmlns:v="urn:schemas-microsoft-com:vml">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="x-apple-disable-message-reformatting" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="format-detection"
+      content="telephone=no, date=no, address=no, email=no"
+    />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="supported-color-schemes" content="light dark" />
+    <title>Let's get you signed in</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+      rel="stylesheet"
+      media="screen"
+    />
+  </head>
+  <style>
+    .max-w-2xl {
+      max-width: 42rem;
+    }
+    .px-6 {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+    .px-8 {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+    .mx-auto {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .bg-white {
+      --tw-bg-opacity: 1;
+      background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
+    }
+    .w-auto {
+      width: auto;
+    }
+    .h-7 {
+      height: 1.75rem;
+    }
+    .sm:h-8 {
+      height: 2rem;
+    }
+    .mt-2{
+        margin-top: 0.5rem;
+    }
+    .font-semibold{font-weight: 600;}
+.bg-blue-600
+{--tw-bg-opacity: 1;
+background-color: rgba(37, 99, 235, var(--tw-bg-opacity));}	
+
+  </style>
+  <body>
+    <section class="max-w-2xl px-6 py-8 mx-auto bg-white">
+      <header>
+        <a href="#">
+          <img
+            class="w-auto h-7 sm:h-8"
+            src="https://merakiui.com/images/full-logo.svg"
+            alt=""
+          />
+        </a>
+      </header>
+
+      <main class="mt-8">
+        <h2 class="text-gray-700">Hi {{name}},</h2>
+
+        <p class="mt-2 leading-loose text-gray-600 dark:text-gray-300">
+          Dream education consultancy has invited you to Signup on
+          <span class="font-semibold">dreamedconsultancy.com</span>.
+        </p>
+
+        <button
+          class="px-6 py-2 mt-4 text-sm font-medium tracking-wider text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80"
+        >
+          Accept the invite
+        </button>
+
+        <p class="mt-8 text-gray-600 dark:text-gray-300">
+          Thanks, <br />
+          Dream Ed Team
+        </p>
+      </main>
+
+      <footer class="mt-8">
+        <p class="mt-3 text-gray-500 dark:text-gray-400">
+          © {{new Date().getFullYear()}} Dream Ed. All Rights Reserved.
+        </p>
+      </footer>
+    </section>
+  </body>
+</html>
