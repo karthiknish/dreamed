@@ -22,14 +22,14 @@ function Stepone({ formStep, nextFormStep, countries, setCountries }) {
         {console.log(countries)}
         <div
           onClick={() => {
-            if (!countries.includes("United Kingdom")) {
+            if (!countries?.includes("United Kingdom")) {
               handleCountry("United Kingdom");
             } else {
               handleRemoveCountry("United Kingdom");
             }
           }}
           className={`flex flex-col items-center shadow-lg rounded p-4 ${
-            countries.includes("United Kingdom") ? "bg-blue-200" : "bg-white"
+            countries?.includes("United Kingdom") ? "bg-blue-200" : "bg-white"
           }
           }`}
         >
@@ -43,14 +43,14 @@ function Stepone({ formStep, nextFormStep, countries, setCountries }) {
         </div>
         <div
           onClick={() => {
-            if (!countries.includes("Canada")) {
+            if (!countries?.includes("Canada")) {
               handleCountry("Canada");
             } else {
               handleRemoveCountry("Canada");
             }
           }}
           className={`flex flex-col items-center shadow-lg rounded p-4 ${
-            countries.includes("Canada") ? "bg-blue-200" : "bg-white"
+            countries?.includes("Canada") ? "bg-blue-200" : "bg-white"
           }`}
         >
           <Image
