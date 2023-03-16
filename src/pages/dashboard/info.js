@@ -12,7 +12,7 @@ function Info() {
   const [pno, setPno] = useState("");
   const [course1, setCourse1] = useState([]);
   const [course2, setCourse2] = useState([]);
-
+const [message, setMessage] = useState("");
   const nextFormStep = () => setFormStep((currentStep) => currentStep + 1);
   const prevFormStep = () => setFormStep((currentStep) => currentStep - 1);
   return (

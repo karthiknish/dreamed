@@ -28,7 +28,7 @@ function Stepone({ formStep, nextFormStep, countries, setCountries }) {
               handleRemoveCountry("United Kingdom");
             }
           }}
-          className={`flex flex-col items-center shadow-lg rounded p-2 ${
+          className={`flex flex-col items-center shadow-lg rounded p-4 ${
             countries.includes("United Kingdom") ? "bg-blue-200" : "bg-white"
           }
           }`}
@@ -49,7 +49,7 @@ function Stepone({ formStep, nextFormStep, countries, setCountries }) {
               handleRemoveCountry("Canada");
             }
           }}
-          className={`flex flex-col items-center shadow-lg rounded p-2 ${
+          className={`flex flex-col items-center shadow-lg rounded p-4 ${
             countries.includes("Canada") ? "bg-blue-200" : "bg-white"
           }`}
         >
@@ -61,7 +61,7 @@ function Stepone({ formStep, nextFormStep, countries, setCountries }) {
           />
           <p>Canada</p>
         </div>
-        <div className="flex flex-col items-center shadow-lg rounded p-2">
+        <div className="flex flex-col items-center shadow-lg rounded p-4">
           <Image
             alt="Australia"
             width={100}
@@ -70,7 +70,7 @@ function Stepone({ formStep, nextFormStep, countries, setCountries }) {
           />
           <p>Australia</p>
         </div>
-        <div className="flex flex-col items-center shadow-lg rounded p-2">
+        <div className="flex flex-col items-center shadow-lg rounded p-4">
           <Image
             alt="United States"
             width={100}
@@ -79,7 +79,7 @@ function Stepone({ formStep, nextFormStep, countries, setCountries }) {
           />
           <p>USA</p>
         </div>
-        <div className="flex flex-col items-center shadow-lg rounded p-2">
+        <div className="flex flex-col items-center shadow-lg rounded p-4">
           <Image
             alt="Ireland"
             width={100}

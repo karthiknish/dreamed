@@ -19,13 +19,12 @@ function Stepfour({
   nextFormStep,
 }) {
   const [but, setBut] = useState(0);
-  const [prog1, setProg1] = useState("");
+  const [prog, setProg] = useState("");
   return (
     <div className="flex bg-slate-50 flex-col items-center p-2">
       <h1 className="text-2xl mb-3">Interested programs</h1>
       <div className="lg:grid w-full lg:w-auto lg:grid-cols-3 flex flex-col p-4 items-center gap-4 lg:gap-12">
         <div className="w-full">
-          {console.log(prog1)}
           <div
             onClick={() => {
               if (but === 1) {
@@ -47,16 +46,17 @@ function Stepfour({
               <div className="flex w-full lg:px-0 px-10">
                 {" "}
                 <input
-                  value={prog1}
-                  onChange={(e) => setProg1(e.target.value)}
+                  value={prog}
+                  onChange={(e) => setProg(e.target.value)}
                   className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
                 />
+                {console.log(course1)}
                 <button
                   onClick={() => {
-                    if (course1.length) {
+                    if (!course1.length) {
                       setBut(0);
-                      setCourse1(["Engineering", prog1]);
-                      setProg1("");
+                      setCourse1(["Engineering", prog]);
+                      setProg("");
                     }
                   }}
                 >
