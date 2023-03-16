@@ -1,5 +1,5 @@
-import dbConnect from "../../../lib/dbConnect";
-import Contact from "../../../models/Contact";
+import dbConnect from "../../lib/dbConnect";
+import Student from "../../models/Student";
 // import nodemailer from "nodemailer";
 export default async function handler(req, res) {
   // let transporter = nodemailer.createTransport({
@@ -20,11 +20,11 @@ export default async function handler(req, res) {
         const { id } = req.query;
         if (q === 1 && id !== "contact") {
           const { id } = req.query;
-          const contact = await Contact.findOne({ _id: id });
-          res.status(200).json({ success: true, data: contact });
+          const student = await Student.findOne({ _id: id });
+          res.status(200).json({ success: true, data: student });
         } else {
-          const contacts = await Contact.find({});
-          res.status(200).json({ success: true, data: contacts });
+          const students = await Student.find({});
+          res.status(200).json({ success: true, data: students });
         }
       } catch (error) {
         res.status(400).json({ success: false });
@@ -33,29 +33,8 @@ export default async function handler(req, res) {
 
     case "POST":
       try {
-        if (!req.body.name) {
-          res.status(400).json({ success: false, data: "Please enter name" });
-        } else if (!req.body.email) {
-          res.status(400).json({ success: false, data: "Please enter email" });
-        } else if (!req.body.query) {
-          res
-            .status(400)
-            .json({ success: false, data: "Please enter message" });
-        } else if (req.body.email) {
-          let r = String(req.body.email)
-            .toLowerCase()
-            .match(
-              /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-            );
-          if (r === null) {
-            res
-              .status(400)
-              .json({ success: false, data: "Please enter valid email" });
-          } else {
-            const contact = await Contact.create(req.body);
-            res.status(201).json({ success: true, data: contact });
-          }
-        }
+        const student = await Student.create(req.body);
+        res.status(201).json({ success: true, data: student });
 
         // let info = await transporter.sendMail({
         //   from: "initiosol@gmail.com",

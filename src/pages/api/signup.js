@@ -16,6 +16,13 @@ export default async function handler(req, res) {
   const { method } = req;
   await dbConnect();
   switch (method) {
+    case "GET":
+      try {
+        const user = await User.findOne({ email });
+      } catch (e) {
+        console.log(e);
+      }
+      break;
     case "POST":
       try {
         const { name, email, password, role } = req.body;
