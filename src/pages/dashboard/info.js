@@ -1,20 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Head from "next/head";
 import Stepone from "../form/Stepone";
 import Steptwo from "../form/Steptwo";
 import Stepthree from "../form/Stepthree";
 import Stepfour from "../form/Stepfour";
 import FormCard from "../form/FormCard";
+import { useSession } from "next-auth/react";
 function Info() {
+  const d = useSession();
   const [formStep, setFormStep] = useState(0);
   const [countries, setCountries] = useState([]);
   const [dob, setDob] = useState("");
   const [pno, setPno] = useState("");
   const [course1, setCourse1] = useState([]);
   const [course2, setCourse2] = useState([]);
-const [message, setMessage] = useState("");
+  const [message, setMessage] = useState("");
   const nextFormStep = () => setFormStep((currentStep) => currentStep + 1);
   const prevFormStep = () => setFormStep((currentStep) => currentStep - 1);
+
   return (
     <>
       <Head>

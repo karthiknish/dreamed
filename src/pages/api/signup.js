@@ -18,19 +18,28 @@ export default async function handler(req, res) {
   switch (method) {
     case "GET":
       try {
-        const user = await User.findOne({ email });
+  
+        const user = await User.findOne({ email: req.query.email });
+        console.log(user);
+        res.status(200).json({
+          success: true,
+          data: user,
+        });
       } catch (e) {
         console.log(e);
       }
       break;
     case "POST":
       try {
+        console.log(req);
+        const info = false;
         const { name, email, password, role } = req.body;
         let u = new User({
           name,
           email,
           role,
           password,
+          info,
         });
         await u.save();
         console.log(u);

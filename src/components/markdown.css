@@ -1,5 +1,6 @@
 .ProseMirror > * + * {
     margin-top: 0.75em;
+   
 }
 .ProseMirror ul, .ProseMirror ol {
     padding: 0 1rem;
@@ -37,3 +38,16 @@
     border-top: 2px solid rgba(13, 13, 13, 0.1);
     margin: 2rem 0;
 }
+.ProseMirror {
+   border: rgba(13, 13, 13, 0.1);
+   border-style: solid;
+   border-radius: 10px;
+   min-height: 200px;
+}
+.ProseMirror p.is-editor-empty:first-child::before {
+    color: #adb5bd;
+    content: attr(data-placeholder);
+    float: left;
+    height: 0;
+    pointer-events: none;
+  } 

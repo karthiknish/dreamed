@@ -16,7 +16,7 @@ export default NextAuth({
         const { email, password } = credentials;
 
         const user = await User.findOne({ email });
-        // console.log(user.status);
+        console.log(user);
         if (user === undefined) {
           // console.log(user.error);
         }

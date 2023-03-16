@@ -1,6 +1,7 @@
 import Link from "next/link";
 import logo from "../assets/logo.png";
 import Image from "next/image";
+import Router from "next/router";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { signOut, useSession } from "next-auth/react";
@@ -125,7 +126,10 @@ const Navbar = () => {
                 ) : (
                   <button
                     onClick={() =>
-                      signOut({ callbackUrl: "/", redirect: false })
+                      {
+                        signOut({ callbackUrl: "/", redirect: false });
+                        Router.push("/");
+                      }
                     }
                     className="text-left px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100 "
                   >

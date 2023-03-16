@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import "@/styles/globals.css";
+import "../components/markdown.css";
 import { useEffect } from "react";
 import { initGA, logPageView } from "../lib/ga";
 import Footer from "@/components/Footer";

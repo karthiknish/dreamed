@@ -2,9 +2,27 @@ import Head from 'next/head'
 import header from "../assets/header.png";
 import Image from "next/image";
 import Router from "next/router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { useSession } from "next-auth/react";
 export default function Home() {
+  const f = useSession();
+  useEffect(() => {
+    const getInfo = async () => {
+      if (f?.data?.user) {
+        const r = await fetch(`/api/signup?email=${f?.data?.user?.email}`, {
+          method: "GET",
+        })
+          .then((res) => res.json())
+          .then((d) => {
+            if (!d.data.info) {
+              Router.push("/dashboard");
+            }
+          });
+      }
+    };
+    getInfo();
+  }, []);
   const [faqno, setFaqno] = useState(0);
   return (
     <>
