@@ -25,6 +25,7 @@ const UserSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  info: { type: Boolean, default: false },
 });
 UserSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {

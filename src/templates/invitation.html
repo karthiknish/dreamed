@@ -8,8 +8,8 @@
       name="format-detection"
       content="telephone=no, date=no, address=no, email=no"
     />
-    <meta name="color-scheme" content="light dark" />
-    <meta name="supported-color-schemes" content="light dark" />
+    <meta name="color-scheme" content="light" />
+    <meta name="supported-color-schemes" content="light" />
     <title>Let's get you signed in</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
@@ -72,25 +72,25 @@ background-color: rgba(37, 99, 235, var(--tw-bg-opacity));}
       <main class="mt-8">
         <h2 class="text-gray-700">Hi {{name}},</h2>
 
-        <p class="mt-2 leading-loose text-gray-600 dark:text-gray-300">
+        <p class="mt-2 leading-loose text-gray-600">
           Dream education consultancy has invited you to Signup on
           <span class="font-semibold">dreamedconsultancy.com</span>.
         </p>
 
-        <button
-          class="px-6 py-2 mt-4 text-sm font-medium tracking-wider text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80"
+        <a href='https://dreamedconsultancy.com/api/activate/user/'+{{hash}}
+          class="button px-6 py-2 mt-4 text-sm font-medium tracking-wider text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80"
         >
           Accept the invite
-        </button>
+        </a>
 
-        <p class="mt-8 text-gray-600 dark:text-gray-300">
+        <p class="mt-8 text-gray-600 ">
           Thanks, <br />
           Dream Ed Team
         </p>
       </main>
 
       <footer class="mt-8">
-        <p class="mt-3 text-gray-500 dark:text-gray-400">
+        <p class="mt-3 text-gray-500 ">
           © {{new Date().getFullYear()}} Dream Ed. All Rights Reserved.
         </p>
       </footer>

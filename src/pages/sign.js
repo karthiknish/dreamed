@@ -7,10 +7,10 @@ import { signIn, useSession } from "next-auth/react";
 function Sign() {
   const { data } = useSession();
   const [signin, setSignin] = useState(true);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [conpassword, setConpassword] = useState("");
+  const [name, setName] = useState("kar");
+  const [email, setEmail] = useState("karthik.nishanth06@gmail.com");
+  const [password, setPassword] = useState("abcabc");
+  const [conpassword, setConpassword] = useState("abcabc");
   const [message, setMessage] = useState("");
 
   const buttvariant = {
@@ -83,11 +83,14 @@ function Sign() {
           })
             .then((res) => res.json())
             .then((d) => {
+              console.log(d);
               if (d.success) {
                 setEmail("");
                 setName("");
                 setConpassword("");
                 setPassword("");
+                console.log(d.data);
+
                 setMessage(d.data);
               } else {
                 setMessage(d.data);
