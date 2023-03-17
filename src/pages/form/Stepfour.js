@@ -56,7 +56,7 @@ const Modal = ({
             <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
               <button
                 onClick={() => {
-                  if (!course1.length) {
+                  if (!course1?.length) {
                     setCourse1([category, prog]);
                     setProg("");
                     setshowModal(false);
@@ -114,7 +114,7 @@ function Stepfour({
       <h1 className="text-2xl mb-3">Interested programs</h1>
       <div
         className={`lg:grid w-full lg:w-auto lg:grid-cols-3 flex flex-col p-4 items-center gap-4 lg:gap-12 ${
-          course1.length === 2 && course2.length === 2
+          course1?.length === 2 && course2?.length === 2
             ? "pointer-events-none blur-sm"
             : ""
         }`}
