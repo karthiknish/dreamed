@@ -10,6 +10,7 @@ import { GiReceiveMoney } from "react-icons/gi";
 import { BsFillJournalBookmarkFill } from "react-icons/bs";
 import { RiHotelLine } from "react-icons/ri";
 import { GoLaw } from "react-icons/go";
+import { RxCross1 } from "react-icons/rx";
 const Modal = ({
   category,
   course1,
@@ -58,9 +59,11 @@ const Modal = ({
                   if (!course1.length) {
                     setCourse1([category, prog]);
                     setProg("");
+                    setshowModal(false);
                   } else {
                     setCourse2([category, prog]);
                     setProg("");
+                    setshowModal(false);
                   }
                 }}
                 type="button"
@@ -109,7 +112,13 @@ function Stepfour({
         />
       )}
       <h1 className="text-2xl mb-3">Interested programs</h1>
-      <div className="lg:grid w-full lg:w-auto lg:grid-cols-3 flex flex-col p-4 items-center gap-4 lg:gap-12">
+      <div
+        className={`lg:grid w-full lg:w-auto lg:grid-cols-3 flex flex-col p-4 items-center gap-4 lg:gap-12 ${
+          course1.length === 2 && course2.length === 2
+            ? "pointer-events-none blur-sm"
+            : ""
+        }`}
+      >
         <div className="w-full">
           <div
             onClick={() => {
@@ -153,13 +162,24 @@ function Stepfour({
           <GoLaw className="text-4xl" />
           Law
         </div>
-        {
-          <div className="flex">
-            <p>{course1}</p>
-            <p>{course2}</p>
-          </div>
-        }
       </div>
+      {
+        <div className="flex">
+          <p className="flex">
+            {course1}
+            {course1.length !== 0 && (
+              <RxCross1 onClick={() => setCourse1([])} />
+            )}
+          </p>
+          <p className="flex">
+            {course2}
+            {course2.length !== 0 && (
+              <RxCross1 onClick={() => setCourse2([])} />
+            )}
+          </p>
+        </div>
+      }
+      <button onClick={() => nextFormStep()}>Next</button>
     </div>
   );
 }

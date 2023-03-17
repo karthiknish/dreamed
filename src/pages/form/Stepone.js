@@ -19,7 +19,6 @@ function Stepone({ formStep, nextFormStep, countries, setCountries }) {
     <div className="flex flex-col items-center">
       <h1 className="mt-10 text-4xl">Interested Countries</h1>
       <div className="flex gap-4 py-20">
-        {console.log(countries)}
         <div
           onClick={() => {
             if (!countries?.includes("United Kingdom")) {
