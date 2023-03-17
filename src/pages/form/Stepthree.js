@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Datepicker from "react-tailwindcss-datepicker";
 function Stepthree({ dob, setDob, formStep, nextFormStep }) {
-  const [cal, setCal] = useState([]);
+  
 
   return (
     <div className="flex flex-col items-center max-w-sm mx-auto">
@@ -11,10 +11,9 @@ function Stepthree({ dob, setDob, formStep, nextFormStep }) {
         useRange={false}
         value={dob}
         primaryColor={"blue"}
-        placeholder={dob.length && dob}
+        placeholder={dob?.length && dob}
         onChange={(e) => setDob(e.startDate)}
       />
-      {console.log(cal)}
       <button onClick={() => nextFormStep()}>Next</button>
     </div>
   );

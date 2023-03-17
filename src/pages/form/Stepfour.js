@@ -167,13 +167,13 @@ function Stepfour({
         <div className="flex">
           <p className="flex">
             {course1}
-            {course1.length !== 0 && (
+            {course1?.length !== 0 && (
               <RxCross1 onClick={() => setCourse1([])} />
             )}
           </p>
           <p className="flex">
             {course2}
-            {course2.length !== 0 && (
+            {course2?.length !== 0 && (
               <RxCross1 onClick={() => setCourse2([])} />
             )}
           </p>
