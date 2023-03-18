@@ -82,10 +82,10 @@ const Navbar = () => {
             >
               <div className="flex flex-col -mx-6 lg:flex-row lg:items-center lg:mx-8">
                 <Link
-                  href="/blog"
+                  href="/stories"
                   className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100"
                 >
-                  Blog
+                  Success Stories
                 </Link>
                 {data?.user?.name === "admin" ? (
                   <Link
@@ -125,12 +125,10 @@ const Navbar = () => {
                   </Link>
                 ) : (
                   <button
-                    onClick={() =>
-                      {
-                        signOut({ callbackUrl: "/", redirect: false });
-                        Router.push("/");
-                      }
-                    }
+                    onClick={() => {
+                      signOut({ callbackUrl: "/", redirect: false });
+                      Router.push("/");
+                    }}
                     className="text-left px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100 "
                   >
                     Signout
