@@ -8,6 +8,7 @@ function Create() {
   const [content, setContent] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(content);
     const data = { title, author, imageUrl, content };
     let res = await fetch("/api/blog", {
       method: "POST",

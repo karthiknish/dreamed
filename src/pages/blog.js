@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import Head from "next/head";
 function Blog() {
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -13,36 +13,35 @@ function Blog() {
       .then((d) => setData(d.data));
   };
   return (
-    <section className="bg-gray-100">
-      <div className="container px-6 py-10 mx-auto">
-        <h1 className="text-2xl font-semibold text-gray-800 capitalize lg:text-3x">
-          From the blog
-        </h1>
-        {console.log(data)}
-        {data?.length !== 0 &&
-          data?.map(
+    <>
+      <Head>
+        <title>Success Stories</title>
+      </Head>
+      <section className="bg-gray-100">
+        <div className="container px-6 py-10 mx-auto">
+          <h1 className="text-2xl font-semibold text-gray-800 capitalize lg:text-3x">
+            From the blog
+          </h1>
+          {console.log(data)}
+          {data?.length !== 0 && (
             <>
               <div className="mt-8 lg:-mx-6 lg:flex lg:items-center">
                 <img
                   className="object-cover w-full lg:mx-6 lg:w-1/2 rounded-xl h-72 lg:h-96"
-                  src={data?.imageUrl}
+                  src={data[0]?.imageUrl}
                   alt=""
                 />
 
                 <div className="mt-6 lg:w-1/2 lg:mt-0 lg:mx-6 ">
-                  <p className="text-sm text-blue-500 uppercase">category</p>
-
                   <a
                     href="#"
                     className="block mt-4 text-2xl font-semibold text-gray-800 hover:underline "
                   >
-                    All the features you want to know
+                    {data[0]?.title}
                   </a>
 
                   <p className="mt-3 text-sm text-gray-500 md:text-sm">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Iure veritatis sint autem nesciunt, laudantium quia tempore
-                    delect
+                    {data[0]?.content.replace(/<[^>]+>/g, "")}
                   </p>
 
                   <a
@@ -162,8 +161,10 @@ function Blog() {
               </div>
             </>
           )}
-      </div>
-    </section>
+          )
+        </div>
+      </section>
+    </>
   );
 }
 

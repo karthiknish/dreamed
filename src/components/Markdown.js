@@ -275,6 +275,7 @@ const MenuBar = ({ editor }) => {
 };
 
 function Markdown({ content, setContent }) {
+  console.log(content);
   const editor = useEditor({
     extensions: [
       Color.configure({ types: [TextStyle.name, ListItem.name] }),
@@ -294,14 +295,14 @@ function Markdown({ content, setContent }) {
         },
       }),
     ],
-    content: content,
+    content,
     onUpdate({ editor }) {
-      setContent(editor.HTML);
+      setContent(editor?.getHTML());
     },
   });
+
   return (
     <>
-      {" "}
       <MenuBar editor={editor} />
       <EditorContent editor={editor} />
     </>
