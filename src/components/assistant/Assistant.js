@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { BsFillChatLeftQuoteFill } from "react-icons/bs";
 import Box from "./Box";
-function Index() {
+function Assistant() {
   const [on, setOn] = useState(false);
   return (
     <>
@@ -16,4 +16,4 @@ function Index() {
   );
 }
 
-export default Index;
+export default Assistant;
