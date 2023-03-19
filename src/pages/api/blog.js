@@ -47,7 +47,7 @@ export default async function handler(req, res) {
     case "DELETE":
       try {
         const blog = await Blog.findOneAndDelete({ _id: req.body.id });
-        res.status(200).json({ success: true, data: {} });
+        res.status(200).json({ success: true, data: blog });
       } catch (error) {
         res.status(400).json({ success: false });
       }
