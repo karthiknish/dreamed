@@ -1,4 +1,4 @@
-import OpenAIStream from "../../lib/OpenAIStream";
+// import OpenAIStream from "../../lib/OpenAIStream";
 export default async function handler(req, res) {
   const { method } = req;
 
@@ -44,9 +44,10 @@ export default async function handler(req, res) {
           n: 1,
         };
 
-        const stream = await OpenAIStream(payload);
-        console.log(Response(stream));
-        return new Response(stream);
+        // const stream = await OpenAIStream(payload);
+        // console.log(Response(stream));
+        // return new Response(stream);
+        return;
       } catch (error) {
         res.status(400).json({ success: false });
         console.error(error);
