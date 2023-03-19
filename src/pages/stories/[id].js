@@ -20,10 +20,10 @@ function Id() {
   return (
     <>
       <Head>
-        <title>{data[0]?.title}</title>
+        <title>{data?.title}</title>
       </Head>
       <div>
-        {data.length ? (
+        {data !== [] ? (
           <div className="flex flex-col">
             <Image
               className="w-full h-40 object-cover"
@@ -31,12 +31,12 @@ function Id() {
               height="0"
               sizes="100vw"
               alt="headimage"
-              src={data[0]?.imageUrl}
+              src={data?.imageUrl}
             />
 
             <div className="flex flex-col p-2">
-              <h1 className="text-2xl">{data[0]?.title}</h1>
-              <p className="p-3">{convert(data[0]?.content)}</p>
+              <h1 className="text-2xl">{data?.title}</h1>
+              <p className="p-3">{convert(data?.content)}</p>
             </div>
           </div>
         ) : (

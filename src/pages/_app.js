@@ -18,7 +18,7 @@ export default function App({ Component, pageProps }) {
     <SessionProvider>
       <Navbar />
       <Component {...pageProps} />
-      {process.env.DEV === true && <Assistant />}
+      {(process.env.DEV = true && <Assistant />)}
       <Footer />
     </SessionProvider>
   );

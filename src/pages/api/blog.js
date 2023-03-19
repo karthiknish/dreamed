@@ -16,6 +16,10 @@ export default async function handler(req, res) {
   switch (method) {
     case "GET":
       try {
+        if (req.query.id) {
+          const blog = await Blog.findById(req.query.id);
+          res.status(200).json({ success: true, data: blog });
+        }
         const blogs = await Blog.find({});
         res.status(200).json({ success: true, data: blogs });
       } catch (error) {
