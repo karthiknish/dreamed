@@ -1,4 +1,4 @@
-import { OpenAIStream } from "../../lib/OpenAIStream";
+import OpenAIStream from "../../lib/OpenAIStream";
 export default async function handler(req, res) {
   const { method } = req;
 

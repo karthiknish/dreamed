@@ -6,7 +6,7 @@ import {
 
 export const ChatGPTAgent = "user" | "system" | "assistant";
 
-export async function OpenAIStream(payload) {
+export default async function OpenAIStream(payload) {
   const encoder = new TextEncoder();
   const decoder = new TextDecoder();
 
