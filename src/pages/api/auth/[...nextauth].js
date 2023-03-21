@@ -50,7 +50,10 @@ export default NextAuth({
         }
       },
     }),
-    // GoogleProvider({ clientId: "", clientSecret: "" }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    }),
   ],
   events: {
     error(message) {
