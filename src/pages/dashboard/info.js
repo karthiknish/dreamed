@@ -33,9 +33,11 @@ function Info() {
   const [time, setTime] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     if (!pno <= 10) {
       setMessage("enter valid number");
+      setLoading(false);
     } else {
       const phone = countryCode + pno;
       const data = {
@@ -60,17 +62,31 @@ function Info() {
         time,
       };
 
-      let res = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      })
-        .then((res) => res.json())
-        .then((data) => console.log(data))
-        .catch((e) => console.table(e));
+      try {
+        const res = await fetch("/api/contact", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+
+        if (res.status === 200) {
+          setLoading(false);
+          setSuccess(true);
+          setFormStep(7);
+        } else {
+          setLoading(false);
+          setSuccess(false);
+          setMessage("Something went wrong, please try again.");
+        }
+      } catch (e) {
+        setLoading(false);
+        setSuccess(false);
+        setMessage("Something went wrong, please try again.");
+        console.error(e);
+      }
     }
   };
 

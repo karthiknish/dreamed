@@ -11,6 +11,46 @@ import { BsFillJournalBookmarkFill } from "react-icons/bs";
 import { RiHotelLine } from "react-icons/ri";
 import { GoLaw } from "react-icons/go";
 import { RxCross1 } from "react-icons/rx";
+
+const categories = [
+  {
+    icon: <MdEngineering className="text-4xl" />,
+    name: "Engineering",
+  },
+  {
+    icon: <GrCloudComputer className="text-4xl" />,
+    name: "Computing and IT",
+  },
+  {
+    icon: <MdOutlineBiotech className="text-4xl" />,
+    name: "BioScience",
+  },
+  {
+    icon: <MdArchitecture className="text-4xl" />,
+    name: "Architecture",
+  },
+  {
+    icon: <MdBusinessCenter className="text-4xl" />,
+    name: "Business Studies",
+  },
+  {
+    icon: <BsFillJournalBookmarkFill className="text-4xl" />,
+    name: "Arts",
+  },
+  {
+    icon: <GiReceiveMoney className="text-4xl" />,
+    name: "Finance",
+  },
+  {
+    icon: <RiHotelLine className="text-4xl" />,
+    name: "Hospitality",
+  },
+  {
+    icon: <GoLaw className="text-4xl" />,
+    name: "Law",
+  },
+];
+
 const Modal = ({
   category,
   course1,
@@ -21,6 +61,20 @@ const Modal = ({
   setProg,
   setshowModal,
 }) => {
+  const handleAddCourse = () => {
+    if (prog.trim().length === 0) {
+      alert("Please enter a program name.");
+    } else if (!course1?.length) {
+      setCourse1([category, prog]);
+      setProg("");
+      setshowModal(false);
+    } else {
+      setCourse2([category, prog]);
+      setProg("");
+      setshowModal(false);
+    }
+  };
+
   return (
     <div
       className="relative z-10"
@@ -55,17 +109,7 @@ const Modal = ({
             </div>
             <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
               <button
-                onClick={() => {
-                  if (!course1?.length) {
-                    setCourse1([category, prog]);
-                    setProg("");
-                    setshowModal(false);
-                  } else {
-                    setCourse2([category, prog]);
-                    setProg("");
-                    setshowModal(false);
-                  }
-                }}
+                onClick={handleAddCourse}
                 type="button"
                 className="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-800 sm:ml-3 sm:w-auto"
               >
@@ -96,7 +140,12 @@ function Stepfour({
   const [showModal, setshowModal] = useState(false);
   const [prog, setProg] = useState("");
   const [category, setCategory] = useState("");
-
+  const [error, setError] = useState("");
+  const handleNextStep = () => {
+    if (!course1.length || !course2.length) {
+      setError("Enter 2 courses");
+    } else nextFormStep();
+  };
   return (
     <div className="flex bg-slate-50 flex-col items-center p-2">
       {showModal && (
@@ -119,49 +168,20 @@ function Stepfour({
             : ""
         }`}
       >
-        <div className="w-full">
-          <div
-            onClick={() => {
-              setshowModal(true);
-              setCategory("Engineering");
-            }}
-            className={`flex justify-center items-center gap-2 w-full z-10 shadow-md p-4 rounded-lg 
-            }`}
-          >
-            <MdEngineering className="text-4xl" /> Engineering
+        {categories.map((category, index) => (
+          <div className="w-full" key={index}>
+            <div
+              onClick={() => {
+                setshowModal(true);
+                setCategory(category.name);
+              }}
+              className={`flex justify-center items-center gap-2 w-full z-10 shadow-md p-4 rounded-lg 
+        }`}
+            >
+              {category.icon} {category.name}
+            </div>
           </div>
-        </div>
-        <div className="flex justify-center items-center gap-2 w-full bg-white shadow-md p-4 rounded-lg">
-          <GrCloudComputer className="text-4xl" /> Computing and IT
-        </div>
-        <div className="flex justify-center items-center gap-2 w-full bg-white shadow-md p-4 rounded-lg">
-          <MdOutlineBiotech className="text-4xl" />
-          BioScience
-        </div>
-        <div className="flex justify-center items-center gap-2 w-full bg-white shadow-md p-4 rounded-lg">
-          <MdArchitecture className="text-4xl" />
-          Architecture
-        </div>
-        <div className="flex justify-center items-center gap-2 w-full bg-white shadow-md p-4 rounded-lg">
-          <MdBusinessCenter className="text-4xl" />
-          Business Studies
-        </div>
-        <div className="flex justify-center items-center gap-2 w-full bg-white shadow-md p-4 rounded-lg">
-          <BsFillJournalBookmarkFill className="text-4xl" />
-          Arts
-        </div>
-        <div className="flex justify-center items-center gap-2 w-full bg-white shadow-md p-4 rounded-lg">
-          <GiReceiveMoney className="text-4xl" />
-          Finance
-        </div>
-        <div className="flex justify-center items-center gap-2 bg-white shadow-md w-full p-4 rounded-lg">
-          <RiHotelLine className="text-4xl" />
-          Hospitality
-        </div>
-        <div className="flex justify-center items-center gap-2 bg-white shadow-md p-4 w-full rounded-lg">
-          <GoLaw className="text-4xl" />
-          Law
-        </div>
+        ))}
       </div>
       {
         <div className="flex">
@@ -179,7 +199,7 @@ function Stepfour({
           </p>
         </div>
       }
-      <button onClick={() => nextFormStep()}>Next</button>
+      <button onClick={handleNextStep}>Next</button>
     </div>
   );
 }

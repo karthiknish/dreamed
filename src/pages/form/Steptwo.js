@@ -11,9 +11,16 @@ function Steptwo({ pno, setPno, formStep, nextFormStep }) {
     { code: "+86", name: "China" },
   ];
   const handlePhone = () => {
-    let p = countryCode + phone;
-    setPno(p);
-    console.log(pno);
+    setPno(countryCode + phone);
+  };
+  const validatePhone = () => {
+    if (phone.length !== 10 || isNaN(phone)) {
+      setMessage("Please enter a valid phone number");
+    } else {
+      setMessage("");
+      nextFormStep();
+      handlePhone();
+    }
   };
   return (
     <div className="flex flex-col items-center">
@@ -36,14 +43,8 @@ function Steptwo({ pno, setPno, formStep, nextFormStep }) {
           onChange={(e) => setPhone(e.target.value)}
         />
       </div>
-      <button
-        onClick={() => {
-          nextFormStep();
-          handlePhone();
-        }}
-      >
-        Next
-      </button>
+      {message && <p className="text-red-500">{message}</p>}
+      <button onClick={validatePhone}>Next</button>
     </div>
   );
 }

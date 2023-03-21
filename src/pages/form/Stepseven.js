@@ -3,8 +3,8 @@ import Datepicker from "react-tailwindcss-datepicker";
 
 function Stepseven({ time, setTime, formStep, nextFormStep, handleSubmit }) {
   const [date, setDate] = useState([]);
-  const [am, setAm] = useState("");
-  const [hrs, setHrs] = useState("");
+  const [am, setAm] = useState("am");
+  const [hrs, setHrs] = useState("1");
 
   return (
     <div className="max-w-sm mx-auto flex flex-col items-center gap-4">

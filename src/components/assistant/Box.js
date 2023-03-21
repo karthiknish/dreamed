@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { BiRightArrow } from "react-icons/bi";
 import { ChatLine, LoadingChatLine } from "./ChatLine";
 function Box() {
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState("What is a good css plugin for nextjs");
   const [messages, setMessages] = useState("");
   const [loading, setLoading] = useState(false);
   //   const [cookie, setCookie] = useCookies([]);
@@ -17,7 +17,10 @@ function Box() {
     setLoading(true);
     const newMessages = [...messages, { role: "user", content: message }];
     setMessages(newMessages);
-    const last10messages = newMessages.slice(-10);
+    const last10messages = newMessages.slice(-10).map((message) => ({
+      role: "user",
+      content: message.content,
+    }));
 
     const response = await fetch("/api/chatbot", {
       method: "POST",
@@ -28,17 +31,15 @@ function Box() {
         messages: last10messages,
         // user: cookie[COOKIE_NAME],
       }),
-    });
-
+    }).then((r) => console.log(r));
     console.log("Edge function returned.");
 
-    if (!response.ok) {
-      console.log(response.statusText);
-      //   throw new Error(response.statusText);
-    }
-
-    // This data is a ReadableStream
-    const data = response.body;
+    // if (!response.ok) {
+    //   console.log(response.statusText);
+    //   throw new Error(response.statusText);
+    // }
+    // console.log(data);
+    const data = response?.body;
     if (!data) {
       return;
     }
