@@ -26,7 +26,9 @@ export default async function handler(req, res) {
         if (req.query.id) {
           const blog = await Blog.findById(req.query.id);
           if (!blog) {
-            return res.status(404).json({ success: false, message: "Blog not found" });
+            return res
+              .status(404)
+              .json({ success: false, message: "Blog not found" });
           }
           return res.status(200).json({ success: true, data: blog });
         }
@@ -39,9 +41,11 @@ export default async function handler(req, res) {
       try {
         const validationResult = validateBlogData(req.body);
         if (!validationResult.isValid) {
-          return res.status(400).json({ success: false, message: validationResult.message });
+          return res
+            .status(400)
+            .json({ success: false, message: validationResult.message });
         }
-    
+
         const blog = await Blog.create(req.body);
         return res.status(201).json({ success: true, data: blog });
       } catch (error) {
@@ -50,15 +54,23 @@ export default async function handler(req, res) {
     case "PUT":
       try {
         if (!req.body.id) {
-          return res.status(400).json({ success: false, message: "Missing blog ID" });
+          return res
+            .status(400)
+            .json({ success: false, message: "Missing blog ID" });
         }
         const validationResult = validateBlogData(req.body);
         if (!validationResult.isValid) {
-          return res.status(400).json({ success: false, message: validationResult.message });
+          return res
+            .status(400)
+            .json({ success: false, message: validationResult.message });
         }
-        const blog = await Blog.findByIdAndUpdate(req.body.id, req.body, { new: true });
+        const blog = await Blog.findByIdAndUpdate(req.body.id, req.body, {
+          new: true,
+        });
         if (!blog) {
-          return res.status(404).json({ success: false, message: "Blog not found" });
+          return res
+            .status(404)
+            .json({ success: false, message: "Blog not found" });
         }
         return res.status(200).json({ success: true, data: blog });
       } catch (error) {
@@ -67,16 +79,23 @@ export default async function handler(req, res) {
     case "DELETE":
       try {
         if (!req.body.id) {
-          return res.status(400).json({ success: false, message: "Missing blog ID" });
+          return res
+            .status(400)
+            .json({ success: false, message: "Missing blog ID" });
         }
         const blog = await Blog.findOneAndDelete({ _id: req.body.id });
         if (!blog) {
-          return res.status(404).json({ success: false, message: "Blog not found" });
+          return res
+            .status(404)
+            .json({ success: false, message: "Blog not found" });
         }
         return res.status(200).json({ success: true, data: blog });
       } catch (error) {
         return res.status(400).json({ success: false, message: error.message });
       }
     default:
-      return res.status(400).json({ success: false, message: "Invalid request method" });
+      return res
+        .status(400)
+        .json({ success: false, message: "Invalid request method" });
   }
+}
