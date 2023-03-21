@@ -1,10 +1,16 @@
 import { useState } from "react";
 import Datepicker from "react-tailwindcss-datepicker";
-function Stepthree({ dob, setDob, formStep, nextFormStep }) {
-  const [errorMessage, setErrorMessage] = useState("");
+function Stepthree({
+  dob,
+  setDob,
+  formStep,
+  nextFormStep,
+  message,
+  setMessage,
+}) {
   const handleNext = () => {
     if (!dob) {
-      setErrorMessage("Please select your date of birth.");
+      setMessage("Please select your date of birth.");
       return;
     }
     const ageDiffMs = Date.now() - new Date(dob).getTime();
@@ -12,7 +18,7 @@ function Stepthree({ dob, setDob, formStep, nextFormStep }) {
     const age = Math.abs(ageDate.getUTCFullYear() - 1970);
 
     if (age < 16) {
-      setErrorMessage("You must be at least 16 years old to apply.");
+      setMessage("You must be at least 16 years old to apply.");
       return;
     }
 
@@ -30,9 +36,7 @@ function Stepthree({ dob, setDob, formStep, nextFormStep }) {
         placeholder={dob?.length && dob}
         onChange={(e) => setDob(e.startDate)}
       />
-      {errorMessage && (
-        <p className="text-red-500 text-sm mt-2">{errorMessage}</p>
-      )}
+      {message && <p className="text-red-500 text-sm mt-2">{message}</p>}
       <button onClick={handleNext}>Next</button>
     </div>
   );

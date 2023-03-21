@@ -1,5 +1,5 @@
 import { useState } from "react";
-function Steptwo({ pno, setPno, formStep, nextFormStep }) {
+function Steptwo({ pno, setPno, formStep, nextFormStep, message, setMessage }) {
   const [phone, setPhone] = useState("");
   const [countryCode, setCountryCode] = useState("");
   const COUNTRY_CODES = [

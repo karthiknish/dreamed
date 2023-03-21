@@ -1,32 +1,40 @@
 import Image from "next/image";
-const count = [
-  {
-    name: "UK",
-    flagUrl:
-      "https://www.countries-ofthe-world.com/flags-normal/flag-of-United-Kingdom.png",
-  },
-  {
-    name: "Canada",
-    flagUrl:
-      "https://www.countries-ofthe-world.com/flags-normal/flag-of-Canada.png",
-  },
-  {
-    name: "Australia",
-    flagUrl:
-      "https://www.countries-ofthe-world.com/flags-normal/flag-of-Australia.png",
-  },
-  {
-    name: "United States",
-    flagUrl:
-      "https://www.countries-ofthe-world.com/flags-normal/flag-of-United-States-of-America.png",
-  },
-  {
-    name: "Ireland",
-    flagUrl:
-      "https://www.countries-ofthe-world.com/flags-normal/flag-of-Ireland.png",
-  },
-];
-function Stepone({ formStep, nextFormStep, countries, setCountries }) {
+
+function Stepone({
+  formStep,
+  nextFormStep,
+  countries,
+  setCountries,
+  message,
+  setMessage,
+}) {
+  const count = [
+    {
+      name: "UK",
+      flagUrl:
+        "https://www.countries-ofthe-world.com/flags-normal/flag-of-United-Kingdom.png",
+    },
+    {
+      name: "Canada",
+      flagUrl:
+        "https://www.countries-ofthe-world.com/flags-normal/flag-of-Canada.png",
+    },
+    {
+      name: "Australia",
+      flagUrl:
+        "https://www.countries-ofthe-world.com/flags-normal/flag-of-Australia.png",
+    },
+    {
+      name: "United States",
+      flagUrl:
+        "https://www.countries-ofthe-world.com/flags-normal/flag-of-United-States-of-America.png",
+    },
+    {
+      name: "Ireland",
+      flagUrl:
+        "https://www.countries-ofthe-world.com/flags-normal/flag-of-Ireland.png",
+    },
+  ];
   const handleCountry = (country) => {
     setCountries((prevCountries) =>
       prevCountries.includes(country)
