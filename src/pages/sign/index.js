@@ -1,18 +1,19 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Head from "next/head";
-import Router from "next/router";
+import Router, { useRouter } from "next/router";
 import { signIn, useSession } from "next-auth/react";
 
-function Sign() {
+function Index() {
   const { data } = useSession();
+  const router = useRouter();
   const [signin, setSignin] = useState(true);
   const [name, setName] = useState("kar");
   const [email, setEmail] = useState("karthik.nishanth06@gmail.com");
   const [password, setPassword] = useState("abcabc");
   const [conpassword, setConpassword] = useState("abcabc");
   const [message, setMessage] = useState("");
-
+  const [success, setSuccess] = useState(false);
   const buttvariant = {
     signin: { opacity: 1, x: -10 },
     signup: { opacity: 0.5, x: 10 },
@@ -23,83 +24,42 @@ function Sign() {
     if (data?.user) {
       Router.push("/dashboard");
     }
-  }, [data]);
+    if (router.query.error) {
+      setMessage(decodeURIComponent(router.query.error));
+    }
+  }, [data, router.query]);
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (signin) {
-      if (!email) {
-        setMessage("Enter a Email");
-      } else if (!password) {
-        setMessage("Enter a Password");
-      } else if (password.length < 5) {
-        setMessage("Enter valid Password");
-      } else if (email) {
-        const r = String(email)
-          .toLowerCase()
-          .match(
-            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-          );
-        if (r === null) {
-          setMessage("Email is not valid");
-        } else {
-          const data = await signIn("credentials", {
-            redirect: false,
-            email,
-            password,
-          }).then((d) => {
-            if (d.error) {
-              setMessage("User Not Found");
-            }
-          });
-        }
-      }
+      const data = await signIn("credentials", {
+        redirect: false,
+        email,
+        password,
+      }).then((d) => {
+        setMessage([d.ok, d.error]);
+      });
     } else {
-      if (!email) {
-        setMessage("Enter a Email");
-      } else if (!password) {
-        setMessage("Enter a Password");
-      } else if (!name) {
-        setMessage("Enter a Name");
-      } else if (password.length < 5) {
-        console.log(password.length);
-        setMessage("Password should be atleast 6 characters");
-      } else if (email) {
-        const r = String(email)
-          .toLowerCase()
-          .match(
-            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-          );
-        if (r === null) {
-          setMessage("Email is not valid");
-        } else if (password !== conpassword) {
-          setMessage("Passwords do not match");
-        } else {
-          const role = 1;
-          const data = { name, email, password, role };
-          let res = await fetch("/api/signup", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data),
-          })
-            .then((res) => res.json())
-            .then((d) => {
-              console.log(d);
-              if (d.success) {
-                setEmail("");
-                setName("");
-                setConpassword("");
-                setPassword("");
-                console.log(d.data);
-
-                setMessage(d.data);
-              } else {
-                setMessage(d.data);
-              }
-            });
-
-          // Router.push("/").then(() => window.location.reload());
-        }
-      }
+      const role = 1;
+      const data = { name, email, password, conpassword, role };
+      let res = await fetch("/api/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      })
+        .then((res) => res.json())
+        .then((d) => {
+          if (d.success) {
+            setEmail("");
+            setName("");
+            setConpassword("");
+            setPassword("");
+            setMessage(d.message);
+            setSuccess(true);
+          } else {
+            setMessage(d.message);
+            setSuccess(false);
+          }
+        });
     }
   };
 
@@ -240,8 +200,16 @@ function Sign() {
                   >
                     Sign In
                   </button>
-
                   <div className="mt-6 text-center ">
+                    <button
+                      type="button"
+                      onClick={() => Router.push("/sign/forgotpassword")}
+                      className="text-sm text-blue-500 hover:underline "
+                    >
+                      Forgot Password
+                    </button>
+                  </div>
+                  <div className="mt-2 text-center ">
                     <button
                       type="button"
                       onClick={() => setSignin(false)}
@@ -392,7 +360,11 @@ function Sign() {
                 </div>
                 {message && (
                   <div className="flex w-full my-4 max-w-sm overflow-hidden bg-slate-50 rounded-lg shadow-md ">
-                    <div className="flex items-center justify-center w-12 bg-red-500">
+                    <div
+                      className={`flex items-center justify-center w-12 ${
+                        success ? "bg-green-500" : "bg-red-500"
+                      }`}
+                    >
                       <svg
                         className="w-6 h-6 text-white fill-current"
                         viewBox="0 0 40 40"
@@ -404,8 +376,12 @@ function Sign() {
 
                     <div className="px-4 py-2 -mx-3">
                       <div className="mx-3">
-                        <span className="font-semibold text-red-400">
-                          Error
+                        <span
+                          className={`font-semibold ${
+                            success ? "text-green-400" : "text-red-400"
+                          }`}
+                        >
+                          {success ? "Success" : "Error"}
                         </span>
                         <p className="text-sm text-gray-600 ">{message}</p>
                       </div>
@@ -467,4 +443,4 @@ function Sign() {
   );
 }
 
-export default Sign;
+export default Index;

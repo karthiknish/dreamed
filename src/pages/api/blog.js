@@ -1,59 +1,82 @@
 import dbConnect from "../../lib/dbConnect";
 import Blog from "../../models/Blog";
-// import nodemailer from "nodemailer";
+
+function validateBlogData(data) {
+  if (!data.title) {
+    return { isValid: false, message: "Title is required" };
+  }
+  if (!data.content) {
+    return { isValid: false, message: "Content is required" };
+  }
+  if(!data.content){
+    return {isValid:false,message:'Author is required'}
+  } if(!data.imageUrl){
+    return {isValid:false,message:'Image is required'}
+  }
+  return { isValid: true, message: "" };
+}
+
 export default async function handler(req, res) {
-  // let transporter = nodemailer.createTransport({
-  //   host: "smtp.gmail.com",
-  //   port: 465,
-  //   secure: true,
-  //   auth: {
-  //     user: "initiosol@gmail.com",
-  //     pass: process.env.PASS,
-  //   },
-  // });
   const { method } = req;
   await dbConnect();
+
   switch (method) {
     case "GET":
       try {
         if (req.query.id) {
           const blog = await Blog.findById(req.query.id);
-          res.status(200).json({ success: true, data: blog });
+          if (!blog) {
+            return res.status(404).json({ success: false, message: "Blog not found" });
+          }
+          return res.status(200).json({ success: true, data: blog });
         }
         const blogs = await Blog.find({});
-        res.status(200).json({ success: true, data: blogs });
+        return res.status(200).json({ success: true, data: blogs });
       } catch (error) {
-        res.status(400).json({ success: false });
+        return res.status(400).json({ success: false, message: error.message });
       }
-      break;
     case "POST":
       try {
-        console.log(req.body);
+        const validationResult = validateBlogData(req.body);
+        if (!validationResult.isValid) {
+          return res.status(400).json({ success: false, message: validationResult.message });
+        }
+    
         const blog = await Blog.create(req.body);
-        res.status(201).json({ success: true, data: blog });
+        return res.status(201).json({ success: true, data: blog });
       } catch (error) {
-        res.status(400).json({ success: false });
-        console.error(error);
+        return res.status(400).json({ success: false, message: error.message });
       }
-      break;
     case "PUT":
       try {
-        const blog = await Blog.findByIdAndUpdate(req.body.id, req.body);
-        res.status(201).json({ success: true, data: blog });
+        if (!req.body.id) {
+          return res.status(400).json({ success: false, message: "Missing blog ID" });
+        }
+        const validationResult = validateBlogData(req.body);
+        if (!validationResult.isValid) {
+          return res.status(400).json({ success: false, message: validationResult.message });
+        }
+        const blog = await Blog.findByIdAndUpdate(req.body.id, req.body, { new: true });
+        if (!blog) {
+          return res.status(404).json({ success: false, message: "Blog not found" });
+        }
+        return res.status(200).json({ success: true, data: blog });
       } catch (error) {
-        res.status(400).json({ success: false });
+        return res.status(400).json({ success: false, message: error.message });
       }
-      break;
     case "DELETE":
       try {
+        if (!req.body.id) {
+          return res.status(400).json({ success: false, message: "Missing blog ID" });
+        }
         const blog = await Blog.findOneAndDelete({ _id: req.body.id });
-        res.status(200).json({ success: true, data: blog });
+        if (!blog) {
+          return res.status(404).json({ success: false, message: "Blog not found" });
+        }
+        return res.status(200).json({ success: true, data: blog });
       } catch (error) {
-        res.status(400).json({ success: false });
+        return res.status(400).json({ success: false, message: error.message });
       }
-      break;
     default:
-      res.status(400).json({ success: false });
-      break;
+      return res.status(400).json({ success: false, message: "Invalid request method" });
   }
-}

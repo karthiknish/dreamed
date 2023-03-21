@@ -11,24 +11,52 @@ export default NextAuth({
   providers: [
     CredentialsProvider({
       async authorize(credentials, req) {
-        await dbConnect();
+        try {
+          await dbConnect();
 
-        const { email, password } = credentials;
+          const { email, password } = credentials;
+          if (!email) {
+            throw new Error("Enter an email");
+          }
+          const r = String(email)
+            .toLowerCase()
+            .match(
+              /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            );
+          if (r === null) {
+            throw new Error("Enter a valid email");
+          }
+          if (!password) {
+            throw new Error("Enter a password");
+          }
+          const user = await User.findOne({ email });
+          if (!user) {
+            throw new Error("User not found.");
+          }
+          if (user.email && !user.isVerified) {
+            throw new Error("Please verify your account from the email sent.");
+          }
 
-        const user = await User.findOne({ email });
-        console.log(user);
-        if (user === undefined) {
-          // console.log(user.error);
+          const isPasswordMatched = await bcrypt.compare(
+            password,
+            user.password
+          );
+          if (!isPasswordMatched) {
+            throw new Error("Wrong password.");
+          }
+          return user;
+        } catch (error) {
+          throw new Error(`${error.message}`);
         }
-        const isPasswordMatched = await bcrypt.compare(password, user.password);
-        if (!isPasswordMatched) {
-          console.error("Wrong password");
-        }
-        return user;
       },
     }),
     // GoogleProvider({ clientId: "", clientSecret: "" }),
   ],
+  events: {
+    error(message) {
+      console.error(message);
+    },
+  },
   pages: { signIn: "/sign", error: "/sign" },
   secret: process.env.NEXTAUTH_SECRET,
 });
