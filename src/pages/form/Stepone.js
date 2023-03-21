@@ -3,7 +3,7 @@ import Image from "next/image";
 function Stepone({
   formStep,
   nextFormStep,
-  countries,
+  countries = [],
   setCountries,
   message,
   setMessage,
