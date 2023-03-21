@@ -135,16 +135,16 @@ function Stepfour({
   setCourse1,
   setCourse2,
   formStep,
-  nextFormStep,
+  nextFormStep,message,setMessage
 }) {
   const [showModal, setshowModal] = useState(false);
   const [prog, setProg] = useState("");
   const [category, setCategory] = useState("");
-  const [error, setError] = useState("");
+
   const handleNextStep = () => {
     if (!course1.length || !course2.length) {
-      setError("Enter 2 courses");
-    } else nextFormStep();
+      setMessage("Enter 2 courses");
+    } else nextFormStep();setMessage('')
   };
   return (
     <div className="flex bg-slate-50 flex-col items-center p-2">
@@ -199,6 +199,7 @@ function Stepfour({
           </p>
         </div>
       }
+      {message&&<p>{message}</p>}
       <button onClick={handleNextStep}>Next</button>
     </div>
   );

@@ -101,6 +101,8 @@ function Info() {
       <FormCard currentStep={formStep} prevFormStep={prevFormStep}>
         {formStep === 0 && (
           <Stepone
+            message={message}
+            setMessage={setMessage}
             countries={countries}
             setCountries={setCountries}
             formStep={formStep}
@@ -109,6 +111,8 @@ function Info() {
         )}
         {formStep === 1 && (
           <Steptwo
+            message={message}
+            setMessage={setMessage}
             pno={pno}
             setPno={setPno}
             formStep={formStep}
@@ -117,6 +121,8 @@ function Info() {
         )}
         {formStep === 2 && (
           <Stepthree
+            message={message}
+            setMessage={setMessage}
             dob={dob}
             setDob={setDob}
             formStep={formStep}

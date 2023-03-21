@@ -23,6 +23,7 @@ function Stepthree({
     }
 
     nextFormStep();
+    setMessage("");
   };
 
   return (
