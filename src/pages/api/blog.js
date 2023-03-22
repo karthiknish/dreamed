@@ -32,8 +32,17 @@ export default async function handler(req, res) {
           }
           return res.status(200).json({ success: true, data: blog });
         }
-        const blogs = await Blog.find({});
-        return res.status(200).json({ success: true, data: blogs });
+        const page = parseInt(req.query.page, 10) || 1;
+        const limit = parseInt(req.query.limit, 10) || 10;
+        const startIndex = (page - 1) * limit;
+        const total = await Blog.countDocuments();
+
+        const blogs = await Blog.find().skip(startIndex).limit(limit);
+
+        const totalPages = Math.ceil(total / limit);
+        const pagination = { page, limit, totalPages, total };
+
+        return res.status(200).json({ success: true, data: blogs, pagination });  
       } catch (error) {
         return res.status(400).json({ success: false, message: error.message });
       }
