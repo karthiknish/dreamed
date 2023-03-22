@@ -70,11 +70,6 @@ function Box({ messages, setMessages, loading, setLoading }) {
 
     console.log("Edge function returned.");
 
-    // if (!response.ok) {
-    //   console.log(response.statusText);
-    //   throw new Error(response.statusText);
-    // }
-
     const data = await response.text();
 
     if (!data) {
@@ -119,26 +114,28 @@ function Box({ messages, setMessages, loading, setLoading }) {
     <motion.div
       initial={{ y: 0, opacity: 0 }}
       animate={{ y: -10, opacity: 1 }}
-      className="fixed bg-slate-200 p-4 bottom-20 right-10  flex flex-col"
+      className="fixed bg-slate-200 max-w-sm p-4 bottom-20 right-10  flex flex-col"
     >
-      <div className="flex-grow overflow-y-auto">
-        {messages.length &&
-          messages?.map(({ content, role }, index) => (
-            <ChatLine key={index} role={role} content={content} />
-          ))}
-        {loading && <LoadingChatLine />}
-        {messages.length < 2 && (
-          <span className="mx-auto  flex flex-grow text-gray-600 clear-both">
-            Type a message to start the conversation
-          </span>
-        )}
-      </div>
-      <div className="bottom-5 items-center gap-2">
-        <InputMessage
-          input={input}
-          setInput={setInput}
-          sendMessage={sendMessage}
-        />
+      <div className="flex flex-grow flex-col">
+        <div className="overflow-y-auto max-h-72">
+          {messages.length &&
+            messages?.map(({ content, role }, index) => (
+              <ChatLine key={index} role={role} content={content} />
+            ))}
+          {loading && <LoadingChatLine />}
+          {messages.length < 2 && (
+            <span className="mx-auto  flex flex-grow text-gray-600 clear-both">
+              Type a message to start the conversation
+            </span>
+          )}
+        </div>
+        <div className="bottom-5 items-center gap-2">
+          <InputMessage
+            input={input}
+            setInput={setInput}
+            sendMessage={sendMessage}
+          />
+        </div>
       </div>
     </motion.div>
   );

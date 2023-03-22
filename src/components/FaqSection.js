@@ -79,7 +79,6 @@ const FAQSection = () => {
 
   return (
     <div>
-      {faqno}
       {faqs.map((faq, index) => (
         <FAQItem
           key={index}
