@@ -103,12 +103,24 @@ const Navbar = () => {
                 ) : (
                   <></>
                 )}
-                <a
-                  href="#"
+                <Link
+                  href="/help"
                   className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100 "
                 >
                   How can We Help
-                </a>
+                </Link>
+                <Link
+                  href="/sign"
+                  className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100 "
+                >
+                  Study Abroad
+                </Link>
+                <Link
+                  href="/career"
+                  className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100 "
+                >
+                  Career Studio{" "}
+                </Link>
                 <Link
                   href="/contact"
                   className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100 "
