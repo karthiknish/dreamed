@@ -8,10 +8,10 @@ function Index() {
   const { data } = useSession();
   const router = useRouter();
   const [signin, setSignin] = useState(true);
-  const [name, setName] = useState("kar");
-  const [email, setEmail] = useState("karthik.nishanth06@gmail.com");
-  const [password, setPassword] = useState("abcabc");
-  const [conpassword, setConpassword] = useState("abcabc");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [conpassword, setConpassword] = useState("");
   const [message, setMessage] = useState("");
   const [success, setSuccess] = useState(false);
   const buttvariant = {
