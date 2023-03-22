@@ -35,6 +35,7 @@ export function ChatLine({ role = "assistant", content }) {
   }
   const formatteMessage = convertNewLines(content);
 
+
   return (
     <div
       className={
@@ -50,10 +51,9 @@ export function ChatLine({ role = "assistant", content }) {
               </a>
             </p>
             <p
-            //   className={clsx(
-            //     "text ",
-            //     role == "assistant" ? "font-semibold font- " : "text-gray-400"
-            //   )}
+              className={`text ${
+                role == "assistant" ? "font-semibold font-" : "text-gray-400"
+              }`}
             >
               {formatteMessage}
             </p>

@@ -6,6 +6,7 @@ import { initGA, logPageView } from "../lib/ga";
 import Footer from "@/components/Footer";
 import { SessionProvider } from "next-auth/react";
 import Chat from "@/components/Chat";
+import Assistant from "@/components/assistant/Assistant";
 export default function App({ Component, pageProps }) {
   useEffect(() => {
     if (!window.GA_INITIALIZED) {
@@ -18,7 +19,7 @@ export default function App({ Component, pageProps }) {
     <SessionProvider>
       <Navbar />
       <Component {...pageProps} />
-      {(process.env.DEV = true && <Chat />)}
+      {(process.env.DEV = true && <Assistant />)}
       <Footer />
     </SessionProvider>
   );

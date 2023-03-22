@@ -1,41 +1,43 @@
-const { Configuration, OpenAIApi } = require("openai");
+const { OpenAIStream } = require("../../lib/OpenAIStream");
 
-const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+if (!process.env.OPENAI_API_KEY) {
+  throw new Error("Missing Environment Variable OPENAI_API_KEY");
+}
 
-export default async (req, res) => {
-  if (req.method === "POST") {
-    const { role, content } = req.body;
-
-    const payload = {
-      model: "gpt-3.5-turbo",
-      messages: [
-        {
-          role: "system",
-          content:
-            "You are a helpful AI assistant for Dreamed Consultancy, an abroad education consultancy.",
-        },
-        {
-          role: role,
-          content: content,
-        },
-      ],
-      temperature: 0.8,
-      max_tokens: 150,
-    };
-
-    try {
-      const openai = new OpenAIApi(configuration);
-      const response = await openai.createCompletion(payload);
-      console.log(response);
-      const assistantMessage = response.choices[0].message.text;
-      res.status(200).json({ message: assistantMessage });
-    } catch (error) {
-      res.status(500).json({ error: error.message });
-      console.log(error.message);
-    }
-  } else {
-    res.status(405).end();
-  }
+export const config = {
+  runtime: "edge",
 };
+
+const handler = async (req) => {
+  const body = await req.json();
+
+  const messages = [
+    {
+      role: "system",
+      content: `DreamEd Consultancy is an education consultancy that specializes in abroad studies admissions in the UK, USA, Canada, Australia, and Ireland. They provide comprehensive assistance with loan processing, visa applications, IELTS preparation, SOPs (Statements of Purpose), and LORs (Letters of Recommendation). This AI assistant is knowledgeable in various aspects of education consultancy and aims to provide professional and direct answers to your queries. The AI assistant is characterized by expertise, helpfulness, and articulateness. As a reliable and well-mannered individual, the AI focuses on providing accurate and relevant information to address your concerns regarding overseas education opportunities and processes.`,
+    },
+  ];
+
+  messages.push(...(body?.messages || []));
+
+  const payload = {
+    model: "gpt-3.5-turbo",
+    messages: messages,
+    temperature: process.env.AI_TEMP ? parseFloat(process.env.AI_TEMP) : 0.7,
+    max_tokens: process.env.AI_MAX_TOKENS
+      ? parseInt(process.env.AI_MAX_TOKENS)
+      : 100,
+    top_p: 1,
+    frequency_penalty: 0,
+    presence_penalty: 0,
+    stream: true,
+    user: body?.user,
+    n: 1,
+  };
+
+  const stream = await OpenAIStream(payload);
+
+  return new Response(stream);
+};
+
+export default handler;
