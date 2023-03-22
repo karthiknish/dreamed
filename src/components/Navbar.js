@@ -5,6 +5,7 @@ import Router from "next/router";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { signOut, useSession } from "next-auth/react";
+
 const Navbar = () => {
   const { data } = useSession();
   useEffect(() => {
@@ -12,9 +13,7 @@ const Navbar = () => {
     if (w >= 1024) {
       setIsOpen(true);
     }
-    return () => {};
   }, []);
-
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -108,7 +107,7 @@ const Navbar = () => {
                   href="#"
                   className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100 "
                 >
-                  Random Item
+                  How can We Help
                 </a>
                 <Link
                   href="/contact"

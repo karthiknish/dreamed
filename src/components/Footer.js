@@ -68,7 +68,7 @@ function Footer() {
 
         <div className="flex flex-col items-center sm:flex-row sm:justify-between">
           <p className="text-sm text-gray-500">
-            © Copyright 2021. All Rights Reserved.
+            © Copyright 2023. All Rights Reserved.
           </p>
 
           <div className="flex -mx-2">
