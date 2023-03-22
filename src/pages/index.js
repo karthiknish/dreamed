@@ -574,6 +574,12 @@ export default function Home() {
               <p className="mt-3 text-gray-400">
                 Our friendly team is always here to chat.
               </p>
+              <button
+                onClick={() => Router.push("/contact")}
+                className="w-full px-5 py-2 mt-6 text-sm tracking-wider text-white uppercase transition-colors duration-300 transform bg-blue-600 rounded-lg lg:w-auto hover:bg-blue-500 focus:outline-none focus:bg-blue-500"
+              >
+                Contact NOW!
+              </button>
             </div>
 
             <div className="grid grid-cols-1 gap-12 mt-10 md:grid-cols-2 lg:grid-cols-3">
@@ -599,7 +605,9 @@ export default function Home() {
                 <p className="mt-2 text-gray-400">
                   Our friendly team is here to help.
                 </p>
-                <p className="mt-2 text-blue-400">hello@merakiui.com</p>
+                <p className="mt-2 text-blue-400">
+                  info@dreamedconsultancy.com
+                </p>
               </div>
 
               <div>
@@ -626,12 +634,11 @@ export default function Home() {
                 </span>
 
                 <h2 className="mt-4 text-lg font-medium text-white">Office</h2>
-                <p className="mt-2 text-gray-400">
-                  Come say hello at our office HQ.
-                </p>
-                <p className="mt-2 text-blue-400">
-                  100 Smith Street Collingwood VIC 3066 AU
-                </p>
+                <p className="mt-2 text-gray-400">HQ</p>
+                <p className="mt-2 text-blue-400">Chennai, India</p>
+                <p className="mt-2 text-blue-400">Liverpool, United Kingdom</p>
+                <p className="mt-2 text-blue-400">Dallas, United States</p>
+                <p className="mt-2 text-blue-400">Kitchener, Canada</p>
               </div>
 
               <div>
@@ -653,8 +660,8 @@ export default function Home() {
                 </span>
 
                 <h2 className="mt-4 text-lg font-medium text-white">Phone</h2>
-                <p className="mt-2 text-gray-400">Mon-Fri from 8am to 5pm.</p>
-                <p className="mt-2 text-blue-400">+1 (555) 000-0000</p>
+                <p className="mt-2 text-gray-400"> Whatsapp us </p>
+                <p className="mt-2 text-blue-400">+91 9884022990</p>
               </div>
             </div>
           </div>

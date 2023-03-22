@@ -89,7 +89,9 @@ const TabsSection = () => {
     <section className="container mx-auto px-4 md:px-0 py-12">
       <div className="flex justify-center">
         <div className="bg-white rounded-md w-full">
-          <h1 className="text-4xl text-center font-medium">Our tieups</h1>
+          <h1 className="text-4xl text-center font-medium">
+            Find Your dream Universities
+          </h1>
           <div className="flex flex-row my-4 items-center justify-center">
             {tabButtons.map((button) => (
               <button

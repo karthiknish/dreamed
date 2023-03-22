@@ -60,26 +60,35 @@ function Stepone({
     <div className="flex flex-col items-center">
       <h1 className="mt-10 text-4xl">Interested Countries</h1>
       <div className="flex gap-4 py-20">
-        {count.map((country) => (
+        {countriesList.map((country) => (
           <div
             key={country.name}
             onClick={() => handleCountry(country.name)}
             className={`flex flex-col items-center shadow-lg rounded p-4 ${
-              countries.includes(country.name) ? "bg-blue-200" : "bg-white"
+              selectedCountries.includes(country.name)
+                ? "bg-blue-200"
+                : "bg-white"
             }`}
           >
-            <Image
-              alt={country.name}
-              width={100}
-              height={100}
-              src={country.flagUrl}
-            />
+            <div className="w-24 h-16 relative">
+              <Image
+                alt={country.name}
+                layout="fill"
+                objectFit="contain"
+                src={country.flagUrl}
+              />
+            </div>
             <p>{country.name}</p>
           </div>
         ))}
       </div>
-      <button onClick={handleNextStep}>Next</button>
-      {message && <p className="text-red-500">{message}</p>}
+      <button
+        onClick={handleNextStep}
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      >
+        Next
+      </button>
+      {errorMessage && <p className="text-red-500">{errorMessage}</p>}
     </div>
   );
 }
