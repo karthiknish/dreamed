@@ -2,12 +2,12 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 
 const FAQItem = ({ question, answer, active, onClick }) => (
-  <div className="border-2 my-4 border-gray-100 rounded-lg">
+  <div className="border-2 my-4  border-gray-100 rounded-lg">
     <button
       className="flex items-center justify-between w-full p-8"
       onClick={onClick}
     >
-      <h1 className="font-semibold text-gray-700">{question}</h1>
+      <h1 className="font-semibold text-left text-gray-700">{question}</h1>
       <span
         className={`rounded-full ${
           !active ? "text-white bg-blue-500" : "text-blue-500 bg-gray-200"

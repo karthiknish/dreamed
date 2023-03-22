@@ -5,7 +5,8 @@ import Router from "next/router";
 import Image from "next/image";
 function Index() {
   const [data, setData] = useState([]);
-
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const options = {
     wordwrap: 10,
     limits: {
@@ -21,12 +22,32 @@ function Index() {
     getData();
   }, []);
   const getData = async () => {
-    await fetch("/api/blog", {
-      method: "GET",
-    })
-      .then((res) => res.json())
-      .then((d) => setData(d.data));
+    try {
+      const response = await fetch("/api/blog", {
+        method: "GET",
+      });
+      const responseData = await response.json();
+      setData(responseData.data);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
   };
+  const LoadingSkeleton = () => (
+    <div className="animate-pulse">
+      {/* <div className="w-full h-96 bg-gray-200"></div> */}
+      <div className="p-2">
+        <div className="h-6 bg-gray-200 w-full mt-4"></div>
+        <div className="h-4 bg-gray-200 w-full mt-2"></div>
+        <div className="h-4 bg-gray-200 w-full mt-2"></div>
+        <div className="h-4 bg-gray-200 w-3/4 mt-2"></div>
+      </div>
+    </div>
+  );
+
+  if (loading) return <LoadingSkeleton />;
+  if (error) return <div>Error: {error}</div>;
   return (
     <>
       <Head>
@@ -45,7 +66,6 @@ function Index() {
                   onClick={() => Router.push(`/stories/${d?._id}`)}
                   className="mt-8 lg:-mx-6 lg:flex lg:items-center"
                 >
-                  {d?._id}
                   <Image
                     width={0}
                     height={0}
