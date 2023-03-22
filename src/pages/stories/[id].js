@@ -65,10 +65,12 @@ function Id() {
             />
 
             <div className="flex flex-col p-2">
-              <h1 className="text-2xl">{data.title}</h1>
-              <div className="p-3 prose">
-                <ReactMarkdown children={data.content}></ReactMarkdown>
-              </div>
+              <h1 className="text-2xl">{data?.title}</h1>
+              {data && data.content && (
+                <div className="p-3 prose">
+                  <ReactMarkdown>{data.content}</ReactMarkdown>
+                </div>
+              )}
             </div>
           </div>
         )}
