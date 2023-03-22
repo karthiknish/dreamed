@@ -5,6 +5,9 @@ import Router from "next/router";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useSession } from "next-auth/react";
+import TabsSection from "@/components/TabSection";
+import TestimonialSection from "@/components/TestimonialSection";
+import FaqSection from "@/components/FaqSection";
 export default function Home() {
   const f = useSession();
   useEffect(() => {
@@ -23,7 +26,7 @@ export default function Home() {
     };
     getInfo();
   }, []);
-  const [faqno, setFaqno] = useState(0);
+
   return (
     <>
       <Head>
@@ -49,7 +52,7 @@ export default function Home() {
                 </p>
 
                 <button
-                  onClick={() => Router.push("/sign")}
+                  onClick={() => Router.push("/contact")}
                   className="w-full px-5 py-2 mt-6 text-sm tracking-wider text-white uppercase transition-colors duration-300 transform bg-blue-600 rounded-lg lg:w-auto hover:bg-blue-500 focus:outline-none focus:bg-blue-500"
                 >
                   Contact NOW!
@@ -238,7 +241,9 @@ export default function Home() {
               alt="glasses photo"
             />
           </div>
-        </div>
+        </div>{" "}
+        <TestimonialSection />
+        <TabsSection />
         <section className="bg-gray-900">
           <div className="container px-6 py-10 mx-auto">
             <h1 className="text-2xl font-semibold text-center  capitalize lg:text-3xl text-white">
@@ -553,172 +558,7 @@ export default function Home() {
             </h1>
 
             <div className="mt-12 space-y-8">
-              <div className="border-2 border-gray-100 rounded-lg ">
-                <button className="flex items-center justify-between w-full p-8">
-                  <h1 className="font-semibold text-gray-700 ">
-                    What services does we provide?
-                  </h1>
-                  {faqno === 0 ? (
-                    <span
-                      onClick={() => (faqno === 0 ? setFaqno(1) : setFaqno(0))}
-                      className="text-white bg-blue-500 rounded-full"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="w-6 h-6"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                        />
-                      </svg>
-                    </span>
-                  ) : (
-                    <span
-                      onClick={() => (faqno === 0 ? setFaqno(1) : setFaqno(0))}
-                      className="text-gray-400 bg-gray-200 rounded-full"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="w-6 h-6"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M18 12H6"
-                        />
-                      </svg>
-                    </span>
-                  )}
-                </button>
-
-                <hr className="border-gray-200 " />
-
-                {faqno === 1 && (
-                  <motion.p
-                    initial={{ y: -100, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    className="p-8 text-sm text-gray-500 "
-                  >
-                    We provide a wide range of services, including college
-                    admissions counseling, test preparation, academic tutoring,
-                    career counseling, and study abroad guidance.
-                  </motion.p>
-                )}
-              </div>
-
-              <div className="border-2 border-gray-100 rounded-lg ">
-                <button className="flex items-center justify-between w-full p-8">
-                  <h1 className="font-semibold text-gray-700 ">
-                    Is the cost of the appoinment covered by private health
-                    insurance?
-                  </h1>
-
-                  <span
-                    onClick={() => (faqno === 2 ? setFaqno(3) : setFaqno(2))}
-                    className="text-white bg-blue-500 rounded-full"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-6 h-6"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                      />
-                    </svg>
-                  </span>
-                </button>
-              </div>
-
-              <div className="border-2 border-gray-100 rounded-lg ">
-                <button className="flex items-center justify-between w-full p-8">
-                  <h1 className="font-semibold text-gray-700 ">
-                    Do i need a referral?
-                  </h1>
-
-                  <span className="text-white bg-blue-500 rounded-full">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-6 h-6"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                      />
-                    </svg>
-                  </span>
-                </button>
-              </div>
-
-              <div className="border-2 border-gray-100 rounded-lg ">
-                <button className="flex items-center justify-between w-full p-8">
-                  <h1 className="font-semibold text-gray-700 ">
-                    What are your opening house?
-                  </h1>
-
-                  <span className="text-white bg-blue-500 rounded-full">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-6 h-6"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                      />
-                    </svg>
-                  </span>
-                </button>
-              </div>
-
-              <div className="border-2 border-gray-100 rounded-lg ">
-                <button className="flex items-center justify-between w-full p-8">
-                  <h1 className="font-semibold text-gray-700 ">
-                    What can i expect at my first consultation?
-                  </h1>
-
-                  <span className="text-white bg-blue-500 rounded-full">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-6 h-6"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                      />
-                    </svg>
-                  </span>
-                </button>
-              </div>
+              <FaqSection />
             </div>
           </div>
         </section>
