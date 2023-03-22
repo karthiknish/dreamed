@@ -8,6 +8,7 @@ import { useSession } from "next-auth/react";
 import TabsSection from "@/components/TabSection";
 import TestimonialSection from "@/components/TestimonialSection";
 import FaqSection from "@/components/FaqSection";
+import Roshan from "../assets/Roshan.png";
 export default function Home() {
   const f = useSession();
   useEffect(() => {
@@ -257,29 +258,28 @@ export default function Home() {
             </p>
 
             <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 xl:grid-cols-2">
-              <div className="px-12 py-8 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-blue-600 border-gray-700 ">
+              <div className="px-12 py-8 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-blue-600 border-gray-500 ">
                 <div className="flex flex-col sm:-mx-4 sm:flex-row">
                   <img
                     className="flex-shrink-0 object-cover w-24 h-24 rounded-full sm:mx-4 ring-4 ring-gray-300"
-                    src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+                    src={Roshan.src}
                     alt=""
                   />
 
                   <div className="mt-4 sm:mx-4 sm:mt-0">
                     <h1 className="text-xl font-semibold  capitalize md:text-2xl text-white group-hover:text-white">
-                      arthur melo
+                      Roshan Prakash
                     </h1>
 
                     <p className="mt-2 capitalize text-gray-300 group-hover:text-gray-300">
-                      design director
+                      Founder / Career Expert
                     </p>
                   </div>
                 </div>
 
-                <p className="mt-4  capitalize text-gray-300 group-hover:text-gray-300">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum
-                  nesciunt officia aliquam neque optio? Cumque facere numquam
-                  est.
+                <p className="mt-4  text-gray-300 group-hover:text-gray-300">
+                  Helped 200+ Students to secure Admissions and Visa World Wide
+                  in their Dream Universities
                 </p>
 
                 <div className="flex mt-4 -mx-2">
@@ -330,7 +330,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="px-12 py-8 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-blue-600 dark:border-gray-700 dark:hover:border-transparent">
+              <div className="px-12 py-8 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-blue-600 ">
                 <div className="flex flex-col sm:-mx-4 sm:flex-row">
                   <img
                     className="flex-shrink-0 object-cover w-24 h-24 rounded-full sm:mx-4 ring-4 ring-gray-300"
@@ -339,20 +339,22 @@ export default function Home() {
                   />
 
                   <div className="mt-4 sm:mx-4 sm:mt-0">
-                    <h1 className="text-xl font-semibold text-gray-700 capitalize md:text-2xl dark:text-white group-hover:text-white">
-                      Amelia. Anderson
+                    <h1 className="text-xl font-semibold text-gray-300 capitalize md:text-2xl dark:text-white group-hover:text-white">
+                      Karthik Nishanth
                     </h1>
 
-                    <p className="mt-2 text-gray-500 capitalize dark:text-gray-300 group-hover:text-gray-300">
-                      Lead Developer
+                    <p className="mt-2 text-gray-300 capitalize dark:text-gray-300 group-hover:text-gray-300">
+                      Partner / Scholarship Expert
                     </p>
                   </div>
                 </div>
 
-                <p className="mt-4 text-gray-500 capitalize dark:text-gray-300 group-hover:text-gray-300">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum
-                  nesciunt officia aliquam neque optio? Cumque facere numquam
-                  est.
+                <p
+                  className="mt-4 text-gray-300 
+                  group-hover:text-gray-300"
+                >
+                  Assisted 50+ Students get Scholarships and tution fee Waivers
+                  across Universities in USA, UK and Canada
                 </p>
 
                 <div className="flex mt-4 -mx-2">
@@ -403,7 +405,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="px-12 py-8 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-blue-600 dark:border-gray-700 dark:hover:border-transparent">
+              <div className="px-12 py-8 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-blue-600 ">
                 <div className="flex flex-col sm:-mx-4 sm:flex-row">
                   <img
                     className="flex-shrink-0 object-cover w-24 h-24 rounded-full sm:mx-4 ring-4 ring-gray-300"
@@ -412,20 +414,19 @@ export default function Home() {
                   />
 
                   <div className="mt-4 sm:mx-4 sm:mt-0">
-                    <h1 className="text-xl font-semibold text-gray-700 capitalize md:text-2xl dark:text-white group-hover:text-white">
-                      Olivia Wathan
+                    <h1 className="text-xl font-semibold text-gray-300 capitalize md:text-2xl dark:text-white group-hover:text-white">
+                      Thejashree
                     </h1>
 
-                    <p className="mt-2 text-gray-500 capitalize dark:text-gray-300 group-hover:text-gray-300">
-                      Lead designer
+                    <p className="mt-2 text-gray-300 capitalize  group-hover:text-gray-300">
+                      Partner / Finance Expert
                     </p>
                   </div>
                 </div>
 
-                <p className="mt-4 text-gray-500 capitalize dark:text-gray-300 group-hover:text-gray-300">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum
-                  nesciunt officia aliquam neque optio? Cumque facere numquam
-                  est.
+                <p className="mt-4 text-gray-300 capitalize  group-hover:text-gray-300">
+                  Analysed ROIs for Students based on their study location and
+                  Career prospects
                 </p>
 
                 <div className="flex mt-4 -mx-2">
@@ -485,20 +486,19 @@ export default function Home() {
                   />
 
                   <div className="mt-4 sm:mx-4 sm:mt-0">
-                    <h1 className="text-xl font-semibold text-gray-700 capitalize md:text-2xl  group-hover:text-white">
-                      John Doe
+                    <h1 className="text-xl font-semibold text-gray-300 capitalize md:text-2xl  group-hover:text-white">
+                      Surya KKumar
                     </h1>
 
-                    <p className="mt-2 text-gray-500 capitalize group-hover:text-gray-300">
-                      Full stack developer
+                    <p className="mt-2 text-gray-300 capitalize group-hover:text-gray-300">
+                      Partner / Visa Expert
                     </p>
                   </div>
                 </div>
 
-                <p className="mt-4 text-gray-300 capitalize  group-hover:text-gray-300">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum
-                  nesciunt officia aliquam neque optio? Cumque facere numquam
-                  est.
+                <p className="mt-4 text-gray-300   group-hover:text-gray-300">
+                  Submitted more than 250+ Visa applications to UK,USA,Canada
+                  and Australia with a success rate of 100%
                 </p>
 
                 <div className="flex mt-4 -mx-2">
