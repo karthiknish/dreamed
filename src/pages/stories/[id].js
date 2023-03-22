@@ -66,7 +66,7 @@ function Id() {
 
             <div className="flex flex-col p-2">
               <h1 className="text-2xl">{data.title}</h1>
-              <div className="p-3">
+              <div className="p-3 prose">
                 <ReactMarkdown children={data.content}></ReactMarkdown>
               </div>
             </div>

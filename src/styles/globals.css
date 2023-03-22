@@ -11,8 +11,59 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
-.markdown > * {
-  all: revert !important;
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.prose p {
+  margin-top: 0 !important;
+  margin-bottom: 1rem !important;
+  line-height: 1.5 !important;
+}
+
+.prose ol,
+.prose ul {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  padding-left: 2em;
+}
+
+.prose li {
+  margin-bottom: 0.25rem;
+}
+
+.prose code,
+.prose kbd,
+.prose pre {
+  font-size: 0.9em;
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.prose code,
+.prose kbd {
+  padding: 0.1em 0.3em;
+  border-radius: 0.25rem;
+  color: #ffffff;
+  background-color: rgba(27, 31, 35, 0.05);
+}
+
+.prose pre {
+  overflow: auto;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  padding: 1em;
+  font-size: 0.9em;
+  line-height: 1.45;
+  background-color: #f6f8fa;
+  border-radius: 0.3em;
 }
 /* * {
   box-sizing: border-box;

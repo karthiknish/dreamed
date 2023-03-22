@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from "react";
 const TabsSection = () => {
   const [activeTab, setActiveTab] = useState("usa");
   const scrollContainerRef = useRef(null);
-  const scrollInterval = 1000; // Change this value to adjust the scrolling interval (in milliseconds)
+  const scrollInterval = 2000; // Change this value to adjust the scrolling interval (in milliseconds)
   const scrollDistance = 1000; // Change this value to adjust the scrolling distance (in pixels)
 
   const countries = {
@@ -45,6 +45,11 @@ const TabsSection = () => {
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRptWSJnzoi9tO3LYaQ9lwopZVkJs8mF6dFfQ&usqp=CAU",
     ],
   };
+  const tabButtons = [
+    { label: "UK", value: "uk", isActive: activeTab === "uk" },
+    { label: "USA", value: "usa", isActive: activeTab === "usa" },
+    { label: "Canada", value: "canada", isActive: activeTab === "canada" },
+  ];
   useEffect(() => {
     const totalImages = countries[activeTab].length;
     const visibleImages = 3;
@@ -67,8 +72,10 @@ const TabsSection = () => {
   }, [activeTab]);
 
   const renderImages = (images) => {
-    return images.map((image, index) => (
-      <div key={index} className="inline-block w-1/3 p-2">
+    const repeatedImages = images.concat(images);
+
+    return repeatedImages.map((image, index) => (
+      <div key={`${index}-${image}`} className="inline-block w-1/3 p-2">
         <img
           src={image}
           alt={`University ${index + 1}`}
@@ -82,37 +89,21 @@ const TabsSection = () => {
     <section className="container mx-auto px-4 md:px-0 py-12">
       <div className="flex justify-center">
         <div className="bg-white rounded-md w-full">
-          <div className="flex flex-row items-center justify-center">
-            <button
-              className={`py-2 px-4 focus:outline-none text-sm md:text-base font-semibold ${
-                activeTab === "uk"
-                  ? "text-gray-300 bg-merakiui-primary"
-                  : "text-merakiui-primary"
-              }`}
-              onClick={() => setActiveTab("uk")}
-            >
-              UK
-            </button>
-            <button
-              className={`py-2 px-4 focus:outline-none text-sm md:text-base font-semibold ${
-                activeTab === "usa"
-                  ? "text-gray-300 bg-merakiui-primary"
-                  : "text-merakiui-primary"
-              }`}
-              onClick={() => setActiveTab("usa")}
-            >
-              USA
-            </button>
-            <button
-              className={`py-2 px-4 focus:outline-none text-sm md:text-base font-semibold ${
-                activeTab === "canada"
-                  ? "text-gray-300 bg-merakiui-primary"
-                  : "text-merakiui-primary"
-              }`}
-              onClick={() => setActiveTab("canada")}
-            >
-              Canada
-            </button>
+          <h1 className="text-4xl text-center font-medium">Our tieups</h1>
+          <div className="flex flex-row my-4 items-center justify-center">
+            {tabButtons.map((button) => (
+              <button
+                key={button.value}
+                className={`py-2 px-4  rounded-lg mx-3 focus:outline-none text-sm md:text-base font-semibold ${
+                  button.isActive
+                    ? "bg-blue-600 text-gray-300 bg-merakiui-primary"
+                    : "text-merakiui-primary bg-gray-100"
+                }`}
+                onClick={() => setActiveTab(button.value)}
+              >
+                {button.label}
+              </button>
+            ))}
           </div>
           <div
             ref={scrollContainerRef}
