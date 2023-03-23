@@ -5,7 +5,11 @@ import Router from "next/router";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { signOut, useSession } from "next-auth/react";
-
+import { Roboto_Slab } from "next/font/google";
+const roboto = Roboto_Slab({
+  subsets: ["latin"],
+  weight: ["100", "300", "400", "700", "900"],
+});
 const Navbar = () => {
   const { data } = useSession();
   useEffect(() => {
@@ -80,21 +84,21 @@ const Navbar = () => {
               <div className="flex flex-col -mx-6 lg:flex-row lg:items-center lg:mx-8">
                 <Link
                   href="/stories"
-                  className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100"
+                  className={`${roboto.className}  px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100`}
                 >
                   Success Stories
                 </Link>
                 {data?.user?.name === "admin" ? (
                   <Link
                     href="/admin"
-                    className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100 "
+                    className={`${roboto.className}  px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100`}
                   >
                     Admin
                   </Link>
                 ) : data?.user?.name ? (
                   <Link
                     href="/dashboard"
-                    className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-gray-100 "
+                    className={`${roboto.className}  px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100`}
                   >
                     Dashboard
                   </Link>
@@ -103,32 +107,32 @@ const Navbar = () => {
                 )}
                 <Link
                   href="/help"
-                  className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100 "
+                  className={`${roboto.className}  px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100`}
                 >
                   How can We Help
                 </Link>
                 <Link
                   href="/sign"
-                  className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100 "
+                  className={`${roboto.className}  px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100`}
                 >
                   Study Abroad
                 </Link>
                 <Link
                   href="/career"
-                  className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100 "
+                  className={`${roboto.className}  px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100`}
                 >
                   Career Studio{" "}
                 </Link>
                 <Link
                   href="/contact"
-                  className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100 "
+                  className={`${roboto.className}  px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100`}
                 >
                   Contact
                 </Link>
                 {!data?.user ? (
                   <Link
                     href="/sign"
-                    className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100 "
+                    className={`${roboto.className}  px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100`}
                   >
                     Signin/Register
                   </Link>

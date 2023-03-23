@@ -46,7 +46,10 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
+      <motion.main
+        initial={{ y: -10, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+      >
         <div className="h-screen mx-auto bg-gradient-to-b from-blue-900 via-blue-300 to-transparent md:bg-gradient-to-r">
           <div className="h-full flex flex-col md:flex-row items-center">
             <div className="w-full px-12 py-8 md:py-0 md:w-1/2">
@@ -98,23 +101,26 @@ export default function Home() {
 
             <div className="max-w-xl px-6 py-12 lg:max-w-5xl lg:w-1/2">
               <h2 className="text-2xl font-semibold text-gray-200 md:text-3xl">
-                Build Your New <span className="text-blue-500">Idea</span>
+                Unlock Your Path to{" "}
+                <span className="text-blue-500">Dream University</span>
               </h2>
 
               <p className="mt-4 text-gray-400  ">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem
-                modi reprehenderit vitae exercitationem aliquid dolores ullam
-                temporibus enim expedita aperiam mollitia iure consectetur dicta
-                tenetur, porro consequuntur saepe accusantium consequatur.
+                Discover the pathway to your dream university with personalized
+                guidance, expert support, and innovative resources. Our team of
+                dedicated professionals is committed to helping students
+                navigate the complexities of higher education, ensuring they
+                unlock their full potential and achieve their academic
+                aspirations.
               </p>
 
               <div className="inline-flex w-full mt-6 sm:w-auto">
-                <a
-                  href="#"
+                <Link
+                  href="/sign"
                   className="inline-flex items-center justify-center w-full px-6 py-2 text-sm text-white duration-300 bg-gray-800 rounded-lg hover:bg-gray-700 focus:ring focus:ring-gray-300 focus:ring-opacity-80"
                 >
                   Start Now
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -593,7 +599,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-      </main>
+      </motion.main>
     </>
   );
 }

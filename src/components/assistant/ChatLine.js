@@ -47,7 +47,7 @@ export function ChatLine({ role = "assistant", content }) {
           <div className="flex-1 gap-4">
             <p className="font-large text-xxl text-gray-900">
               <a href="#" className="hover:underline">
-                {role == "assistant" ? "AI" : "You"}
+                {role == "assistant" ? "Zola" : "You"}
               </a>
             </p>
             <p

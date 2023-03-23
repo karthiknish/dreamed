@@ -6,7 +6,7 @@ function Assistant() {
   const initialMessages = [
     {
       role: "assistant",
-      content: "Hi! I am DreamEd's AI assistant. Ask me anything!",
+      content: "Hi! I am Zola, DreamEd s AI assistant. Ask me anything!",
     },
   ];
 
