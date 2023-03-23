@@ -26,7 +26,7 @@ function Stepseven({
       <Datepicker
         asSingle={true}
         useRange={false}
-        placeholder={date.length && date}
+        placeholder={date?.length && date}
         value={date}
         onChange={(e) => setDate(e.startDate)}
       />
