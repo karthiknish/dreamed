@@ -1,15 +1,17 @@
 import dbConnect from "../../lib/dbConnect";
 import Student from "../../models/Student";
 import nodemailer from "nodemailer";
+import path from "path";
+const logoPath = path.join(process.cwd(), "src", "assets", "logo.png");
 function getEmailTemplate(name) {
   return ` <body>
   <section style="max-width: 2xl; padding: 6px; margin: 0 auto; background-color: white;">
     <header>
-      <a href="#">
+    <a href="https://dreamedconsultancy.com">
         <img
           style="width: auto; height: 1.75rem;"
-          src="https://merakiui.com/images/full-logo.svg"
-          alt=""
+          src="cid:logo"
+          alt="Logo"
         />
       </a>
     </header>
@@ -105,6 +107,13 @@ export default async function handler(req, res) {
             to: email,
             subject: "Dream Ed Consultancy has got your Information",
             html: emailTemplate,
+            attachments: [
+              {
+                filename: "logo.png",
+                path: logoPath,
+                cid: "logo",
+              },
+            ],
           };
           await transporter.sendMail(mailOptions).catch((err) => {
             console.error(err);
