@@ -191,7 +191,7 @@ function Stepfour({
       <div className="flex space-x-4 mt-4">
         <p className="flex text-2xl items-center">
           {course1.map((b) => (
-            <p>
+            <p key={b.program}>
               {b.category}
               {"->"}
               {b.program}
@@ -206,11 +206,11 @@ function Stepfour({
         </p>
         <p className="flex text-2xl items-center">
           {course2.map((b) => (
-            <>
+            <p key={b.program}>
               {b.category}
               {"->"}
               {b.program}
-            </>
+            </p>
           ))}
           {course2?.length !== 0 && (
             <RxCross1

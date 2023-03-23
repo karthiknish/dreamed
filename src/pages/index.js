@@ -44,16 +44,16 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <div className="container px-6 py-16 mx-auto">
-          <div className="items-center lg:flex">
-            <div className="w-full lg:w-1/2">
+        <div className="h-screen mx-auto bg-gradient-to-b from-blue-900 via-blue-300 to-transparent md:bg-gradient-to-r">
+          <div className="h-full flex flex-col md:flex-row items-center">
+            <div className="w-full px-12 py-8 md:py-0 md:w-1/2">
               <div className="lg:max-w-lg">
-                <h1 className="text-3xl font-semibold text-gray-800  lg:text-4xl">
+                <h1 className="text-3xl font-semibold text-white lg:text-6xl">
                   Empowering Your Future <br /> with{" "}
-                  <span className="text-blue-500 ">Education</span>
+                  <span className="text-yellow-300">Education</span>
                 </h1>
 
-                <p className="mt-3 text-gray-600 ">
+                <p className="mt-3 text-gray-200">
                   Empowering students to achieve their full potential through
                   personalized guidance and expert support in navigating the
                   complex world of education.
@@ -61,21 +61,21 @@ export default function Home() {
 
                 <button
                   onClick={() => Router.push("/contact")}
-                  className="w-full px-5 py-2 mt-6 text-sm tracking-wider text-white uppercase transition-colors duration-300 transform bg-blue-600 rounded-lg lg:w-auto hover:bg-blue-500 focus:outline-none focus:bg-blue-500"
+                  className="w-full px-5 py-2 mt-6 text-sm tracking-wider text-white uppercase transition-colors duration-300 transform bg-green-600 rounded-lg lg:w-auto hover:bg-green-800 focus:outline-none focus:bg-green-800"
                 >
                   Contact NOW!
                 </button>
               </div>
             </div>
 
-            <div className="flex items-center justify-center w-full mt-6 lg:mt-0 lg:w-1/2">
-              <Image
-                width="200"
-                height="200"
-                className="w-full h-full lg:max-w-3xl"
-                src={header.src}
-                alt="Catalogue-pana.svg"
+            <div className="relative w-full flex-grow md:h-full md:w-1/2">
+              <img
+                className="absolute w-full h-full object-cover"
+                src="https://images.unsplash.com/photo-1525921429624-479b6a26d84d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
+                alt="Header"
               />
+              <div className="absolute inset-0 bg-gradient-to-b from-blue-700 via-transparent to-transparent opacity-100 md:bg-gradient-to-r md:from-blue-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-b from-blue-300 via-blue-300 to-transparent opacity-75 md:bg-gradient-to-r md:from-blue-300"></div>
             </div>
           </div>
         </div>
@@ -83,7 +83,7 @@ export default function Home() {
           <div className="overflow-hidden bg-gray-900 lg:flex lg:w-full lg:shadow-md ">
             <div className="lg:w-1/2">
               <div
-                className="h-64 bg-cover lg:h-full"
+                className=" bg-cover h-full"
                 style={{
                   backgroundImage:
                     "url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80')",
