@@ -1,7 +1,7 @@
 const TestimonialSection = () => {
   const testimonials = [
     {
-      name: "Amit",
+      name: "Amit Sharma",
       country: "UK",
       testimonial:
         "I went to the UK for my master's degree, and it was a life-changing experience. The quality of education, cultural exposure, and opportunities for personal growth were incredible. I would recommend studying in the UK to anyone looking to expand their horizons.",
@@ -9,7 +9,7 @@ const TestimonialSection = () => {
         "https://media.istockphoto.com/id/1128932923/photo/confident-male-college-student-on-campus.jpg?s=612x612&w=0&k=20&c=oYkE9wnO_XZ8vphCh_MeVxNzsJLolTsa4yyKxS0za1I=",
     },
     {
-      name: "Priya",
+      name: "Priya Charan",
       country: "USA",
       testimonial:
         "Studying in the USA was a dream come true for me. The professors were knowledgeable, and the campus facilities were top-notch. I had the opportunity to interact with students from diverse backgrounds, which helped me grow both personally and professionally.",
@@ -17,7 +17,7 @@ const TestimonialSection = () => {
         "https://media.istockphoto.com/id/1043730632/photo/happy-young-indian-woman-with-mobile-phone-and-bag-by-isolated-white-background.jpg?s=612x612&w=0&k=20&c=ocLfEmfHvrG3V8zVh8taYbooLz1HG66v_YV1QcifLT0=",
     },
     {
-      name: "Ravi",
+      name: "Ravi Hariharan",
       country: "Australia",
       testimonial:
         "My master's degree in Australia was an unforgettable experience. The quality of education and the support from the faculty were exceptional. The diverse culture and beautiful landscapes made my time there truly memorable. I highly recommend studying in Australia.",

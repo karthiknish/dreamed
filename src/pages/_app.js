@@ -7,6 +7,7 @@ import { initGA, logPageView } from "../lib/ga";
 import Footer from "@/components/Footer";
 import { SessionProvider } from "next-auth/react";
 import Assistant from "@/components/assistant/Assistant";
+
 export default function App({ Component, pageProps }) {
   const router = useRouter();
   useEffect(() => {

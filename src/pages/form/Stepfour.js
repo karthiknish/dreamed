@@ -190,7 +190,7 @@ function Stepfour({
       </div>
       <div className="flex space-x-4 mt-4">
         <p className="flex text-2xl items-center">
-          {course1.map((b) => (
+          {course1?.map((b) => (
             <p key={b.program}>
               {b.category}
               {"->"}
@@ -205,7 +205,7 @@ function Stepfour({
           )}
         </p>
         <p className="flex text-2xl items-center">
-          {course2.map((b) => (
+          {course2?.map((b) => (
             <p key={b.program}>
               {b.category}
               {"->"}

@@ -1,6 +1,4 @@
-import Head from 'next/head'
-import header from "../assets/header.png";
-import Image from "next/image";
+import Head from "next/head";
 import Router from "next/router";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
@@ -15,7 +13,12 @@ import Faisal from "../assets/Faisal.png";
 import Theju from "../assets/Theju.png";
 import Surya from "../assets/Surya.png";
 import { AiFillLinkedin } from "react-icons/ai";
+import { Lato } from "next/font/google";
 import Link from "next/link";
+const lato = Lato({
+  subsets: ["latin"],
+  weight: ["100", "300", "400", "700", "900"],
+});
 export default function Home() {
   const f = useSession();
   useEffect(() => {
@@ -48,7 +51,9 @@ export default function Home() {
           <div className="h-full flex flex-col md:flex-row items-center">
             <div className="w-full px-12 py-8 md:py-0 md:w-1/2">
               <div className="lg:max-w-lg">
-                <h1 className="text-3xl font-semibold text-white lg:text-6xl">
+                <h1
+                  className={`text-3xl font-semibold text-white lg:text-6xl ${lato.className}`}
+                >
                   Empowering Your Future <br /> with{" "}
                   <span className="text-yellow-300">Education</span>
                 </h1>
