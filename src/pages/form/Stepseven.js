@@ -1,13 +1,27 @@
 import React, { useState } from "react";
 import Datepicker from "react-tailwindcss-datepicker";
-
-function Stepseven({ time, setTime, formStep, nextFormStep, handleSubmit }) {
-  const [date, setDate] = useState([]);
-  const [am, setAm] = useState("am");
-  const [hrs, setHrs] = useState("1");
-
+import { motion } from "framer-motion";
+function Stepseven({
+  time,
+  setTime,
+  formStep,
+  nextFormStep,
+  handleSubmit,
+  message,
+  setMessage,
+  date,
+  setDate,
+  am,
+  setAm,
+  hrs,
+  setHrs,
+}) {
   return (
-    <div className="max-w-sm mx-auto flex flex-col items-center gap-4">
+    <motion.div
+      initial={{ y: -10, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      className="max-w-sm mx-auto flex flex-col items-center gap-4"
+    >
       Good Time to Reach You:
       <Datepicker
         asSingle={true}
@@ -57,17 +71,22 @@ function Stepseven({ time, setTime, formStep, nextFormStep, handleSubmit }) {
             </select>
           </div>
         </div>
-      </div>
+      </div>{" "}
+      {message && (
+        <p className="mt-4 text-red-500 transition duration-300 ease-in-out">
+          {message}
+        </p>
+      )}
       <button
+        className="px-6 py-3 mt-4 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
         onClick={(e) => {
-          nextFormStep();
           setTime(date + hrs + am);
           handleSubmit(e);
         }}
       >
         Next
       </button>
-    </div>
+    </motion.div>
   );
 }
 

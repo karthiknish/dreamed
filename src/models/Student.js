@@ -1,4 +1,14 @@
 import mongoose from "mongoose";
+const CourseSchema = new mongoose.Schema({
+  category: {
+    type: String,
+    required: [true, "Please provide the course category."],
+  },
+  program: {
+    type: String,
+    required: [true, "Please provide the course program."],
+  },
+});
 const StudentSchema = new mongoose.Schema(
   {
     name: {
@@ -49,11 +59,11 @@ const StudentSchema = new mongoose.Schema(
       required: [true, "Please provide your Visa status."],
     },
     course1: {
-      type: String,
+      type: CourseSchema,
       required: [true, "Please provide your course 1."],
     },
     course2: {
-      type: String,
+      type: CourseSchema,
       required: [true, "Please provide your course 2."],
     },
     ieltsbool: {

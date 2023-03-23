@@ -142,7 +142,7 @@ const Navbar = () => {
                       signOut({ callbackUrl: "/", redirect: false });
                       Router.push("/");
                     }}
-                    className="text-left px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100 "
+                    className={`${roboto.className}  px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100`}
                   >
                     Signout
                   </button>

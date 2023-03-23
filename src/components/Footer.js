@@ -18,14 +18,14 @@ function Footer() {
           </Link>
 
           <div className="flex flex-wrap justify-center mt-6 -mx-4">
-            <a
-              href="#"
+            <Link
+              href="/"
               className="mx-4 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500  "
               aria-label="Reddit"
             >
               {" "}
               Home{" "}
-            </a>
+            </Link>
 
             <a
               href="#"
@@ -45,23 +45,23 @@ function Footer() {
               Teams{" "}
             </a>
 
-            <a
-              href="#"
+            <Link
+              href="/privacy"
               className="mx-4 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500 "
               aria-label="Reddit"
             >
               {" "}
               Privacy{" "}
-            </a>
+            </Link>
 
-            <a
-              href="#"
+            <Link
+              href="/cookies"
               className="mx-4 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500 "
               aria-label="Reddit"
             >
               {" "}
               Cookies{" "}
-            </a>
+            </Link>
           </div>
         </div>
 

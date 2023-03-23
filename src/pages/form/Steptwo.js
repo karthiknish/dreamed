@@ -26,6 +26,7 @@ function Steptwo({ pno, setPno, formStep, nextFormStep, message, setMessage }) {
     <div className="min-h-screen flex flex-col items-center">
       <div className="flex max-w-sm">
         <select
+          defaultValue={"+91"}
           id="countryCode"
           value={countryCode}
           onChange={(e) => setCountryCode(e.target.value)}

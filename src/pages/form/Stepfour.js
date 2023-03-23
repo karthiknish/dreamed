@@ -64,12 +64,12 @@ const Modal = ({
   const handleAddCourse = () => {
     if (prog.trim().length === 0) {
       alert("Please enter a program name.");
-    } else if (!course1?.length) {
-      setCourse1([{ category: category, program: prog }]);
+    } else if (!course1) {
+      setCourse1({ category: category, program: prog });
       setProg("");
       setshowModal(false);
     } else {
-      setCourse2([{ category: category, program: prog }]);
+      setCourse2({ category: category, program: prog });
       setProg("");
       setshowModal(false);
     }
@@ -144,7 +144,7 @@ function Stepfour({
   const [category, setCategory] = useState("");
 
   const handleNextStep = () => {
-    if (!course1.length || !course2.length) {
+    if (!course1 || !course2) {
       setMessage("Enter 2 courses");
     } else {
       nextFormStep();
@@ -165,7 +165,9 @@ function Stepfour({
           setCourse2={setCourse2}
         />
       )}
-      <h1 className="text-2xl mb-4">Interested programs</h1>
+      <h1 className="text-3xl font-semibold text-gray-800 mb-6">
+        Interested Programs
+      </h1>
 
       <div
         className={`grid grid-cols-1 lg:grid-cols-3 w-full gap-4 lg:gap-6 p-4 items-center ${
@@ -181,20 +183,25 @@ function Stepfour({
               setshowModal(true);
               setCategory(category.name);
             }}
-            className="flex justify-center items-center gap-2 w-full p-4 bg-white shadow-md rounded-lg cursor-pointer"
+            className="flex flex-col justify-center items-center gap-2 w-full p-4 bg-white shadow-md rounded-lg cursor-pointer hover:bg-gray-100 transition-colors duration-300"
           >
             {category.icon}
-            <span>{category.name}</span>
+            <span className="text-xl font-medium text-gray-700">
+              {category.name}
+            </span>
           </div>
         ))}
       </div>
-      <div className="flex space-x-4 mt-4">
-        <p className="flex text-2xl items-center">
+      <div className="flex flex-wrap space-x-4 mt-4">
+        <div className="flex flex-wrap items-center space-x-4">
           {course1?.map((b) => (
-            <p key={b.program}>
-              {b.category}
+            <p
+              key={course1.program}
+              className="text-xl font-medium text-gray-700"
+            >
+              {course1.category}
               {"->"}
-              {b.program}
+              {course1.program}
             </p>
           ))}
           {course1?.length !== 0 && (
@@ -203,13 +210,16 @@ function Stepfour({
               onClick={() => setCourse1([])}
             />
           )}
-        </p>
-        <p className="flex text-2xl items-center">
+        </div>
+        <div className="flex flex-wrap items-center space-x-4">
           {course2?.map((b) => (
-            <p key={b.program}>
-              {b.category}
+            <p
+              key={course2.program}
+              className="text-xl font-medium text-gray-700"
+            >
+              {course2.category}
               {"->"}
-              {b.program}
+              {course2.program}
             </p>
           ))}
           {course2?.length !== 0 && (
@@ -218,7 +228,7 @@ function Stepfour({
               onClick={() => setCourse2([])}
             />
           )}
-        </p>
+        </div>
       </div>
 
       {message && <p className="text-red-500 mt-4">{message}</p>}
