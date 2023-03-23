@@ -1,5 +1,6 @@
 import dbConnect from "../../lib/dbConnect";
 import Student from "../../models/Student";
+import nodemailer from "nodemailer";
 function getEmailTemplate(name) {
   return ` <body>
   <section style="max-width: 2xl; padding: 6px; margin: 0 auto; background-color: white;">
@@ -16,12 +17,7 @@ function getEmailTemplate(name) {
     <main style="margin-top: 2rem;">
       <h2 style="color: #4A5568;">Hi ${name},</h2>
 
-      <p
-        style="margin-top: 0.5rem; line-height: 1.625; color: #718096;"
-      >
-        Dream education consultancy has invited you to Signup on
-        <span style="font-weight: 600;">dreamedconsultancy.com</span>.
-      </p>
+    
 
       <p
       style="margin-top: 0.5rem; line-height: 1.625; color: #718096;"
@@ -103,7 +99,7 @@ export default async function handler(req, res) {
               pass: process.env.NOREPLY_PASS,
             },
           });
-          const emailTemplate = getEmailTemplate(name);
+          const emailTemplate = getEmailTemplate(req.body.name);
           const mailOptions = {
             from: process.env.NOREPLY_EMAIL,
             to: email,
@@ -113,8 +109,8 @@ export default async function handler(req, res) {
           await transporter.sendMail(mailOptions).catch((err) => {
             console.error(err);
           });
-        res.status(201).json({ success: true, data: student });
-        
+          res.status(201).json({ success: true, data: student });
+        }
       } catch (error) {
         console.log(error);
         res.status(400).json({ success: false, data: error });

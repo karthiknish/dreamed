@@ -1,25 +1,53 @@
 import dbConnect from "../../lib/dbConnect";
 import Contact from "../../models/Contact";
-// import nodemailer from "nodemailer";
+import nodemailer from "nodemailer";
+function getEmailTemplate(name) {
+  return ` <body>
+  <section style="max-width: 2xl; padding: 6px; margin: 0 auto; background-color: white;">
+    <header>
+      <a href="#">
+        <img
+          style="width: auto; height: 1.75rem;"
+          src="https://merakiui.com/images/full-logo.svg"
+          alt=""
+        />
+      </a>
+    </header>
+
+    <main style="margin-top: 2rem;">
+      <h2 style="color: #4A5568;">Hi ${name},</h2>
+
+      <p
+        style="margin-top: 0.5rem; line-height: 1.625; color: #718096;"
+      >
+       Dream education has got your Query
+      </p>
+
+     
+      <p style="margin-top: 2rem; color: #718096;">
+        Thanks, <br />
+        Dream Ed Team
+      </p>
+    </main>
+
+    <footer style="margin-top: 2rem;">
+      <p style="margin-top: 0.75rem; color: #A0AEC0;">
+        © ${new Date().getFullYear()} Dream Ed. All Rights Reserved.
+      </p>
+    </footer>
+  </section>
+</body>`;
+}
 export default async function handler(req, res) {
-  // let transporter = nodemailer.createTransport({
-  //   host: "smtp.gmail.com",
-  //   port: 465,
-  //   secure: true,
-  //   auth: {
-  //     user: "initiosol@gmail.com",
-  //     pass: process.env.PASS,
-  //   },
-  // });
   const { method } = req;
   await dbConnect();
+
   switch (method) {
     case "GET":
       try {
-        const q = Object.keys(req.query).length;
         const { id } = req.query;
-        if (q === 1 && id !== "contact") {
-          const { id } = req.query;
+
+        if (id.length) {
           const contact = await Contact.findOne({ _id: id });
           res.status(200).json({ success: true, data: contact });
         } else {
@@ -33,47 +61,56 @@ export default async function handler(req, res) {
 
     case "POST":
       try {
-        if (!req.body.name) {
+        const { name, email, query, phone } = req.body;
+        if (!name) {
           res.status(400).json({ success: false, data: "Please enter name" });
-        } else if (!req.body.email) {
+        } else if (!email) {
           res.status(400).json({ success: false, data: "Please enter email" });
-        } else if (!req.body.query) {
+        } else if (!query) {
           res
             .status(400)
             .json({ success: false, data: "Please enter message" });
-        } else if (req.body.email) {
-          let r = String(req.body.email)
-            .toLowerCase()
-            .match(
-              /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-            );
-          if (r === null) {
+        } else if (!phone) {
+          res.status(400).json({ success: false, data: "Please enter Phone" });
+        } else {
+          const emailRegex =
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+          if (!email.match(emailRegex)) {
             res
               .status(400)
               .json({ success: false, data: "Please enter valid email" });
           } else {
             const contact = await Contact.create(req.body);
-            res.status(201).json({ success: true, data: contact });
+            if (req.body.email) {
+              const transporter = nodemailer.createTransport({
+                host: "smtppro.zoho.eu",
+                port: 465,
+                secure: true,
+                auth: {
+                  user: process.env.NOREPLY_EMAIL,
+                  pass: process.env.NOREPLY_PASS,
+                },
+              });
+              const emailTemplate = getEmailTemplate(req.body.name);
+              const mailOptions = {
+                from: process.env.NOREPLY_EMAIL,
+                to: email,
+                subject: "Dream Ed Consultancy has got your Query",
+                html: emailTemplate,
+              };
+              await transporter.sendMail(mailOptions).catch((err) => {
+                console.error(err);
+              });
+              res.status(201).json({ success: true, data: contact });
+            }
           }
         }
-
-        // let info = await transporter.sendMail({
-        //   from: "initiosol@gmail.com",
-        //   to: "support@initiosolutions.com",
-        //   subject: "You got a new lead!!",
-        //   html: `
-        //     <div>
-        //       <div style='margin-bottom:'10px'><b>Name :</b> ${req.body.name}</div>
-        //       <div style='margin-bottom:'10px'><b>Email :</b> ${req.body.email}</div>
-        //       <div><b>Message: </b>${req.body.message}</div>
-        //     </div>
-        //   `,
-        // });
-        // console.log("Message sent: %s", info);
       } catch (error) {
         res.status(400).json({ success: false, data: "Server Error" });
       }
       break;
+
     default:
       res.status(400).json({ success: false });
       break;
