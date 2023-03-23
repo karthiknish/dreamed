@@ -9,7 +9,7 @@ function Stepthree({
   setMessage,
 }) {
   const handleNext = () => {
-    if (!dob) {
+    if (!dob || dob === "" || dob === null) {
       setMessage("Please select your date of birth.");
       return;
     }
@@ -27,8 +27,11 @@ function Stepthree({
   };
 
   return (
-    <div className="flex flex-col items-center max-w-sm mx-auto">
-      <label htmlFor="dob">Date of Birth</label>
+    <div className="min-h-screen flex flex-col items-center max-w-sm mx-auto">
+      <label htmlFor="dob" className="text-sm font-medium text-gray-700">
+        Date of Birth
+      </label>
+
       <Datepicker
         asSingle={true}
         useRange={false}
@@ -36,9 +39,19 @@ function Stepthree({
         primaryColor={"blue"}
         placeholder={dob?.length && dob}
         onChange={(e) => setDob(e.startDate)}
+        className="w-full py-2 pl-3 pr-10 mt-1 text-base text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
       />
-      {message && <p className="text-red-500 text-sm mt-2">{message}</p>}
-      <button onClick={handleNext}>Next</button>
+      {message && (
+        <p className="mt-4 text-red-500 transition duration-300 ease-in-out">
+          {message}
+        </p>
+      )}
+      <button
+        onClick={handleNext}
+        className="px-6 py-3 mt-4 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
+      >
+        Next
+      </button>
     </div>
   );
 }

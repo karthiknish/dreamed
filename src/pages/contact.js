@@ -1,11 +1,14 @@
 import { useState } from "react";
 import Head from "next/head";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
+
 function Contact() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [query, setQuery] = useState("");
   const [message, setMessage] = useState([]);
-
+  const [phone, setPhone] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = { name, email, query };
@@ -74,15 +77,24 @@ function Contact() {
                   </div>
                   <div className="flex-1">
                     <label className="block mt-4 text-sm text-gray-200">
-                      Phone{" "}
+                      Phone
                     </label>
-                    <input
-                      required
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      type="text"
+                    <PhoneInput
+                      country={"us"} // Sets the default country code, you can change it to your preferred default
+                      value={phone}
+                      onChange={(value) => setPhone(value)}
                       placeholder="Phone"
-                      className="block w-full px-5 py-3 mt-2  border  rounded-md placeholder-gray-600 bg-gray-800 text-gray-300 border-gray-700 focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                      inputStyle={{
+                        width: "100%",
+                        padding: "12px 16px",
+                        background: "#1F2937",
+                        color: "#E5E7EB",
+                        border: "1px solid #374151",
+                        borderRadius: "0.375rem",
+                      }}
+                      inputProps={{
+                        required: true,
+                      }}
                     />
                   </div>
 

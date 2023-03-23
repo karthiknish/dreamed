@@ -57,14 +57,14 @@ function Stepone({
     }
   };
   return (
-    <div className="flex flex-col items-center">
+    <div className="min-h-screen flex flex-col items-center">
       <h1 className="mt-10 text-4xl">Interested Countries</h1>
-      <div className="flex gap-4 py-20">
+      <div className="flex flex-wrap gap-4 py-20">
         {count.map((country) => (
           <div
             key={country.name}
             onClick={() => handleCountry(country.name)}
-            className={`flex flex-col items-center shadow-lg rounded p-4 ${
+            className={`flex flex-col items-center shadow-lg rounded p-4 transition duration-300 ease-in-out transform hover:scale-105 ${
               countries.includes(country.name) ? "bg-blue-200" : "bg-white"
             }`}
           >
@@ -74,12 +74,21 @@ function Stepone({
               height={100}
               src={country.flagUrl}
             />
-            <p>{country.name}</p>
+            <p className="mt-2 text-gray-700">{country.name}</p>
           </div>
         ))}
       </div>
-      <button onClick={handleNextStep}>Next</button>
-      {message && <p className="text-red-500">{message}</p>}
+      <button
+        onClick={handleNextStep}
+        className="px-6 py-3 mt-4 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
+      >
+        Next
+      </button>
+      {message && (
+        <p className="mt-4 text-red-500 transition duration-300 ease-in-out">
+          {message}
+        </p>
+      )}
     </div>
   );
 }

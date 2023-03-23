@@ -65,11 +65,11 @@ const Modal = ({
     if (prog.trim().length === 0) {
       alert("Please enter a program name.");
     } else if (!course1?.length) {
-      setCourse1([category, prog]);
+      setCourse1([{ category: category, program: prog }]);
       setProg("");
       setshowModal(false);
     } else {
-      setCourse2([category, prog]);
+      setCourse2([{ category: category, program: prog }]);
       setProg("");
       setshowModal(false);
     }
@@ -135,7 +135,9 @@ function Stepfour({
   setCourse1,
   setCourse2,
   formStep,
-  nextFormStep,message,setMessage
+  nextFormStep,
+  message,
+  setMessage,
 }) {
   const [showModal, setshowModal] = useState(false);
   const [prog, setProg] = useState("");
@@ -144,10 +146,13 @@ function Stepfour({
   const handleNextStep = () => {
     if (!course1.length || !course2.length) {
       setMessage("Enter 2 courses");
-    } else nextFormStep();setMessage('')
+    } else {
+      nextFormStep();
+      setMessage("");
+    }
   };
   return (
-    <div className="flex bg-slate-50 flex-col items-center p-2">
+    <div className="min-h-screen flex flex-col items-center bg-gray-100 p-4">
       {showModal && (
         <Modal
           category={category}
@@ -160,47 +165,69 @@ function Stepfour({
           setCourse2={setCourse2}
         />
       )}
-      <h1 className="text-2xl mb-3">Interested programs</h1>
+      <h1 className="text-2xl mb-4">Interested programs</h1>
+
       <div
-        className={`lg:grid w-full lg:w-auto lg:grid-cols-3 flex flex-col p-4 items-center gap-4 lg:gap-12 ${
-          course1?.length === 2 && course2?.length === 2
+        className={`grid grid-cols-1 lg:grid-cols-3 w-full gap-4 lg:gap-6 p-4 items-center ${
+          course1?.length === 1 && course2?.length === 1
             ? "pointer-events-none blur-sm"
             : ""
         }`}
       >
         {categories.map((category, index) => (
-          <div className="w-full" key={index}>
-            <div
-              onClick={() => {
-                setshowModal(true);
-                setCategory(category.name);
-              }}
-              className={`flex justify-center items-center gap-2 w-full z-10 shadow-md p-4 rounded-lg 
-        }`}
-            >
-              {category.icon} {category.name}
-            </div>
+          <div
+            key={index}
+            onClick={() => {
+              setshowModal(true);
+              setCategory(category.name);
+            }}
+            className="flex justify-center items-center gap-2 w-full p-4 bg-white shadow-md rounded-lg cursor-pointer"
+          >
+            {category.icon}
+            <span>{category.name}</span>
           </div>
         ))}
       </div>
-      {
-        <div className="flex">
-          <p className="flex">
-            {course1}
-            {course1?.length !== 0 && (
-              <RxCross1 onClick={() => setCourse1([])} />
-            )}
-          </p>
-          <p className="flex">
-            {course2}
-            {course2?.length !== 0 && (
-              <RxCross1 onClick={() => setCourse2([])} />
-            )}
-          </p>
-        </div>
-      }
-      {message&&<p>{message}</p>}
-      <button onClick={handleNextStep}>Next</button>
+      <div className="flex space-x-4 mt-4">
+        <p className="flex text-2xl items-center">
+          {course1.map((b) => (
+            <p>
+              {b.category}
+              {"->"}
+              {b.program}
+            </p>
+          ))}
+          {course1?.length !== 0 && (
+            <RxCross1
+              className="text-2xl text-red-500"
+              onClick={() => setCourse1([])}
+            />
+          )}
+        </p>
+        <p className="flex text-2xl items-center">
+          {course2.map((b) => (
+            <>
+              {b.category}
+              {"->"}
+              {b.program}
+            </>
+          ))}
+          {course2?.length !== 0 && (
+            <RxCross1
+              className="text-2xl text-red-500"
+              onClick={() => setCourse2([])}
+            />
+          )}
+        </p>
+      </div>
+
+      {message && <p className="text-red-500 mt-4">{message}</p>}
+      <button
+        onClick={handleNextStep}
+        className="px-6 py-3 mt-4 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
+      >
+        Next
+      </button>
     </div>
   );
 }

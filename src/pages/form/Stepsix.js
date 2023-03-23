@@ -17,7 +17,7 @@ function Stepsix({
   nextFormStep,
 }) {
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex min-h-screen max-w-sm mx-auto flex-col items-center">
       IELTS
       <div className="flex gap-4 my-2">
         <div

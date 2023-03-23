@@ -23,12 +23,13 @@ function Steptwo({ pno, setPno, formStep, nextFormStep, message, setMessage }) {
     }
   };
   return (
-    <div className="flex flex-col items-center">
+    <div className="min-h-screen flex flex-col items-center">
       <div className="flex max-w-sm">
         <select
           id="countryCode"
           value={countryCode}
           onChange={(e) => setCountryCode(e.target.value)}
+          className="block w-full py-2 pl-3 pr-10 mt-1 text-base text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
         >
           {COUNTRY_CODES.map((country) => (
             <option key={country.code} value={country.code}>
@@ -37,14 +38,23 @@ function Steptwo({ pno, setPno, formStep, nextFormStep, message, setMessage }) {
           ))}
         </select>
         <input
-          className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
+          className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
           type="number"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
         />
       </div>
-      {message && <p className="text-red-500">{message}</p>}
-      <button onClick={validatePhone}>Next</button>
+      {message && (
+        <p className="mt-4 text-red-500 transition duration-300 ease-in-out">
+          {message}
+        </p>
+      )}
+      <button
+        onClick={validatePhone}
+        className="px-6 py-3 mt-4 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
+      >
+        Next
+      </button>
     </div>
   );
 }

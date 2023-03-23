@@ -14,7 +14,7 @@ function Info() {
   const d = useSession();
   const [formStep, setFormStep] = useState(0);
   const [countries, setCountries] = useState([]);
-  const [dob, setDob] = useState([]);
+  const [dob, setDob] = useState("");
   const [pno, setPno] = useState("");
   const [course1, setCourse1] = useState([]);
   const [course2, setCourse2] = useState([]);
@@ -132,6 +132,8 @@ function Info() {
         {formStep === 3 && (
           <Stepfour
             course1={course1}
+            message={message}
+            setMessage={setMessage}
             course2={course2}
             setCourse1={setCourse1}
             setCourse2={setCourse2}
@@ -183,7 +185,6 @@ function Info() {
           />
         )}
         {formStep === 7 && <Stepeight />}
-        {message}
       </FormCard>
     </>
   );
