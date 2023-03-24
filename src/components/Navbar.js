@@ -21,8 +21,8 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="relative bg-white shadow">
-      <div className="container px-6 py-4 mx-auto">
+    <nav className=" bg-white shadow z-10 sticky top-0">
+      <div className="container px-6 py-4 mx-auto ">
         <div className="lg:flex lg:items-center lg:justify-between">
           <div className="flex items-center justify-between">
             <Link href="/">
