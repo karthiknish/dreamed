@@ -33,8 +33,8 @@ function Index() {
     signup: { opacity: 0.5, x: 10 },
   };
   useEffect(() => {
-    console.log(data);
-
+   if (data?.user?.email === "info@dreamedconsultancy.com")
+     Router.push("/admin");
     if (data?.user) {
       Router.push("/dashboard");
     }

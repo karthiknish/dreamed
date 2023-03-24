@@ -42,7 +42,7 @@ export default async function handler(req, res) {
         const totalPages = Math.ceil(total / limit);
         const pagination = { page, limit, totalPages, total };
 
-        return res.status(200).json({ success: true, data: blogs, pagination });  
+        return res.status(200).json({ success: true, data: blogs, pagination });
       } catch (error) {
         return res.status(400).json({ success: false, message: error.message });
       }
