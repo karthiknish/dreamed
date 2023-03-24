@@ -23,7 +23,7 @@ export default function Home() {
   const f = useSession();
   useEffect(() => {
     const getInfo = async () => {
-      if (f?.data?.user) {
+      if (f?.data?.user && f?.data?.user?.name !== "admin") {
         const r = await fetch(`/api/signup?email=${f?.data?.user?.email}`, {
           method: "GET",
         })
