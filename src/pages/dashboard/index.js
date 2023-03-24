@@ -9,7 +9,9 @@ function Index() {
   useEffect(() => {
     const getForm = async () => {
       if (session && !loading) {
+        
         const userEmail = session.user.email;
+      
         await fetch(`/api/student?email=${userEmail}`, {
           method: "GET",
         })

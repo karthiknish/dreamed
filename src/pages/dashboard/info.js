@@ -13,7 +13,7 @@ import { useSession } from "next-auth/react";
 import Router from 'next/router'
 function Info() {
   const { data: session, status } = useSession();
-  const load = status === "loading";
+  const loading = status === "loading";
   const [formStep, setFormStep] = useState(0);
   const [countries, setCountries] = useState([]);
   const [dob, setDob] = useState("");
@@ -33,7 +33,7 @@ function Info() {
   const [visabool, setVisabool] = useState(false);
   const [english, setEnglish] = useState("");
   const [time, setTime] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [Loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -41,31 +41,38 @@ function Info() {
   const [am, setAm] = useState("am");
   const [hrs, setHrs] = useState("1");
 
-  useEffect(() => {
-    if (session && !load) setName(session?.user?.name);
-    setEmail(session?.user?.email);
-  }, [session]);
-  useEffect(() => {
-    const getForm = async () => {
-      if (session && !load) {
-        const userEmail = email;
-        if (userEmail !== undefined) {
-          await fetch(`/api/student?email=${userEmail}`, {
-            method: "GET",
-          })
-            .then((res) => res.json())
-            .then((d) => {
-              console.log(d.data);
-              if (d.data.length && d.success === true) {
-                Router.push("/dashboard");
-              }
-            });
-        }
-      }
-    };
+  const [load, setLoad] = useState(loading);
 
+  useEffect(() => {
+    if (session && load) {
+      setName(session?.user?.name);
+      setEmail(session?.user?.email);
+      setLoad(false);
+    }
+  }, [session, load]);
+
+  const getForm = async () => {
+    if (session && !load) {
+      const userEmail = session.user.email;
+
+      await fetch(`/api/student?email=${userEmail}`, {
+        method: "GET",
+      })
+        .then((res) => res.json())
+        .then((d) => {
+          if (!d.data.length) {
+            Router.push("/dashboard/info");
+          } else {
+            Router.push("/dashboard");
+          }
+        });
+    }
+  };
+
+  useEffect(() => {
     getForm();
-  }, [session, loading]);
+  }, [session, load]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
