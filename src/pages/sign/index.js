@@ -14,6 +14,20 @@ function Index() {
   const [conpassword, setConpassword] = useState("");
   const [message, setMessage] = useState("");
   const [success, setSuccess] = useState(false);
+  const handleResend = async (e) => {
+    e.preventDefault();
+    let res = await fetch("/api/verify", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email }),
+    })
+      .then((res) => res.json())
+      .then((d) => {
+        if (d.success) {
+          setMessage("");
+        }
+      });
+  };
   const buttvariant = {
     signin: { opacity: 1, x: -10 },
     signup: { opacity: 0.5, x: 10 },
@@ -37,6 +51,7 @@ function Index() {
         password,
       }).then((d) => {
         setMessage([d.ok, d.error]);
+        setSuccess(d.ok);
       });
     } else {
       const role = 1;
@@ -170,7 +185,7 @@ function Index() {
                     placeholder="Password"
                   />
                 </div>
-                {message && (
+                {message && !success && (
                   <div className="flex w-full my-4 max-w-sm overflow-hidden bg-slate-50 rounded-lg shadow-md ">
                     <div className="flex items-center justify-center w-12 bg-red-500">
                       <svg
@@ -187,7 +202,20 @@ function Index() {
                         <span className="font-semibold text-red-400">
                           Error
                         </span>
-                        <p className="text-sm text-gray-600 ">{message}</p>
+                        <p className="text-sm text-gray-600 ">
+                          {message}
+
+                          {message[1]
+                            .toString()
+                            .startsWith("Please verify") && (
+                            <button
+                              className="text-blue-400"
+                              onClick={handleResend}
+                            >
+                              Resend Verification Mail
+                            </button>
+                          )}
+                        </p>
                       </div>
                     </div>
                   </div>

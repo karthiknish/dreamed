@@ -68,11 +68,11 @@ const validateStudent = (student) => {
 export default async function handler(req, res) {
   const { method } = req;
   await dbConnect();
-
   switch (method) {
     case "GET":
       try {
         const userEmail = req.query.email;
+        console.log(userEmail);
         const students = userEmail
           ? await Student.find({ email: userEmail })
           : await Student.find({});
@@ -84,7 +84,7 @@ export default async function handler(req, res) {
     case "POST":
       try {
         const errors = validateStudent(req.body);
-
+        console.log(req.body);
         if (errors.length > 0) {
           res.status(400).json({ success: false, message: errors.join(", ") });
           return;

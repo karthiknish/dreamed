@@ -12,7 +12,8 @@ import FormCard from "../form/FormCard";
 import { useSession } from "next-auth/react";
 import Router from 'next/router'
 function Info() {
-  const d = useSession();
+  const { data: session, status } = useSession();
+  const load = status === "loading";
   const [formStep, setFormStep] = useState(0);
   const [countries, setCountries] = useState([]);
   const [dob, setDob] = useState("");
@@ -41,29 +42,30 @@ function Info() {
   const [hrs, setHrs] = useState("1");
 
   useEffect(() => {
-    setName(d?.data?.user?.name);
-    setEmail(d?.data?.user?.email);
-  }, [d]);
+    if (session && !load) setName(session?.user?.name);
+    setEmail(session?.user?.email);
+  }, [session]);
   useEffect(() => {
     const getForm = async () => {
-      if (d) {
+      if (session && !load) {
         const userEmail = email;
-        console.log(userEmail);
-        await fetch(`/api/student?email=${userEmail}`, {
-          method: "GET",
-        })
-          .then((res) => res.json())
-          .then((d) => {
-            console.log(d.data);
-            if (d.data.length && d.success === true) {
-              Router.push("/dashboard");
-            }
-          });
+        if (userEmail !== undefined) {
+          await fetch(`/api/student?email=${userEmail}`, {
+            method: "GET",
+          })
+            .then((res) => res.json())
+            .then((d) => {
+              console.log(d.data);
+              if (d.data.length && d.success === true) {
+                Router.push("/dashboard");
+              }
+            });
+        }
       }
     };
 
     getForm();
-  }, [d, loading]);
+  }, [session, loading]);
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);

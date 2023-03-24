@@ -15,7 +15,7 @@ function Index() {
         })
           .then((res) => res.json())
           .then((d) => {
-            if (!d.data.length && d.success === true) {
+            if (!d.data.length) {
               Router.push("/dashboard/info");
             }
           });

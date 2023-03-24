@@ -28,7 +28,7 @@ async function sendVerificationEmail(user, verificationLink) {
       </header>
   
       <main style="margin-top: 2rem;">
-        <h2 style="color: #4A5568;">Hi ${user},</h2>
+        <h2 style="color: #4A5568;">Hi ${user.name},</h2>
   
         <p
           style="margin-top: 0.5rem; line-height: 1.625; color: #718096;"
@@ -83,7 +83,7 @@ export default async function handler(req, res) {
 
   if (req.method === "POST") {
     const { email } = req.body;
-
+    console.log(req.body);
     try {
       const user = await User.findOne({ email });
 
@@ -110,7 +110,6 @@ export default async function handler(req, res) {
       res.status(500).json({ success: false, message: e.message });
     }
   } else if (req.method === "GET") {
-    // Verify email
     const { token } = req.query;
 
     try {
