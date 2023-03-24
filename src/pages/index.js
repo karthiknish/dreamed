@@ -572,9 +572,12 @@ export default function Home() {
                 <p className="mt-2 text-gray-400">
                   Our friendly team is here to help.
                 </p>
-                <p className="mt-2 text-blue-400">
+                <Link
+                  href='mailto:info@dreamedconsultancy.com"'
+                  className="mt-2 text-blue-400"
+                >
                   info@dreamedconsultancy.com
-                </p>
+                </Link>
               </div>
 
               <div>
@@ -629,7 +632,12 @@ export default function Home() {
 
                 <h2 className="mt-4 text-lg font-medium text-white">Phone</h2>
                 <p className="mt-2 text-gray-400"> Whatsapp us </p>
-                <p className="mt-2 text-blue-400">+91 9884022990</p>
+                <Link
+                  href="https://wa.me/+919884022990"
+                  className="mt-2 text-blue-400"
+                >
+                  +91 9884022990
+                </Link>
               </div>
             </div>
           </div>
