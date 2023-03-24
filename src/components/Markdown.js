@@ -275,7 +275,6 @@ const MenuBar = ({ editor }) => {
 };
 
 function Markdown({ content, setContent }) {
-  console.log(content);
   const editor = useEditor({
     extensions: [
       Color.configure({ types: [TextStyle.name, ListItem.name] }),
@@ -287,11 +286,11 @@ function Markdown({ content, setContent }) {
       StarterKit.configure({
         bulletList: {
           keepMarks: true,
-          keepAttributes: false, // TODO : Making this as `false` becase marks are not preserved when I try to preserve attrs, awaiting a bit of help
+          keepAttributes: false,
         },
         orderedList: {
           keepMarks: true,
-          keepAttributes: false, // TODO : Making this as `false` becase marks are not preserved when I try to preserve attrs, awaiting a bit of help
+          keepAttributes: false,
         },
       }),
     ],
@@ -303,6 +302,7 @@ function Markdown({ content, setContent }) {
 
   return (
     <>
+      {console.log(content)}
       <MenuBar editor={editor} />
       <EditorContent editor={editor} />
     </>

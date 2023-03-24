@@ -62,11 +62,13 @@ export default async function handler(req, res) {
       }
     case "PUT":
       try {
+     
         if (!req.body.id) {
           return res
             .status(400)
             .json({ success: false, message: "Missing blog ID" });
         }
+
         const validationResult = validateBlogData(req.body);
         if (!validationResult.isValid) {
           return res
@@ -76,6 +78,7 @@ export default async function handler(req, res) {
         const blog = await Blog.findByIdAndUpdate(req.body.id, req.body, {
           new: true,
         });
+        console.log(blog);
         if (!blog) {
           return res
             .status(404)
