@@ -51,7 +51,7 @@ export default async function handler(req, res) {
       try {
         const { id } = req.query;
 
-        if (id.length) {
+        if (id && id.length) {
           const contact = await Contact.findOne({ _id: id });
           res.status(200).json({ success: true, data: contact });
         } else {
@@ -59,7 +59,8 @@ export default async function handler(req, res) {
           res.status(200).json({ success: true, data: contacts });
         }
       } catch (error) {
-        res.status(400).json({ success: false });
+        console.log(error);
+        res.status(400).json({ success: false, data: error });
       }
       break;
 

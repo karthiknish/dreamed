@@ -84,6 +84,11 @@ const StudentSchema = new mongoose.Schema(
       type: Date,
       required: [true, "Please provide your preferred contact date."],
     },
+    status: {
+      type: String,
+      enum: ["documents_received", "admission_granted", "visa_received"],
+      required: [false, "Please provide the current status of the student."],
+    },
   },
   { timestamps: true }
 );

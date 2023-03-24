@@ -71,12 +71,17 @@ export default async function handler(req, res) {
   switch (method) {
     case "GET":
       try {
-        const userEmail = req.query.email;
-        console.log(userEmail);
-        const students = userEmail
-          ? await Student.find({ email: userEmail })
-          : await Student.find({});
-        res.status(200).json({ success: true, data: students });
+        const { id, email } = req.query;
+        if (id) {
+          const student = await Student.findById(id);
+          res.status(200).json({ success: true, data: student });
+        } else if (email) {
+          const students = await Student.find({ email: email });
+          res.status(200).json({ success: true, data: students });
+        } else {
+          const students = await Student.find({});
+          res.status(200).json({ success: true, data: students });
+        }
       } catch (error) {
         res.status(400).json({ success: false });
       }

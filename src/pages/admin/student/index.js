@@ -7,7 +7,7 @@ function Index() {
   useEffect(() => {
     async function getContact() {
       try {
-        const response = await fetch("/api/contact", {
+        const response = await fetch("/api/student", {
           method: "GET",
           headers: {
             Accept: "application/json",
@@ -16,7 +16,7 @@ function Index() {
         });
 
         const result = await response.json();
-        console.log(result);
+
         if (result.data !== null) {
           setData(result.data);
         }
@@ -31,15 +31,15 @@ function Index() {
   return (
     <>
       <Head>
-        <title>All Contacts</title>
+        <title>Students</title>
       </Head>
       <div className="p-4 flex flex-col gap-2">
         <h1 className="text-6xl font-bold text-gray-700 justify-center text-center p-2">
-          All Contacts
+          All Students
         </h1>
         {data?.map((d) => (
           <button
-            onClick={() => Router.push(`/admin/contact/${d._id}`)}
+            onClick={() => Router.push(`/admin/student/${d._id}`)}
             className="w-full border-2 rounded p-2 text-left hover:bg-slate-100 transition-colors duration-300"
             key={d._id}
           >

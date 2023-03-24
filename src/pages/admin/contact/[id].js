@@ -19,43 +19,17 @@ function Id() {
   return (
     <>
       <Head>
-        <title>Individual customer data</title>
+        <title>Individual Query data</title>
       </Head>
-      <div className="p-4 bg-slate-100">
+      <div className="p-4 min-h-scree flex flex-col items-center gap-4 bg-slate-100">
         <p>Name: </p>
         <h1 className="text-4xl font-semibold text-gray-800">{data.name}</h1>
         <p>Email: </p>
         <h1 className="text-4xl font-semibold text-gray-800">{data.email}</h1>
         <p>Phone: </p>
         <h1 className="text-4xl font-semibold text-gray-800">{data.phone}</h1>
-        <p>Qualification: </p>
-        <h1 className="text-4xl font-semibold text-gray-800">{data.qualify}</h1>
-        <p>Degree type: </p>
-        <h1 className="text-4xl font-semibold text-gray-800">
-          {data.degreetype}
-        </h1>
-        <p>Date of Birth: </p>
-        <h1 className="text-4xl font-semibold text-gray-800">
-          {Date(data.dob).slice(0, 16)}
-        </h1>
-        <p>CGPA or %: </p>
-        <h1 className="text-4xl font-semibold text-gray-800">{data.cgpa}</h1>
-        <p>Backlogs: </p>
-        <h1 className="text-4xl font-semibold text-gray-800">{data.backlog}</h1>
-        <p>Interested Countries: </p>
-        <h1 className="text-4xl font-semibold text-gray-800">
-          {data?.countries?.map((c) => (
-            <div key={c} className="flex">
-              {c}
-            </div>
-          ))}
-        </h1>
-        <p>Visa: </p>
-        <h1 className="text-4xl font-semibold text-gray-800">{data.visa}</h1>
-        <p>Schedule Meeting date and Time: </p>
-        <h1 className="text-4xl font-semibold text-gray-800">
-          {Date(data.time).slice(0, 21)}
-        </h1>
+        <p>Query: </p>
+        <h1 className="text-4xl font-semibold text-gray-800">{data.query}</h1>
       </div>
     </>
   );

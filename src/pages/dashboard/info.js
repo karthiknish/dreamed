@@ -18,8 +18,8 @@ function Info() {
   const [countries, setCountries] = useState([]);
   const [dob, setDob] = useState("");
   const [pno, setPno] = useState("");
-  const [course1, setCourse1] = useState([]);
-  const [course2, setCourse2] = useState([]);
+  const [course1, setCourse1] = useState(null);
+  const [course2, setCourse2] = useState(null);
   const [message, setMessage] = useState("");
   const [degreetype, setDegreetype] = useState("");
   const [backlog, setBacklog] = useState("");
@@ -98,8 +98,8 @@ function Info() {
       ieltsbool,
       visa,
       visabool,
-      course1, // No need to stringify
-      course2, // No need to stringify
+      course1,
+      course2,
       english,
       backlog,
       time: formattedTime,
