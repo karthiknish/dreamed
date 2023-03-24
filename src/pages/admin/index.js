@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { AiOutlineEdit, AiOutlineMail, AiOutlineFileAdd } from "react-icons/ai";
+import { RxAvatar } from "react-icons/rx";
 import Head from "next/head";
 function Index() {
   return (
@@ -38,7 +39,7 @@ function Index() {
             href="/admin/student"
             className="flex flex-col items-center justify-center p-4 bg-white shadow-md rounded-md transition-all duration-200 hover:bg-gray-200"
           >
-            <AiOutlineMail className="text-4xl mb-2" />
+            <RxAvatar className="text-4xl mb-2" />
             <span>Check Students</span>
           </Link>
         </div>
