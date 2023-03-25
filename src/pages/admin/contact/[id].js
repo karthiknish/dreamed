@@ -2,20 +2,25 @@ import { useEffect, useState } from "react";
 import Head from "next/head";
 function Id() {
   const [data, setData] = useState([]);
-  const getData = async () => {
+
+const fetchData = async () => {
+  try {
     let arr = window.location.pathname.split("/");
     let val = arr.pop();
-    const res = await fetch(`/api/contact?id=${val}`, {
+    const encodedVal = encodeURIComponent(val);
+    const res = await fetch(`/api/contact?id=${encodedVal}`, {
       headers: { "Content-Type": "application/json" },
-    })
-      .then((r) => r.json())
-      .then((d) => setData(d.data));
-  };
-  useEffect(() => {
-    return () => {
-      getData();
-    };
-  }, []);
+    });
+    const d = await res.json();
+    setData(d.data);
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+};
+
+useEffect(() => {
+  fetchData();
+}, [data]);
   return (
     <>
       <Head>
