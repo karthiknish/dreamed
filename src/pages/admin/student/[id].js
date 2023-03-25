@@ -67,13 +67,13 @@ function Id() {
           <p>
             Course 1:{" "}
             <span className="font-medium">
-              {data?.course1.category}, {data?.course1}
+              {data?.course1?.category}, {data?.course1}
             </span>
           </p>
           <p>
             Course 2:{" "}
             <span className="font-medium">
-              {data?.course2.category}, {data?.course2.program}
+              {data?.course2?.category}, {data?.course2?.program}
             </span>
           </p>
           <p>
