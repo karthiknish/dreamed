@@ -62,6 +62,7 @@ function Index() {
             data.map((d) => (
               <>
                 <div
+                  style={{ cursor: "pointer" }}
                   key={d?._id}
                   onClick={() => Router.push(`/stories/${d?._id}`)}
                   className="mt-8 lg:-mx-6 lg:flex lg:items-center"
@@ -92,11 +93,11 @@ function Index() {
                     </a>
 
                     <div className="flex items-center mt-6">
-                      <img
+                      {/* <img
                         className="object-cover object-center w-10 h-10 rounded-full"
                         src="https://images.unsplash.com/photo-1531590878845-12627191e687?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80"
                         alt=""
-                      />
+                      /> */}
 
                       <div className="mx-4">
                         <h1 className="text-sm text-gray-700">{d?.author}</h1>
