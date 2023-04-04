@@ -1,48 +1,9 @@
 import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
+
 import Image from "next/image";
 import Head from "next/head";
-import ReactMarkdown from "react-markdown";
 
-function Id() {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const router = useRouter();
-  const query = router.query.id;
-
-  useEffect(() => {
-    if (query) {
-      const getBlog = async () => {
-        try {
-          const response = await fetch(`/api/blog?id=${query}`);
-          const blogData = await response.json();
-          setData(blogData.data);
-        } catch (err) {
-          setError(err.message);
-        } finally {
-          setLoading(false);
-        }
-      };
-      getBlog();
-    }
-  }, [query]);
-
-  const LoadingSkeleton = () => (
-    <div className="animate-pulse">
-      <div className="w-full h-40 bg-gray-200"></div>
-      <div className="p-2">
-        <div className="h-6 bg-gray-200 w-1/2 mt-4"></div>
-        <div className="h-4 bg-gray-200 w-full mt-2"></div>
-        <div className="h-4 bg-gray-200 w-full mt-2"></div>
-        <div className="h-4 bg-gray-200 w-3/4 mt-2"></div>
-      </div>
-    </div>
-  );
-
-  if (loading) return <LoadingSkeleton />;
-  if (error) return <div>Error: {error}</div>;
-
+function Id({ data }) {
   return (
     <>
       <Head>
@@ -56,7 +17,7 @@ function Id() {
         <meta property="og:type" content="article" />
         <meta
           property="og:url"
-          content={`https://dreamedconsultancy.com/stories/${query}`}
+          content={`https://dreamedconsultancy.com/stories/${data?._id}`}
         />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={data?.title} />
@@ -92,5 +53,22 @@ function Id() {
     </>
   );
 }
+export async function getServerSideProps(context) {
+  const { id } = context.query;
+  let data = null;
 
+  try {
+    const response = await fetch(`${process.env.URL}/api/blog?id=${id}`);
+    const blogData = await response.json();
+    data = blogData.data;
+  } catch (err) {
+    console.error(err);
+  }
+
+  return {
+    props: {
+      data,
+    },
+  };
+}
 export default Id;

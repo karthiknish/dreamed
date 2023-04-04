@@ -91,7 +91,7 @@ function Index() {
         <title>All Blogs</title>
       </Head>
 
-      <section className="container mt-4 px-4 mx-auto">
+      <section className="container mt-4 min-h-screen px-4 mx-auto">
         <div className="flex flex-col">
           <h1 className="text-4xl my-4">All Blogs</h1>
           <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
