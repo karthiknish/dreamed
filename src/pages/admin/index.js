@@ -20,7 +20,7 @@ function Index() {
           </Link>
 
           <Link
-            href="/admin/blog/edit"
+            href="/admin/blog"
             className="flex flex-col items-center justify-center p-4 bg-white shadow-md rounded-md transition-all duration-200 hover:bg-gray-200"
           >
             <AiOutlineEdit className="text-4xl mb-2" />

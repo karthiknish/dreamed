@@ -8,11 +8,9 @@ function validateBlogData(data) {
   if (!data.content) {
     return { isValid: false, message: "Content is required" };
   }
-  if(!data.content){
-    return {isValid:false,message:'Author is required'}
-  } if(!data.imageUrl){
-    return {isValid:false,message:'Image is required'}
-  }
+   if (!data.imageUrl) {
+     return { isValid: false, message: "Image is required" };
+   }
   return { isValid: true, message: "" };
 }
 

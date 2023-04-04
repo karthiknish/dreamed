@@ -4,7 +4,6 @@ import Markdown from "../../../../components/Markdown";
 import { useRouter } from "next/router";
 function Edit() {
   const [title, setTitle] = useState("");
-  const [author, setAuthor] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [content, setContent] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -21,7 +20,6 @@ function Edit() {
           .then((d) => {
             if (d?.success) {
               setTitle(d?.data?.title);
-              setAuthor(d?.data?.author);
               setImageUrl(d?.data?.imageUrl);
               setContent(d?.data?.content);
             }
@@ -34,7 +32,7 @@ function Edit() {
     setIsLoading(true);
     e.preventDefault();
     const { id } = router.query;
-    const data = { id, title, author, imageUrl, content };
+    const data = { id, title, imageUrl, content };
     try {
       let res = await fetch(`/api/blog?id=${id}`, {
         method: "PUT",
@@ -69,14 +67,7 @@ function Edit() {
           className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg   focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
           placeholder="Title"
         />
-        <label htmlFor="author">Author</label>
-        <input
-          value={author || ""}
-          type="text"
-          onChange={(e) => setAuthor(e.target.value)}
-          className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg  focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-          placeholder="Author"
-        />
+
         <label htmlFor="imageUrl">Image URL</label>
         <input
           value={imageUrl || ""}

@@ -111,12 +111,12 @@ const Navbar = () => {
                 >
                   How can We Help
                 </Link>
-                <Link
+                {/* <Link
                   href="/sign"
                   className={`${roboto.className}  px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100`}
                 >
                   Study Abroad
-                </Link>
+                </Link> */}
                 <Link
                   href="/career"
                   className={`${roboto.className}  px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100`}
@@ -129,7 +129,7 @@ const Navbar = () => {
                 >
                   Contact
                 </Link>
-                {!data?.user ? (
+                {/* {!data?.user ? (
                   <Link
                     href="/sign"
                     className={`${roboto.className}  px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100`}
@@ -146,7 +146,7 @@ const Navbar = () => {
                   >
                     Signout
                   </button>
-                )}
+                )} */}
               </div>
 
               {data?.user && (

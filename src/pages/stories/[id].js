@@ -47,9 +47,22 @@ function Id() {
     <>
       <Head>
         <title>{data?.title}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content={data?.title} />
+        <meta name="author" content="Your Name" />
         <meta property="og:title" content={data?.title} />
         <meta property="og:description" content={data?.title} />
+        <meta property="og:image" content={data?.imageUrl} />
+        <meta property="og:type" content="article" />
+        <meta
+          property="og:url"
+          content={`https://dreamedconsultancy.com/stories/${query}`}
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={data?.title} />
+        <meta name="twitter:description" content={data?.title} />
+        <meta name="twitter:image" content={data?.imageUrl} />
+
         <meta property="og:image" content={data?.imageUrl} />
       </Head>
       <div>

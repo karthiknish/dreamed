@@ -141,12 +141,6 @@ function Index() {
                         scope="col"
                         className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
                       >
-                        Author
-                      </th>
-                      <th
-                        scope="col"
-                        className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
-                      >
                         Content
                       </th>
                     </tr>
@@ -160,9 +154,6 @@ function Index() {
                               {showModal && <Modal id={d?._id} />}
                               {d?.title}
                             </div>
-                          </td>
-                          <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                            {d?.author}
                           </td>
 
                           <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">

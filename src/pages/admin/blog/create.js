@@ -3,7 +3,7 @@ import Head from "next/head";
 import Markdown from "../../../components/Markdown";
 function Create() {
   const [title, setTitle] = useState("");
-  const [author, setAuthor] = useState("");
+
   const [imageUrl, setImageUrl] = useState("");
   const [content, setContent] = useState("");
   const handleSubmit = async (e) => {
@@ -19,7 +19,7 @@ function Create() {
       .then((d) => {
         if (d.success) {
           setTitle("");
-          setAuthor("");
+
           setImageUrl("");
           setContent("");
         }
@@ -38,13 +38,6 @@ function Create() {
           onChange={(e) => setTitle(e.target.value)}
           className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg   focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
           placeholder="Title"
-        />
-        <input
-          value={author}
-          type="text"
-          onChange={(e) => setAuthor(e.target.value)}
-          className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg  focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-          placeholder="Author"
         />
 
         <input
