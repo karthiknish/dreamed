@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import Head from "next/head";
 import { convert } from "html-to-text";
 import Router from "next/router";
