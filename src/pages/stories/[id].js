@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-
 import Image from "next/image";
 import Head from "next/head";
 
@@ -21,7 +19,7 @@ function Id({ data }) {
         />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={data?.title} />
-        <meta name="twitter:description" content={data?.title} />
+        <meta name="twitter:description" content={data?.content} />
         <meta name="twitter:image" content={data?.imageUrl} />
 
         <meta property="og:image" content={data?.imageUrl} />
