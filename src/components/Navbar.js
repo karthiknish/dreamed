@@ -26,10 +26,13 @@ const Navbar = () => {
         <div className="lg:flex lg:items-center lg:justify-between">
           <div className="flex items-center justify-between">
             <Link href="/">
-              <img
+              <Image
                 alt="logo"
                 className="w-auto object-contain sm:h-20 xs:w-1/2"
                 src={logo.src}
+                width={320}
+                height={80}
+                objectFit="contain"
               />
             </Link>
             <div className="flex lg:hidden">
