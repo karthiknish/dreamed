@@ -10,6 +10,7 @@ import Deekshita from "../assets/Deekshita.png";
 import Faisal from "../assets/Faisal.png";
 import Theju from "../assets/Theju.png";
 import Surya from "../assets/Surya.png";
+import Image from "next/image";
 import { AiFillLinkedin } from "react-icons/ai";
 import { Lato } from "next/font/google";
 import Link from "next/link";
@@ -92,10 +93,12 @@ export default function Home() {
             </div>
 
             <div className="relative w-full flex-grow md:h-full md:w-1/2">
-              <img
+              <Image
                 className="absolute w-full h-full object-cover"
                 src="https://images.unsplash.com/photo-1525921429624-479b6a26d84d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
                 alt="Header"
+                layout="fill"
+                objectFit="cover"
               />
               <div className="absolute inset-0 bg-gradient-to-b from-blue-700 via-transparent to-transparent opacity-100 md:bg-gradient-to-r md:from-blue-300"></div>
               <div className="absolute inset-0 bg-gradient-to-b from-blue-300 via-blue-300 to-transparent opacity-75 md:bg-gradient-to-r md:from-blue-300"></div>
@@ -269,13 +272,17 @@ export default function Home() {
           </div>
 
           <div className="flex items-center justify-center w-full h-96 lg:w-1/2">
-            <img
+            <Image
               className="object-cover w-full h-full max-w-2xl rounded-md"
               src="https://images.unsplash.com/photo-1570616969692-54d6ba3d0397?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2622&q=80"
               alt="glasses photo"
+              layout="responsive"
+              width={2622}
+              height={1748}
+              objectFit="cover"
             />
           </div>
-        </div>{" "}
+        </div>
         <TestimonialSection />
         <TabsSection />
         <section className="bg-gray-900">
@@ -293,10 +300,14 @@ export default function Home() {
             <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 xl:grid-cols-2">
               <div className="px-12 py-8 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-blue-600 border-gray-500 ">
                 <div className="flex flex-col sm:-mx-4 sm:flex-row">
-                  <img
+                  <Image
                     className="flex-shrink-0 object-cover w-24 h-24 rounded-full sm:mx-4 ring-4 ring-gray-300"
                     src={Roshan.src}
-                    alt=""
+                    alt="Roshan"
+                    width={96}
+                    height={96}
+                    objectFit="cover"
+                    layout="fixed"
                   />
 
                   <div className="mt-4 sm:mx-4 sm:mt-0">
@@ -327,10 +338,14 @@ export default function Home() {
 
               <div className="px-12 py-8 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-blue-600 ">
                 <div className="flex flex-col sm:-mx-4 sm:flex-row">
-                  <img
+                  <Image
                     className="flex-shrink-0 object-cover w-24 h-24 rounded-full sm:mx-4 ring-4 ring-gray-300"
                     src={Karthik.src}
                     alt="Karthik"
+                    width={96}
+                    height={96}
+                    objectFit="cover"
+                    layout="fixed"
                   />
 
                   <div className="mt-4 sm:mx-4 sm:mt-0">
@@ -364,10 +379,14 @@ export default function Home() {
 
               <div className="px-12 py-8 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-blue-600 ">
                 <div className="flex flex-col sm:-mx-4 sm:flex-row">
-                  <img
+                  <Image
                     className="flex-shrink-0 object-cover w-24 h-24 rounded-full sm:mx-4 ring-4 ring-gray-300"
                     src={Theju.src}
                     alt="Theju"
+                    width={96}
+                    height={96}
+                    objectFit="cover"
+                    layout="fixed"
                   />
 
                   <div className="mt-4 sm:mx-4 sm:mt-0">
@@ -398,10 +417,14 @@ export default function Home() {
 
               <div className="px-12 py-8 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-blue-600  ">
                 <div className="flex flex-col sm:-mx-4 sm:flex-row">
-                  <img
+                  <Image
                     className="flex-shrink-0 object-cover w-24 h-24 rounded-full sm:mx-4 ring-4 ring-gray-300"
                     src={Surya.src}
                     alt="Surya"
+                    width={96}
+                    height={96}
+                    objectFit="cover"
+                    layout="fixed"
                   />
 
                   <div className="mt-4 sm:mx-4 sm:mt-0">
@@ -431,10 +454,14 @@ export default function Home() {
               </div>
               <div className="px-12 py-8 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-blue-600 ">
                 <div className="flex flex-col sm:-mx-4 sm:flex-row">
-                  <img
+                  <Image
                     className="flex-shrink-0 object-cover w-24 h-24 rounded-full sm:mx-4 ring-4 ring-gray-300"
                     src={Deekshita.src}
                     alt="Deekshita"
+                    width={96}
+                    height={96}
+                    objectFit="cover"
+                    layout="fixed"
                   />
 
                   <div className="mt-4 sm:mx-4 sm:mt-0">
@@ -464,10 +491,14 @@ export default function Home() {
               </div>
               <div className="px-12 py-8 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-blue-600 ">
                 <div className="flex flex-col sm:-mx-4 sm:flex-row">
-                  <img
+                  <Image
                     className="flex-shrink-0 object-cover w-24 h-24 rounded-full sm:mx-4 ring-4 ring-gray-300"
                     src={Faisal.src}
                     alt="Faisal"
+                    width={96}
+                    height={96}
+                    objectFit="cover"
+                    layout="fixed"
                   />
 
                   <div className="mt-4 sm:mx-4 sm:mt-0">

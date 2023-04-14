@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-
+import Image from "next/image";
 const TabsSection = () => {
   const [activeTab, setActiveTab] = useState("usa");
   const scrollContainerRef = useRef(null);
@@ -76,11 +76,18 @@ const TabsSection = () => {
     const repeatedImages = images.concat(images);
 
     return repeatedImages.map((image, index) => (
-      <div key={`${index}-${image}`} className="inline-block w-1/3 p-2">
-        <img
+      <div
+        key={`${index}-${image}`}
+        className="inline-block w-1/3 p-2 max-h-40"
+      >
+        <Image
           src={image}
           alt={`University ${index + 1}`}
-          className="object-contain w-full h-16 md:h-20"
+          className="object-contain w-full h-10  md:h-28"
+          width={2}
+          height={2}
+          // objectFit="contain"
+          // layout="responsive"
         />
       </div>
     ));

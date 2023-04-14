@@ -1,3 +1,4 @@
+import Image from "next/image";
 const TestimonialSection = () => {
   const testimonials = [
     {
@@ -33,10 +34,14 @@ const TestimonialSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
             <div key={index} className="bg-white shadow-md p-6 rounded-lg">
-              <img
+              <Image
                 className="h-16 w-16 object-cover rounded-full mx-auto mb-4"
                 src={testimonial.image}
                 alt={testimonial.name}
+                width={64}
+                height={64}
+                objectFit="cover"
+                layout="fixed"
               />
               <h3 className="text-xl font-semibold text-center">
                 {testimonial.name}
