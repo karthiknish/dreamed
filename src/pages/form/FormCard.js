@@ -29,13 +29,13 @@ function FormCard({ children, currentStep, prevFormStep }) {
     >
       {currentStep >= 0 && (
         <>
-          {currentStep < 8 && (
+          {currentStep < 8 && currentStep != 0 && (
             <button className="" onClick={prevFormStep} type="button">
               <IoIosArrowRoundBack className="text-6xl" />
             </button>
           )}
-          <div className="mx-auto w-full px-4 pb-4">
-            <ProgressBar currentStep={currentStep} totalSteps={7} />
+          <div className="mx-auto w-full px-4 pt-2 pb-4">
+            <ProgressBar currentStep={currentStep} totalSteps={8} />
           </div>
         </>
       )}

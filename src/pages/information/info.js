@@ -103,9 +103,6 @@ function Info() {
 
   return (
     <>
-      <Head>
-        <title>Your Info</title>
-      </Head>
       <FormCard currentStep={formStep} prevFormStep={prevFormStep}>
         {formStep === 0 && (
           <Stepzero
