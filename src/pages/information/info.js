@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Head from "next/head";
+import Stepzero from "../form/Stepzero";
 import Stepone from "../form/Stepone";
 import Steptwo from "../form/Steptwo";
 import Stepthree from "../form/Stepthree";
@@ -9,11 +10,7 @@ import Stepsix from "../form/Stepsix";
 import Stepseven from "../form/Stepseven";
 import Stepeight from "../form/Stepeight";
 import FormCard from "../form/FormCard";
-import { useSession } from "next-auth/react";
-import Router from 'next/router'
 function Info() {
-  const { data: session, status } = useSession();
-  const loading = status === "loading";
   const [formStep, setFormStep] = useState(0);
   const [countries, setCountries] = useState([]);
   const [dob, setDob] = useState("");
@@ -40,38 +37,6 @@ function Info() {
   const [date, setDate] = useState([]);
   const [am, setAm] = useState("am");
   const [hrs, setHrs] = useState("1");
-
-  const [load, setLoad] = useState(loading);
-
-  useEffect(() => {
-    if (session && load) {
-      setName(session?.user?.name);
-      setEmail(session?.user?.email);
-      setLoad(false);
-    }
-  }, [session, load]);
-
-  const getForm = async () => {
-    if (session && !load) {
-      const userEmail = session.user.email;
-
-      await fetch(`/api/student?email=${userEmail}`, {
-        method: "GET",
-      })
-        .then((res) => res.json())
-        .then((d) => {
-          if (!d.data.length) {
-            Router.push("/dashboard/info");
-          } else {
-            Router.push("/dashboard");
-          }
-        });
-    }
-  };
-
-  useEffect(() => {
-    getForm();
-  }, [session, load]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -143,6 +108,18 @@ function Info() {
       </Head>
       <FormCard currentStep={formStep} prevFormStep={prevFormStep}>
         {formStep === 0 && (
+          <Stepzero
+            message={message}
+            setMessage={setMessage}
+            name={name}
+            setName={setName}
+            email={email}
+            setEmail={setEmail}
+            formStep={formStep}
+            nextFormStep={nextFormStep}
+          />
+        )}
+        {formStep === 1 && (
           <Stepone
             message={message}
             setMessage={setMessage}
@@ -152,7 +129,7 @@ function Info() {
             nextFormStep={nextFormStep}
           />
         )}
-        {formStep === 1 && (
+        {formStep === 2 && (
           <Steptwo
             message={message}
             setMessage={setMessage}
@@ -162,7 +139,7 @@ function Info() {
             nextFormStep={nextFormStep}
           />
         )}
-        {formStep === 2 && (
+        {formStep === 3 && (
           <Stepthree
             message={message}
             setMessage={setMessage}
@@ -172,7 +149,7 @@ function Info() {
             nextFormStep={nextFormStep}
           />
         )}
-        {formStep === 3 && (
+        {formStep === 4 && (
           <Stepfour
             course1={course1}
             message={message}
@@ -184,7 +161,7 @@ function Info() {
             nextFormStep={nextFormStep}
           />
         )}{" "}
-        {formStep === 4 && (
+        {formStep === 5 && (
           <Stepfive
             qualify={qualify}
             degreetype={degreetype}
@@ -198,7 +175,7 @@ function Info() {
             nextFormStep={nextFormStep}
           />
         )}
-        {formStep === 5 && (
+        {formStep === 6 && (
           <Stepsix
             ielts={ielts}
             setIelts={setIelts}
@@ -218,7 +195,7 @@ function Info() {
             nextFormStep={nextFormStep}
           />
         )}
-        {formStep === 6 && (
+        {formStep === 7 && (
           <Stepseven
             time={time}
             date={date}
@@ -235,7 +212,7 @@ function Info() {
             setMessage={setMessage}
           />
         )}
-        {formStep === 7 && <Stepeight />}
+        {formStep === 8 && <Stepeight />}
       </FormCard>
     </>
   );

@@ -33,11 +33,9 @@ function Index() {
     signup: { opacity: 0.5, x: 10 },
   };
   useEffect(() => {
-   if (data?.user?.email === "info@dreamedconsultancy.com")
-     Router.push("/admin");
-    if (data?.user) {
-      Router.push("/dashboard");
-    }
+    if (data?.user?.email === "info@dreamedconsultancy.com")
+      Router.push("/admin");
+
     if (router.query.error) {
       setMessage(decodeURIComponent(router.query.error));
     }

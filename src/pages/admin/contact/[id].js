@@ -39,13 +39,13 @@ return (
 
     <div className="p-4 min-h-scree flex flex-col items-center gap-4 bg-slate-100 min-h-screen">
       <p>Name: </p>
-      <h1 className="text-4xl font-semibold text-gray-800">{data.name}</h1>
+      <h1 className="text-4xl font-semibold text-gray-800">{data?.name}</h1>
       <p>Email: </p>
-      <h1 className="text-4xl font-semibold text-gray-800">{data.email}</h1>
+      <h1 className="text-4xl font-semibold text-gray-800">{data?.email}</h1>
       <p>Phone: </p>
-      <h1 className="text-4xl font-semibold text-gray-800">{data.phone}</h1>
+      <h1 className="text-4xl font-semibold text-gray-800">{data?.phone}</h1>
       <p>Query: </p>
-      <h1 className="text-4xl font-semibold text-gray-800">{data.query}</h1>
+      <h1 className="text-4xl font-semibold text-gray-800">{data?.query}</h1>
       <p>Enquiry on: </p>
       <h1 className="text-4xl font-semibold text-gray-800">{create}</h1>
     </div>

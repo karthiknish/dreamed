@@ -1,8 +1,6 @@
 import Head from "next/head";
 import Router from "next/router";
-import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { useSession } from "next-auth/react";
 import TabsSection from "@/components/TabSection";
 import TestimonialSection from "@/components/TestimonialSection";
 import FaqSection from "@/components/FaqSection";
@@ -20,24 +18,6 @@ const lato = Lato({
   weight: ["100", "300", "400", "700", "900"],
 });
 export default function Home() {
-  const f = useSession();
-  useEffect(() => {
-    const getInfo = async () => {
-      if (f?.data?.user && f?.data?.user?.name !== "admin") {
-        const r = await fetch(`/api/signup?email=${f?.data?.user?.email}`, {
-          method: "GET",
-        })
-          .then((res) => res.json())
-          .then((d) => {
-            if (!d.data.info) {
-              Router.push("/dashboard");
-            }
-          });
-      }
-    };
-    getInfo();
-  }, []);
-
   return (
     <>
       <Head>
@@ -103,10 +83,10 @@ export default function Home() {
                 </p>
 
                 <button
-                  onClick={() => Router.push("/contact")}
+                  onClick={() => Router.push("/information")}
                   className="w-full px-5 py-2 mt-6 text-sm tracking-wider text-white uppercase transition-colors duration-300 transform bg-green-600 rounded-lg lg:w-auto hover:bg-green-800 focus:outline-none focus:bg-green-800"
                 >
-                  Contact NOW!
+                  Join us NOW!
                 </button>
               </div>
             </div>

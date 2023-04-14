@@ -21,7 +21,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className=" bg-white shadow z-10 sticky top-0">
+    <nav className=" bg-white shadow z-10">
       <div className="container px-6 py-4 mx-auto ">
         <div className="lg:flex lg:items-center lg:justify-between">
           <div className="flex items-center justify-between">
@@ -149,7 +149,7 @@ const Navbar = () => {
                 )} */}
               </div>
 
-              {data?.user && (
+              {/* {data?.user && (
                 <div className="flex items-center mt-4 lg:mt-0">
                   <button
                     className="hidden mx-4 text-gray-600 transition-colors duration-300 transform lg:block  hover:text-gray-700  focus:text-gray-700 focus:outline-none"
@@ -191,7 +191,7 @@ const Navbar = () => {
                     </h3>
                   </button>
                 </div>
-              )}
+              )} */}
             </motion.div>
           )}
         </div>

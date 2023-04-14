@@ -27,9 +27,9 @@ function FormCard({ children, currentStep, prevFormStep }) {
       animate={{ y: 0, opacity: 1 }}
       className="flex flex-col"
     >
-      {currentStep > 0 && (
+      {currentStep >= 0 && (
         <>
-          {currentStep < 7 && (
+          {currentStep < 8 && (
             <button className="" onClick={prevFormStep} type="button">
               <IoIosArrowRoundBack className="text-6xl" />
             </button>

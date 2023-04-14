@@ -50,7 +50,6 @@ export default async function handler(req, res) {
     case "GET":
       try {
         const { id } = req.query;
-
         if (id && id.length) {
           const contact = await Contact.findOne({ _id: id });
           res.status(200).json({ success: true, data: contact });
@@ -123,7 +122,25 @@ export default async function handler(req, res) {
         res.status(400).json({ success: false, data: "Server Error" });
       }
       break;
-
+    case "DELETE":
+      try {
+        const { id } = req.query;
+        if (!id) {
+          return res
+            .status(400)
+            .json({ success: false, message: "Missing contact ID" });
+        }
+        const contact = await Contact.findByIdAndDelete(id);
+        if (!contact) {
+          return res
+            .status(404)
+            .json({ success: false, message: "Contact not found" });
+        }
+        res.status(200).json({ success: true, data: contact });
+      } catch (error) {
+        res.status(400).json({ success: false });
+      }
+      break;
     default:
       res.status(400).json({ success: false });
       break;
