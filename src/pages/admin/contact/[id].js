@@ -30,7 +30,7 @@ const fetchData = async () => {
 
 useEffect(() => {
   fetchData();
-}, [data]);
+}, []);
 return (
   <>
     <Head>
