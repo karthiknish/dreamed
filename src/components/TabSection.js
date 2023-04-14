@@ -70,7 +70,7 @@ const TabsSection = () => {
     }, scrollInterval);
 
     return () => clearInterval(scrollIntervalId);
-  }, [activeTab]);
+  }, [activeTab, countries]);
 
   const renderImages = (images) => {
     const repeatedImages = images.concat(images);
