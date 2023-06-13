@@ -5,7 +5,39 @@ import { ChatLine, LoadingChatLine } from "./ChatLine";
 import { useCookies } from "react-cookie";
 import { AiOutlineClose } from "react-icons/ai";
 const COOKIE_NAME = process.env.COOKIE_NAME;
-
+const InputMessage = ({ input, setInput, sendMessage }) => (
+  <div className="mt-6 w-full flex">
+    <input
+      autoFocus
+      type="text"
+      aria-label="chat input"
+      required
+      className="min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-500/10 sm:text-sm"
+      value={input}
+      onKeyDown={(e) => {
+        if (e.key === "Enter") {
+          sendMessage(input);
+          setInput("");
+        }
+      }}
+      onFocus={() => document.body.classList.add("stop-scrolling")}
+      onBlur={() => document.body.classList.remove("stop-scrolling")}
+      onChange={(e) => {
+        setInput(e.target.value);
+      }}
+    />
+    <button
+      type="submit"
+      className="ml-4 flex-none"
+      onClick={() => {
+        sendMessage(input);
+        setInput("");
+      }}
+    >
+      <BiRightArrow />
+    </button>
+  </div>
+);
 function Box({ messages, setMessages, loading, setLoading, on, setOn }) {
   const [input, setInput] = useState("");
   const [cookie, setCookie] = useCookies([COOKIE_NAME]);
@@ -85,39 +117,7 @@ function Box({ messages, setMessages, loading, setLoading, on, setOn }) {
     setMessages([...newMessages, { role: "assistant", content: data }]);
     setLoading(false);
   };
-  const InputMessage = ({ input, setInput, sendMessage }) => (
-    <div className="mt-6 w-full flex">
-      <input
-        autoFocus
-        type="text"
-        aria-label="chat input"
-        required
-        className="min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-500/10 sm:text-sm"
-        value={input}
-        onKeyDown={(e) => {
-          if (e.key === "Enter") {
-            sendMessage(input);
-            setInput("");
-          }
-        }}
-        onFocus={() => document.body.classList.add("stop-scrolling")}
-        onBlur={() => document.body.classList.remove("stop-scrolling")}
-        onChange={(e) => {
-          setInput(e.target.value);
-        }}
-      />
-      <button
-        type="submit"
-        className="ml-4 flex-none"
-        onClick={() => {
-          sendMessage(input);
-          setInput("");
-        }}
-      >
-        <BiRightArrow />
-      </button>
-    </div>
-  );
+
   return (
     <motion.div
       initial={{ y: 0, opacity: 0 }}
