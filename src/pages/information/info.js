@@ -79,7 +79,7 @@ function Info() {
         },
         body: JSON.stringify(data),
       });
-      console.log(res);
+
       setLoading(false);
 
       if (res.status === 201) {
@@ -176,15 +176,15 @@ function Info() {
           <Stepsix
             ielts={ielts}
             setIelts={setIelts}
-            ieltsbool={ieltsbool}
+            ieltsBool={ieltsbool}
             setIeltsbool={setIeltsbool}
             gre={gre}
             setGre={setGre}
-            grebool={grebool}
+            greBool={grebool}
             setGrebool={setGrebool}
             visa={visa}
             setVisa={setVisa}
-            visabool={visabool}
+            visaBool={visabool}
             setVisabool={setVisabool}
             english={english}
             setEnglish={setEnglish}

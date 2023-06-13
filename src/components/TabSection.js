@@ -80,14 +80,12 @@ const TabsSection = () => {
         key={`${index}-${image}`}
         className="inline-block w-1/3 p-2 max-h-40"
       >
-        <Image
+        <img
           src={image}
           alt={`University ${index + 1}`}
           className="object-contain w-full h-10  md:h-28"
           width={2}
           height={2}
-          // objectFit="contain"
-          // layout="responsive"
         />
       </div>
     ));

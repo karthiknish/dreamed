@@ -1,6 +1,6 @@
-import { useState } from "react";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { motion } from "framer-motion";
+
 const ProgressBar = ({ currentStep, totalSteps }) => {
   const progressPercentage = (currentStep / totalSteps) * 100;
 
@@ -29,7 +29,7 @@ function FormCard({ children, currentStep, prevFormStep }) {
     >
       {currentStep >= 0 && (
         <>
-          {currentStep < 8 && currentStep != 0 && (
+          {currentStep < 8 && currentStep !== 0 && (
             <button className="" onClick={prevFormStep} type="button">
               <IoIosArrowRoundBack className="text-6xl" />
             </button>

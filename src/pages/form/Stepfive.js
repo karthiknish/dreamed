@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+
 function Stepfive({
   qualify,
   degreetype,
@@ -21,6 +22,7 @@ function Stepfive({
   const [qualifyError, setQualifyError] = useState("");
   const [backlogError, setBacklogError] = useState("");
   const [cgpaError, setCgpaError] = useState("");
+
   const handleNext = () => {
     // Validate inputs
     let isValid = true;
