@@ -117,7 +117,11 @@ function Box({ messages, setMessages, loading, setLoading, on, setOn }) {
     <motion.div
       initial={{ y: 0, opacity: 0 }}
       animate={{ y: -10, opacity: 1 }}
-      className="md:fixed sticky bg-slate-200 p-4 flex flex-col md:max-w-sm md:bottom-20 md:right-10 md:h-auto w-full h-full bottom-0 right-0"
+      className={`${
+        on
+          ? "fixed inset-0 h-screen overflow-y-auto"
+          : "fixed bottom-0 right-0 md:max-w-sm md:bottom-20 md:right-10 md:h-auto w-full h-full"
+      } bg-slate-200 p-4 flex flex-col`}
     >
       <div className="md:hidden mt-2 absolute top-2 right-2">
         <AiOutlineClose
