@@ -9,7 +9,12 @@ const COOKIE_NAME = process.env.COOKIE_NAME;
 function Box({ messages, setMessages, loading, setLoading, on, setOn }) {
   const [input, setInput] = useState("");
   const [cookie, setCookie] = useCookies([COOKIE_NAME]);
-
+  const [chatBoxRef, setChatBoxRef] = useState(null);
+  useEffect(() => {
+    if (chatBoxRef) {
+      chatBoxRef.scrollTop = chatBoxRef.scrollHeight;
+    }
+  }, [messages, chatBoxRef]);
   useEffect(() => {
     if (!cookie[COOKIE_NAME]) {
       const randomId = Math.random().toString(36).substring(7);
@@ -119,9 +124,9 @@ function Box({ messages, setMessages, loading, setLoading, on, setOn }) {
       animate={{ y: -10, opacity: 1 }}
       className={`${
         on
-          ? "fixed inset-0 h-screen overflow-y-auto"
-          : "fixed bottom-0 right-0 md:max-w-sm md:bottom-20 md:right-10 md:h-auto w-full h-full"
-      } bg-slate-200 p-4 flex flex-col`}
+          ? "md:fixed sticky flex flex-col overflow-hidden bottom-20 md:w-1/2 w-full md:h-auto h-full right-10"
+          : "fixed bottom-0 right-0 md:bottom-20 md:right-10 md:max-w-md md:h-auto w-full h-full"
+      } bg-slate-200 p-4`}
     >
       <div className="md:hidden mt-2 absolute top-2 right-2">
         <AiOutlineClose
@@ -129,26 +134,24 @@ function Box({ messages, setMessages, loading, setLoading, on, setOn }) {
           className="h-6 w-6 text-2xl text-gray-500 cursor-pointer"
         />
       </div>
-      <div className="flex md:mt-0 mt-10 flex-grow flex-col justify-between">
-        <div className="overflow-y-auto max-h-72">
-          {messages.length &&
-            messages?.map(({ content, role }, index) => (
-              <ChatLine key={index} role={role} content={content} />
-            ))}
-          {loading && <LoadingChatLine />}
-          {messages.length < 2 && (
-            <span className="mx-auto  flex flex-grow text-gray-600 clear-both">
-              Type a message to start the conversation
-            </span>
-          )}
-        </div>
-        <div className="bottom-5 items-center gap-2">
-          <InputMessage
-            input={input}
-            setInput={setInput}
-            sendMessage={sendMessage}
-          />
-        </div>
+      <div ref={setChatBoxRef} className="flex-grow overflow-y-auto">
+        {messages.length &&
+          messages?.map(({ content, role }, index) => (
+            <ChatLine key={index} role={role} content={content} />
+          ))}
+        {loading && <LoadingChatLine />}
+        {messages.length < 2 && (
+          <span className="mx-auto flex flex-grow text-gray-600 clear-both">
+            Type a message to start the conversation
+          </span>
+        )}
+      </div>
+      <div className="w-full border-t-2">
+        <InputMessage
+          input={input}
+          setInput={setInput}
+          sendMessage={sendMessage}
+        />
       </div>
     </motion.div>
   );
