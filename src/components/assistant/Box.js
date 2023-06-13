@@ -95,6 +95,8 @@ function Box({ messages, setMessages, loading, setLoading, on, setOn }) {
             setInput("");
           }
         }}
+        onFocus={() => document.body.classList.add("stop-scrolling")}
+        onBlur={() => document.body.classList.remove("stop-scrolling")}
         onChange={(e) => {
           setInput(e.target.value);
         }}
@@ -115,7 +117,7 @@ function Box({ messages, setMessages, loading, setLoading, on, setOn }) {
     <motion.div
       initial={{ y: 0, opacity: 0 }}
       animate={{ y: -10, opacity: 1 }}
-      className="sticky bg-slate-200 p-4 flex flex-col md:max-w-sm md:bottom-20 md:right-10 md:h-auto w-full h-full bottom-0 right-0"
+      className="md:fixed sticky bg-slate-200 p-4 flex flex-col md:max-w-sm md:bottom-20 md:right-10 md:h-auto w-full h-full bottom-0 right-0"
     >
       <div className="md:hidden mt-2 absolute top-2 right-2">
         <AiOutlineClose
