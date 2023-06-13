@@ -3,12 +3,13 @@ import { motion } from "framer-motion";
 import { BiRightArrow } from "react-icons/bi";
 import { ChatLine, LoadingChatLine } from "./ChatLine";
 import { useCookies } from "react-cookie";
+import { AiOutlineClose } from "react-icons/ai";
 const COOKIE_NAME = process.env.COOKIE_NAME;
 
-function Box({ messages, setMessages, loading, setLoading }) {
+function Box({ messages, setMessages, loading, setLoading, on, setOn }) {
   const [input, setInput] = useState("");
-
   const [cookie, setCookie] = useCookies([COOKIE_NAME]);
+
   useEffect(() => {
     if (!cookie[COOKIE_NAME]) {
       const randomId = Math.random().toString(36).substring(7);
@@ -114,9 +115,15 @@ function Box({ messages, setMessages, loading, setLoading }) {
     <motion.div
       initial={{ y: 0, opacity: 0 }}
       animate={{ y: -10, opacity: 1 }}
-      className="fixed bg-slate-200 max-w-sm p-4 bottom-20 right-10  flex flex-col"
+      className="fixed bg-slate-200 p-4 flex flex-col md:max-w-sm md:bottom-20 md:right-10 md:h-auto w-full h-full bottom-0 right-0"
     >
-      <div className="flex flex-grow flex-col">
+      <div className="md:hidden mt-2 absolute top-2 right-2">
+        <AiOutlineClose
+          onClick={() => setOn(!on)}
+          className="h-6 w-6 text-2xl text-gray-500 cursor-pointer"
+        />
+      </div>
+      <div className="flex md:mt-0 mt-10 flex-grow flex-col justify-between">
         <div className="overflow-y-auto max-h-72">
           {messages.length &&
             messages?.map(({ content, role }, index) => (

@@ -43,6 +43,8 @@ function Assistant() {
       </div>
       {on && (
         <Box
+          setOn={setOn}
+          on={on}
           messages={messages}
           setMessages={setMessages}
           loading={loading}
