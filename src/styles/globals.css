@@ -65,7 +65,7 @@
   background-color: #f6f8fa;
   border-radius: 0.3em;
 } 
-stop-scrolling {
+.stop-scrolling {
    height: 100%;
     overflow: hidden;
    }
