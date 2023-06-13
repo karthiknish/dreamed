@@ -124,7 +124,7 @@ function Box({ messages, setMessages, loading, setLoading, on, setOn }) {
       animate={{ y: -10, opacity: 1 }}
       className={`${
         on
-          ? "md:fixed sticky flex flex-col overflow-hidden bottom-20 md:w-1/2 w-full md:h-auto h-full right-10"
+          ? "z-30 md:fixed sticky flex flex-col overflow-hidden bottom-20 md:w-1/2 w-full md:h-auto h-full right-10"
           : "fixed bottom-0 right-0 md:bottom-20 md:right-10 md:max-w-md md:h-auto w-full h-full"
       } bg-slate-200 p-4`}
     >
@@ -134,7 +134,7 @@ function Box({ messages, setMessages, loading, setLoading, on, setOn }) {
           className="h-6 w-6 text-2xl text-gray-500 cursor-pointer"
         />
       </div>
-      <div ref={setChatBoxRef} className="flex-grow overflow-y-auto">
+      <div ref={setChatBoxRef} className="flex-grow md:h-44 overflow-y-scroll">
         {messages.length &&
           messages?.map(({ content, role }, index) => (
             <ChatLine key={index} role={role} content={content} />
